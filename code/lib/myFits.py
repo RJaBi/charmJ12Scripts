@@ -1,5 +1,5 @@
 
-from typing import List
+from typing import List, Dict, Any
 import numpy as np
 
 
@@ -99,3 +99,17 @@ def getWinTicks(ax, wins: List[str]) -> List[str]:
 # As suggested in 2007.04188
 def arctan(x, p):
     return p['c0'] + p['c1'] * np.arctan(p['c2'] * (x - p['Tpc']))
+
+
+def linFunc(x: np.ndarray, p: Dict[str, Any]):
+    """
+    A linear fit function suitable for lsqfit
+    """
+    return p['a0'] + p['a1'] * x
+
+
+def sqrtLinFunc(x: np.ndarray, p: Dict[str, Any]):
+    """
+    A sqrt(linear) fit function suitable for lsqfit
+    """
+    return np.sqrt(p['a0'] + p['a1'] * x)

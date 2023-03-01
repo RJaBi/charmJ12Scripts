@@ -53,7 +53,6 @@ def refineXYLims(params, subDict='analysis') -> Dict[str, Any]:
     choose whatever limit it thinks is appropriate.
     Hence if the toml has an xlimit of i.e. ['None',], then this will set it to
     [None,]. Will work for both indices.
-
     This will look at all keys with 'Lim' in them under 'analysis'
     """
     if subDict is None:
@@ -135,8 +134,11 @@ def replace_nth(s, sub, repl, n=1):
         for i in range(rows)
     ])
 
+# #######################################################
+# Old jackknife resampling code
+# Still works i gues
 
-def doJack(data: np.ndarray, order=1):
+def doJack(data: np.ndarray, order=2):
     """
     Does jackknife resampling
     i.e. generates jackknife subensembles
@@ -169,13 +171,30 @@ def doJack(data: np.ndarray, order=1):
 
 def jackCov(jack1: np.ndarray) -> np.ndarray:
     """
-    estimates elements of covariance matrix via the jackknife method
     The data is of form [0:ncon,...]
     where 0 is the ensemble average value
     Returns matrix C[ti,]
     """
     ncon = float(jack1.shape[0] - 1)
     return np.cov(jack1, rowvar=False) * (ncon - 1)
+
+
+def jackErrNDARRAY(c: np.ndarray):
+    """
+    Takes jacknife error for a two dimensional numpy array
+    The first dimension is the jackknife
+    """
+    jackErr = np.empty(c.shape[1])
+    ncon = float(c.shape[0]) - 1.0
+    for xx in range(0, len(jackErr)):
+        # avg = c[0,]
+        thisXX = c[1:, xx]
+        avg = np.sum(thisXX)/(ncon)
+        sumTerm = np.sum((thisXX - avg)**2.0)
+        err = np.sqrt(sumTerm * (ncon-1)/(ncon))
+        jackErr[xx] = err
+    # Return
+    return jackErr
 
 
 def find_nearest(array, value):

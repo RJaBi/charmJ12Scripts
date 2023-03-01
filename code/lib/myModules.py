@@ -53,9 +53,10 @@ def refineXYLims(params, subDict='analysis') -> Dict[str, Any]:
     choose whatever limit it thinks is appropriate.
     Hence if the toml has an xlimit of i.e. ['None',], then this will set it to
     [None,]. Will work for both indices.
+
     This will look at all keys with 'Lim' in them under 'analysis'
     """
-    if subDict == None:  # noqa: E711
+    if subDict is None:
         myDict = params
     else:
         myDict = params[subDict]
@@ -103,7 +104,7 @@ def clean_filename(filename, whitelist=None, replace=' ', char_limit=255):
     Modified from
     Url: https://gist.github.com/wassname/1393c4a57cfcbf03641dbc31886123b8
     """
-    if whitelist == None:  # noqa: E711
+    if whitelist is None:
         whitelist = "-_.() %s%s" % (string.ascii_letters, string.digits)
     else:
         whitelist = whitelist + list("-_.() %s%s" % (string.ascii_letters, string.digits))
@@ -117,14 +118,25 @@ def clean_filename(filename, whitelist=None, replace=' ', char_limit=255):
     cleaned_filename = ''.join(c for c in cleaned_filename if c in whitelist)
     if len(cleaned_filename) > char_limit:
         print("Warning, filename truncated because it was over {}. Filenames may no longer be unique".format(char_limit))  # noqa: E501
-    return cleaned_filename[: char_limit]
+    return cleaned_filename[:char_limit]
 
 
-# #######################################################
-# Old jackknife resampling code
-# Still works i gues
+def replace_nth(s, sub, repl, n=1):
+    """
+    Taken from
+    https://stackoverflow.com/questions/46705546/python-replace-every-nth-occurrence-of-string
+    Replaces the nth 'sub' by 'repl' in s
+    """
+    chunks = s.split(sub)
+    size = len(chunks)
+    rows = size // n + (0 if size % n == 0 else 1)
+    return repl.join([
+        sub.join([chunks[i * n + j] for j in range(n if (i + 1) * n < size else size - i * n)])
+        for i in range(rows)
+    ])
 
-def doJack(data: np.ndarray, order=2):
+
+def doJack(data: np.ndarray, order=1):
     """
     Does jackknife resampling
     i.e. generates jackknife subensembles
@@ -157,6 +169,7 @@ def doJack(data: np.ndarray, order=2):
 
 def jackCov(jack1: np.ndarray) -> np.ndarray:
     """
+    estimates elements of covariance matrix via the jackknife method
     The data is of form [0:ncon,...]
     where 0 is the ensemble average value
     Returns matrix C[ti,]
@@ -165,19 +178,10 @@ def jackCov(jack1: np.ndarray) -> np.ndarray:
     return np.cov(jack1, rowvar=False) * (ncon - 1)
 
 
-def jackErrNDARRAY(c: np.ndarray):
+def find_nearest(array, value):
     """
-    Takes jacknife error for a two dimensional numpy array
-    The first dimension is the jackknife
+    Finds the index of the point in the array which is closest to value
     """
-    jackErr = np.empty(c.shape[1])
-    ncon = float(c.shape[0]) - 1.0
-    for xx in range(0, len(jackErr)):
-        # avg = c[0,]
-        thisXX = c[1:, xx]
-        avg = np.sum(thisXX)/(ncon)
-        sumTerm = np.sum((thisXX - avg)**2.0)
-        err = np.sqrt(sumTerm * (ncon-1)/(ncon))
-        jackErr[xx] = err
-    # Return
-    return jackErr
+    array = np.asarray(array)
+    idx = (np.fabs(array - value)).argmin()
+    return idx

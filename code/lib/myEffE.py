@@ -1,7 +1,6 @@
 from scipy.optimize import minimize  # type: ignore
 import numpy as np  # type: ignore
 from typing import Dict, Any
-import gvar as gv  # type: ignore
 import sys
 
 
@@ -129,13 +128,6 @@ def getEffE(params: Dict[str, Any], massdt: np.float64, GJ2: np.ndarray) -> np.n
         effEJ2 = effE_barAna(GJ2)
     else:
         sys.exit(f'Unsupported effective energy method {effEMethod}')
-    # Removing nans (replace with 0.0)
-    # if it's a gvar, need to do it in a slightly different way
-    if isinstance(effEJ2[0], gv._gvarcore.GVar):
-        nanMean = np.isnan(gv.mean(effEJ2))
-        nanSdev = np.isnan(gv.sdev(effEJ2))
-        effEJ2[nanMean] = gv.gvar('0(0)')
-        effEJ2[nanSdev] = gv.gvar('0(0)')
-    else:
-        np.nan_to_num(effEJ2, copy=False)
+    # Reomving nans (replace with 0.0)
+    np.nan_to_num(effEJ2, copy=False)
     return effEJ2

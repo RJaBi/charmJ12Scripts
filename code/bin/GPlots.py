@@ -4,6 +4,8 @@ import os
 import sys
 import toml
 import matplotlib.pyplot as plt  # type: ignore
+import matplotlib as mpl  # type: ignore
+import gvar as gv  # type: ignore
 # from typing import Dict, Any
 from pathlib import Path
 # Loading some functions from elsewhere in this repo
@@ -80,8 +82,13 @@ def main(args: list):
             plotXStart = 0
         # Do plot
         x = np.asarray(range(1, len(G)+1))
-        ax = GVP.plot_gvEbar(x[plotXStart:plotXMin], G[plotXStart:plotXMin], ax, ma='d', ls='', lab=ana)  # type: ignore  # noqa: E501
-        axAna = GVP.plot_gvEbar(x[plotXStart:plotXMin], G[plotXStart:plotXMin], axAna, ma='d', ls='', lab=ana)  # type: ignore  # noqa: E501
+        if not plotAll:
+            mark = 'D'
+            mpl.rcParams['lines.markersize'] = 8.0
+        else:
+            mark = 'd'
+        ax = GVP.plot_gvEbar(x[plotXStart:plotXMin], G[plotXStart:plotXMin], ax, ma=mark, ls='', lab=ana)  # type: ignore  # noqa: E501
+        axAna = GVP.plot_gvEbar(x[plotXStart:plotXMin], G[plotXStart:plotXMin], axAna, ma=mark, ls='', lab=ana)  # type: ignore  # noqa: E501
         axAna.set_xlabel('$\\tau / a_\\tau$')
         axAna.set_ylabel('$\\mathcal{O}(\\tau)$')  # noqa: W605
         axAna.legend(loc='best', ncol=2)
@@ -93,9 +100,15 @@ def main(args: list):
             xlims.append(axAna.get_xlim())
             ylims.append(axAna.get_ylim())
             col = ax.get_lines()[-1].get_c()
-            ax = GVP.plot_gvEbar(x, G, ax, ma='d', ls='', alpha=0.35, col=col)  # type: ignore  # noqa: E501
-            col = ax.get_lines()[-1].get_c()
-            axAna = GVP.plot_gvEbar(x, G, axAna, ma='d', ls='', alpha=0.35, col=col)  # type: ignore  # noqa: E501
+            # First plot the data with some error bars and alpha
+            ax = GVP.plot_gvEbar(x[plotXMin:], G[plotXMin:], ax, ma=mark, ls='', alpha=0.35, col=col, mac=(1,1,1,1))  # type: ignore  # noqa: E501
+            # Now make the marker face white
+            # This removes the line from crossing the marker face
+            ax.plot(x[plotXMin:], gv.mean(G[plotXMin:]), marker=mark, linestyle='', alpha=1.0, color=col, markerfacecolor='white')  # type: ignore
+            # Similarly for the single plot
+            col = axAna.get_lines()[-1].get_c()
+            axAna = GVP.plot_gvEbar(x[plotXMin:], G[plotXMin:], axAna, ma=mark, ls='', alpha=0.35, col=col, mac='none')  # type: ignore  # noqa: E501
+            axAna.plot(x[plotXMin:], gv.mean(G[plotXMin:]), marker=mark, linestyle='', alpha=1.0, color=col, markerfacecolor='white')  # type: ignore
             axAna.set_ylim(ylims[-1])
             axAna.set_ylim(xlims[-1])
         axAna.set_xlim(params['analysis']['GxLim'])

@@ -272,7 +272,7 @@ def loadOQCDMeson(cfFile: str, gOff: int = 5):
 
 def loadSingleBaryon(cfFile):
     """
-    Loads a single meson correlator in gencf format
+    Loads a single baryon correlator from openqcd (with no momenta)
     Returns real component only.
     """
     myDtype = 'float'
@@ -298,7 +298,6 @@ def initCorrelators(params):
             ext = params['cfuns'][cfLL]['ext']
         else:
             ext = ''
-
         with open(params['cfuns'][cfLL]['cfList']) as f:
             files = [fi.strip()+ext for fi in f.readlines()]
             cfDir = params['cfuns'][cfLL]['cfDir']

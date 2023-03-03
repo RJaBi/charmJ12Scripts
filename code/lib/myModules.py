@@ -68,9 +68,6 @@ def refineXYLims(params, subDict='analysis') -> Dict[str, Any]:
     return params
 
 
-markers = ['o', 's', 'p', 'P', '*', 'X', 'd', '<', '>', '$\\boxtimes$', '$\\bigoplus$', '$\\bigotimes$']  # noqa: E501
-
-
 def removeZero(data: np.ndarray) -> Tuple[np.ndarray, List[int]]:
     """
     Removes any occasions where the data is zero

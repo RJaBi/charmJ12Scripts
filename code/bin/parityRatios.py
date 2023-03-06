@@ -283,17 +283,17 @@ def main(args: list):
             xPoint = params['analysis']['RXPoints'][aa]
             if colCount > len(GVP.colours) - 1:
                 colCount = 0
-            if markCount > len(mo.markers) - 1:
+            if markCount > len(GVP.markers) - 1:
                 markCount = 0
             n0ColCount = 0
             for nn, n0 in enumerate(params['analysis']['RCurves']):
                 if n0ColCount > len(GVP.colours) - 1:
                     n0ColCount = 0
-                axRn0Ana = GVP.plot_gvEbar(xPoint, RRatio[n0], axRn0Ana, ma=mo.markers[markCount], ls='', col=GVP.colours[n0ColCount], lab='$n_0=' + str(n0) + '$')  # noqa: E501
+                axRn0Ana = GVP.plot_gvEbar(xPoint, RRatio[n0], axRn0Ana, ma=GVP.markers[markCount], ls='', col=GVP.colours[n0ColCount], lab='$n_0=' + str(n0) + '$')  # noqa: E501
                 RCP[thisAnaOp][n0][aa] = RRatio[n0]
                 n0ColCount = n0ColCount + 1
                 if nn == 0:
-                    axRn0 = GVP.plot_gvEbar(xPoint, RRatio[n0], axRn0, ma=mo.markers[markCount], ls='', col=GVP.colours[colCount])  # noqa: E501  # lab='$' + thisAnaLab + '$'
+                    axRn0 = GVP.plot_gvEbar(xPoint, RRatio[n0], axRn0, ma=GVP.markers[markCount], ls='', col=GVP.colours[colCount])  # noqa: E501  # lab='$' + thisAnaLab + '$'
         # Incrementing the colours counter
         colCount = colCount + 1
         markCount = markCount + 1
@@ -341,7 +341,7 @@ def main(args: list):
         gvSpline, inflectVal = getInflectionPoint(params, XPoints, RCP[ana][n0], 155, tS)
         if colCount > len(GVP.colours) - 1:
             colCount = 0
-        if markCount > len(mo.markers) - 1:
+        if markCount > len(GVP.markers) - 1:
             markCount = 0
         axRn0 = GVP.myFill_between(tS, gvSpline(tS), axRn0, ls='--',colour=GVP.colours[colCount])  # noqa: E501
         if 'figTextYPos' in params['analysis'].keys():
@@ -358,7 +358,7 @@ def main(args: list):
             else:
                 xM = 455
             yM = tex.y0 + 0.5 * tex.height
-            axRn0.plot(xM, yM, marker=mo.markers[markCount], color=GVP.colours[colCount], linestyle='')
+            axRn0.plot(xM, yM, marker=GVP.markers[markCount], color=GVP.colours[colCount], linestyle='')
         
         if inflectVal < 0.8 * TpcScale or inflectVal > 1.2 * TpcScale:
             colCount = colCount + 1

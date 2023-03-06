@@ -1,0 +1,85 @@
+[cfuns]
+cfLabels = [ "doublet_2fl_OP_40x32s0", "doublet_2fl_OP_40x32s1", "doublet_2fl_OP_40x32s2", "doublet_2fl_OP_40x32s3", "doublet_2fl_OP_40x32s4", "doublet_2fl_OP_40x32s5", "doublet_2fl_OP_40x32s6", "doublet_2fl_OP_40x32s7",]
+hadronType = "baryon"
+norm = "labelSrcAve"
+cfSkip = [ "STRINGNOTINNAME",]
+cfCut = 1000
+
+[analysis]
+figText = [ "$N$", "$\\Sigma$", "$\\Sigma_c$", "$\\Xi^\\prime_c$", "$\\Omega_c$", "$\\Xi_{cc}$", "$\\Omega_{cc}$", "$\\Omega_{ccc}$",]
+numAnalyses = [ 6, 2,]
+fitFunc = "AexpEEFit"
+fitMin = 1
+fitMax = 200
+covFit = true
+redoFits = false
+twoSided = true
+anaDir = "../output/fits"
+massdt = 2
+effExLim = [ "None", "None",]
+effEyLim = [ 0.2, 1.2 ]
+GxLim = [ 0, 21,]
+GyLim = [ 0.0008, 1.4,]
+#EFitLim = [ -0.05, 0.5,]
+EFitLim = [ -0.2, 1.5,]
+src_t0 = 0
+effEMethod = "centre"
+delta = [ 0.1, 0.3, 0.5,]
+WMin = 0
+WMax = 1.0
+WNum = 100
+RxLim = [ "None", "None",]
+RyLim = [ 0, 1,]
+RCurves = [ 4,]
+RXPoints = [ 0.289, 0.579, 0.661, 0.771, 0.925, 1.028, 1.157, 1.322, 1.542, 1.851, 2.341,]
+symMathLabels = [ "doublet_2fl_OP_40x32",]
+symMathMaths = [ "M:doublet_2fl_OP_40x32s0,doublet_2fl_OP_40x32s1,doublet_2fl_OP_40x32s2,doublet_2fl_OP_40x32s3,doublet_2fl_OP_40x32s4,doublet_2fl_OP_40x32s5,doublet_2fl_OP_40x32s6,doublet_2fl_OP_40x32s7:(doublet_2fl_OP_40x32s0+doublet_2fl_OP_40x32s1+doublet_2fl_OP_40x32s2+doublet_2fl_OP_40x32s3+doublet_2fl_OP_40x32s4+doublet_2fl_OP_40x32s5+doublet_2fl_OP_40x32s6+doublet_2fl_OP_40x32s7)/8", ]
+labelsToAnalyse = [ "doublet_2fl_OP_40x32" ]
+
+[cfuns.doublet_2fl_OP_40x32s0]
+cfDir = "../correlators/40x32/data/doublet.2fl_OP/"
+cfList = "../correlators/40x32/lists/doublet.2fl.OP-s0.list"
+latt = 40
+ext = ""
+
+[cfuns.doublet_2fl_OP_40x32s1]
+cfDir = "../correlators/40x32/data/doublet.2fl_OP/"
+cfList = "../correlators/40x32/lists/doublet.2fl.OP-s1.list"
+latt = 40
+ext = ""
+
+[cfuns.doublet_2fl_OP_40x32s2]
+cfDir = "../correlators/40x32/data/doublet.2fl_OP/"
+cfList = "../correlators/40x32/lists/doublet.2fl.OP-s2.list"
+latt = 40
+ext = ""
+
+[cfuns.doublet_2fl_OP_40x32s3]
+cfDir = "../correlators/40x32/data/doublet.2fl_OP/"
+cfList = "../correlators/40x32/lists/doublet.2fl.OP-s3.list"
+latt = 40
+ext = ""
+
+[cfuns.doublet_2fl_OP_40x32s4]
+cfDir = "../correlators/40x32/data/doublet.2fl_OP/"
+cfList = "../correlators/40x32/lists/doublet.2fl.OP-s4.list"
+latt = 40
+ext = ""
+
+[cfuns.doublet_2fl_OP_40x32s5]
+cfDir = "../correlators/40x32/data/doublet.2fl_OP/"
+cfList = "../correlators/40x32/lists/doublet.2fl.OP-s5.list"
+latt = 40
+ext = ""
+
+[cfuns.doublet_2fl_OP_40x32s6]
+cfDir = "../correlators/40x32/data/doublet.2fl_OP/"
+cfList = "../correlators/40x32/lists/doublet.2fl.OP-s6.list"
+latt = 40
+ext = ""
+
+[cfuns.doublet_2fl_OP_40x32s7]
+cfDir = "../correlators/40x32/data/doublet.2fl_OP/"
+cfList = "../correlators/40x32/lists/doublet.2fl.OP-s7.list"
+latt = 40
+ext = ""

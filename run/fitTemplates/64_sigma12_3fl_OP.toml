@@ -1,0 +1,85 @@
+[cfuns]
+cfLabels = [ "sigma12_3fl_OP_64x32s0", "sigma12_3fl_OP_64x32s1", "sigma12_3fl_OP_64x32s2", "sigma12_3fl_OP_64x32s3", "sigma12_3fl_OP_64x32s4", "sigma12_3fl_OP_64x32s5", "sigma12_3fl_OP_64x32s6", "sigma12_3fl_OP_64x32s7",]
+hadronType = "baryon"
+norm = "labelSrcAve"
+cfSkip = [ "STRINGNOTINNAME",]
+cfCut = 1000
+
+[analysis]
+figText = [ "$N$", "$\\Sigma$", "$\\Sigma_c$", "$\\Xi^\\prime_c$", "$\\Omega_c$", "$\\Xi_{cc}$", "$\\Omega_{cc}$", "$\\Omega_{ccc}$",]
+numAnalyses = [ 6, 2,]
+fitFunc = "AexpEEFit"
+fitMin = 1
+fitMax = 200
+covFit = true
+redoFits = false
+twoSided = true
+anaDir = "../output/fits"
+massdt = 2
+effExLim = [ "None", "None",]
+effEyLim = [ 0.2, 1.2 ]
+GxLim = [ 0, 21,]
+GyLim = [ 0.0008, 1.4,]
+#EFitLim = [ -0.05, 0.5,]
+EFitLim = [ -0.2, 1.5,]
+src_t0 = 0
+effEMethod = "centre"
+delta = [ 0.1, 0.3, 0.5,]
+WMin = 0
+WMax = 1.0
+WNum = 100
+RxLim = [ "None", "None",]
+RyLim = [ 0, 1,]
+RCurves = [ 4,]
+RXPoints = [ 0.289, 0.579, 0.661, 0.771, 0.925, 1.028, 1.157, 1.322, 1.542, 1.851, 2.341,]
+symMathLabels = [ "sigma12_3fl_OP_64x32",]
+symMathMaths = [ "M:sigma12_3fl_OP_64x32s0,sigma12_3fl_OP_64x32s1,sigma12_3fl_OP_64x32s2,sigma12_3fl_OP_64x32s3,sigma12_3fl_OP_64x32s4,sigma12_3fl_OP_64x32s5,sigma12_3fl_OP_64x32s6,sigma12_3fl_OP_64x32s7:(sigma12_3fl_OP_64x32s0+sigma12_3fl_OP_64x32s1+sigma12_3fl_OP_64x32s2+sigma12_3fl_OP_64x32s3+sigma12_3fl_OP_64x32s4+sigma12_3fl_OP_64x32s5+sigma12_3fl_OP_64x32s6+sigma12_3fl_OP_64x32s7)/8", ]
+labelsToAnalyse = [ "sigma12_3fl_OP_64x32" ]
+
+[cfuns.sigma12_3fl_OP_64x32s0]
+cfDir = "../correlators/64x32/data/sigma12.3fl_OP/"
+cfList = "../correlators/64x32/lists/sigma12.3fl.OP-s0.list"
+latt = 64
+ext = ""
+
+[cfuns.sigma12_3fl_OP_64x32s1]
+cfDir = "../correlators/64x32/data/sigma12.3fl_OP/"
+cfList = "../correlators/64x32/lists/sigma12.3fl.OP-s1.list"
+latt = 64
+ext = ""
+
+[cfuns.sigma12_3fl_OP_64x32s2]
+cfDir = "../correlators/64x32/data/sigma12.3fl_OP/"
+cfList = "../correlators/64x32/lists/sigma12.3fl.OP-s2.list"
+latt = 64
+ext = ""
+
+[cfuns.sigma12_3fl_OP_64x32s3]
+cfDir = "../correlators/64x32/data/sigma12.3fl_OP/"
+cfList = "../correlators/64x32/lists/sigma12.3fl.OP-s3.list"
+latt = 64
+ext = ""
+
+[cfuns.sigma12_3fl_OP_64x32s4]
+cfDir = "../correlators/64x32/data/sigma12.3fl_OP/"
+cfList = "../correlators/64x32/lists/sigma12.3fl.OP-s4.list"
+latt = 64
+ext = ""
+
+[cfuns.sigma12_3fl_OP_64x32s5]
+cfDir = "../correlators/64x32/data/sigma12.3fl_OP/"
+cfList = "../correlators/64x32/lists/sigma12.3fl.OP-s5.list"
+latt = 64
+ext = ""
+
+[cfuns.sigma12_3fl_OP_64x32s6]
+cfDir = "../correlators/64x32/data/sigma12.3fl_OP/"
+cfList = "../correlators/64x32/lists/sigma12.3fl.OP-s6.list"
+latt = 64
+ext = ""
+
+[cfuns.sigma12_3fl_OP_64x32s7]
+cfDir = "../correlators/64x32/data/sigma12.3fl_OP/"
+cfList = "../correlators/64x32/lists/sigma12.3fl.OP-s7.list"
+latt = 64
+ext = ""

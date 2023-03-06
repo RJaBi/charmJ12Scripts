@@ -1,0 +1,18 @@
+,Strangeness,Charmness,Operator,name,quarks,EP,EP_PDG_2022_Page,EP_Star_Status,EP_Notes:,EM,EM_PDG_2022_Page,EM_Star_Status,EM_Notes,J,EP_Pole,EM_Pole,EPAve,EMAve
+0,0,0,doublet_2fl_uud,N,uud,"[938.27208816(16),939.56542052(54)]","90,89",[4],"p,n",[1530(15)],"91,89",[4],lowest state even though we definitely can’t disentangle the 1530 from the 1650 in our calc. Breit-Wigner (BW) masses, 1/2,,"[1510(10),1655(15)]",938.91875434(56),1530(15)
+1,1,0,doublet_2fl_uus,\Sigma,uus,[1189.37(7)],97,[4],,"[1620(3),1750(5)]","2099,98","[1,3]",, 1/2,,,1189.370(70),1685.0(5.8)
+2,0,1,sigma12_3fl_udc,\Sigma_{c},udc,"[2453.97(14),2452.65(22),2454.75(14)]",101,"[4,4,4]",different charges,,,,, 1/2,,,2453.79(30),
+3,1,1,sigma12_3fl_usc,\Xi_{c}^{\prime},usc,"[2578.2(5),2578.7(5)]",102,"[3,3]",different charges. JP not measured. This is quark model prediction (QM),,,,, 1/2,,,2578.45(71),
+4,2,0,doublet_2fl_ssu,\Xi,dss,"[1314.86(20),1321.71(7)]","98,99","[4,4]",different charges. P not measured (QM),"[1620(30),1690(10)]","2127,99","[1,4]",JP not measured, 1/2,,,1318.28(21),1655(32)
+5,2,1,doublet_2fl_ssc,\Omega_{c},ssc,[2695.2(1.7)],103,[3],JP not measured,[3000.41(22)],103,[3],IJP not measured. No QM. Assigned according to QM in 2109.01216, 1/2,,,2695.2(1.7),3000.41(22)
+6,0,2,doublet_2fl_ccu,\Xi_{cc},ccu,[3621.6(4)],104,[3],IJP not measured. No QM. LHCb result only 1911.08594. Not the older SELEX result (which are different charges anyway). Helped by 2204.02649,,,,, 1/2,,,3621.60(40),
+7,1,2,doublet_2fl_ccs,\Omega_{cc},ccs,,,,,,,,, 1/2,,,,
+8,0,1,lambda_3fl_udc,\Lambda_{c},udc,[2286.46(14)],100,[4],,[2592.25(28)],101,[3],Assumes JP=1/2+ for Sigma_C(2455), 1/2,,,2286.46(14),2592.25(28)
+9,1,1,lambda_3fl_usc,\Xi_{c},usc,"[2467.71(23),2470.44(28)]",101,"[3,4]","JP not measured. +,0 charge","[2791.9(5), 2793.9(5)]",102,"[3,3]","JP not measured. +, 0 charges", 1/2,,,2469.07(36),2792.90(71)
+10,0,1,sigma32_3fl_udc,\Sigma_{c},udc,"[2518.41(22), 2517.4(7),2518.48(20)]",101,"[3,3,3]","JP not measured, ++, +, 0 charges","[2801(6),2792(14),2806(7)]",101,"[3,3,3]",JP not measured. No QM prediction. 2109.01216 suggests this is JP=3/2-,3/2,,,2518.10(76),2800(17)
+11,1,1,sigma32_3fl_usc,\Xi_{c},usc,"[2645.10(30),2646.16(25)]",102,"[3,3]","JP not measured, +0, charges","[2816.51(25),2819.79(30)]",103,"[3,3]","JP not measured, +, 0 charges",3/2,,,2645.63(39),2818.15(39)
+12,2,1,quadruplet_2fl_ssc,\Omega_{c},ssc,[2765.9(2.0)],103,[3],JP not measured,"[3065.54(26),3065.54(1500)]","103,104","[3,3]",IJP not measured. No QM. Input from 2109.01216. Use the 3065 as it has well defined width. Add sys error to the 3050,3/2,,,2765.9(2.0),3066(15)
+13,0,2,quadruplet_2fl_ccu,\Xi_{cc},ccu,"[3518.9(9),3621.6(4)]","2160,104","[1,3]",IJP not measured. No QM,,,,,3/2,,,3570.25(98),
+14,1,2,quadruplet_2fl_ccs,\Omega_{cc},ccs,,,,,,,,,3/2,,,,
+15,0,3,quadruplet_1fl_ccc,\Omega_{ccc},ccc,,,,,,,,,3/2,,,,
+16,0,0,quadruplet_2fl_uud,\Delta,uud,[1232(2)],94,[4],BW,[1710(20)],94,[4],BW,,[1210(1)],[1665(35)],1232.0(2.0),1710(20)

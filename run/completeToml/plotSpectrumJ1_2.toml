@@ -1,0 +1,53 @@
+
+#TOML MADE USING https://toml-online-parser.ovonick.com/
+
+xStepMod=1.5
+
+expCSV='charmBaryonExpSurveyUsed_AVERAGED.csv'
+
+unit = 'GeV'
+
+[mAve]
+# the ones we actually want to plot
+anaLab = ['sigma12_3fl_udc', 'sigma12_3fl_usc', 'doublet_2fl_ssc', 'doublet_2fl_ccu', 'doublet_2fl_ccs', 'lambda_3fl_udc', 'lambda_3fl_usc',]
+# Formatted like this for gvar
+# spatial lattice spacing in fm
+as = '0.11208(31)'
+# anisotropy
+xi = '3.453(6)'
+
+#These must both be specfieid
+massCSV='../output/mass_sysErr.csv'
+NT = 128
+
+anaDir='../output/'
+
+# spin 1/2
+[mAve.doublet_2fl_uud]
+# Could also load individual model averaged methods
+# Dir and file for the positive parity
+#REMOVE# pDir = 'output/fits/doublet_2fl_uud_128x32'
+#REMOVE# pFile = 'fit_AICP_AIC_Aved.gvar'
+# Similarly for negative parity
+#REMOVE# mDir = 'output/fits/doublet_2fl_uud_128x32'
+#REMOVE# mFile = 'fit_AICP_AIC_Aved.gvar'
+# and where in the plot (leftmost = 0)
+order = 0
+[mAve.doublet_2fl_uus]
+order = 1
+[mAve.sigma12_3fl_udc]
+order = 4
+[mAve.sigma12_3fl_usc]
+order = 6
+[mAve.doublet_2fl_ssu]
+order = 2
+[mAve.doublet_2fl_ssc]
+order = 7
+[mAve.doublet_2fl_ccu]
+order = 8
+[mAve.doublet_2fl_ccs]
+order = 9
+[mAve.lambda_3fl_udc]
+order = 3
+[mAve.lambda_3fl_usc]
+order = 5

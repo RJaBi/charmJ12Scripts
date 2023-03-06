@@ -9,7 +9,7 @@ from pathlib import Path
 from typing import Any, Tuple, List
 import numpy as np  # type: ignore
 # Loading some functions from elsewhere in this repo
-insertPath = os.path.join(Path(__file__).resolve().parent, '..','lib')
+insertPath = os.path.join(Path(__file__).resolve().parent, '..', 'lib')
 sys.path.insert(0, insertPath)
 import myModules as mo  # type: ignore  # noqa: E402
 # import myGVPlotter as GVP  # type: ignore  # noqa: E402
@@ -84,11 +84,12 @@ def main(args: list):
     params = mo.GetArgs(args)
     #  Printing the input toml back out - easier to read than printing as a dictionary
     toml.dump(params, f=sys.stdout)
-    # Load the initial csv in which has the fit type we want in it
-    massDF = pd.read_csv(params['massCSV'])
-    print(massDF.head())
-    # clean the column names cause pandas doesn't like latex
-    columns = cleanColumnNames(massDF)
+    if 'massCSV' in params.keys():
+        # Load the initial csv in which has the fit type we want in it
+        massDF = pd.read_csv(params['massCSV'])
+        print(massDF.head())
+        # clean the column names cause pandas doesn't like latex
+        columns = cleanColumnNames(massDF)
     # This is for the output
     csvDict = {}  # type: ignore
     csvDict.update({'anaDir': []})
@@ -111,30 +112,43 @@ def main(args: list):
     for ma in params['modelAverages']['mALabels']:
         Nt = params['modelAverages'][ma]['Nt']
         OP = params['modelAverages'][ma]['operator']
-        fTypes = params['modelAverages'][ma]['fTypes']
-        if fTypes[0] == 'all':
-            fTypes = params['modelAverages']['allFTypes']
-        # Cut the spreadsheet to this specific hadron/temperature
-        # and get the methods chosen for EP and EM
-        NTDF = massDF.loc[massDF[columns['Nt']] == Nt]
-        OPNTDF = NTDF.loc[NTDF[columns['Operator']] == OP]
-        EPMethod = OPNTDF[columns['EP_Method']].values[0]
-        EMMethod = OPNTDF[columns['EM_Method']].values[0]
+        EPfTypes = params['modelAverages'][ma]['EPfTypes']
+        EMfTypes = params['modelAverages'][ma]['EMfTypes']
+        if EPfTypes[0] == 'all':
+            EPfTypes = params['modelAverages']['allFTypes']
+        if EMfTypes[0] == 'all':
+            EMfTypes = params['modelAverages']['allFTypes']
+        if 'massCSV' in params.keys():
+            # Cut the spreadsheet to this specific hadron/temperature
+            # and get the methods chosen for EP and EM
+            NTDF = massDF.loc[massDF[columns['Nt']] == Nt]
+            OPNTDF = NTDF.loc[NTDF[columns['Operator']] == OP]
+            EPMethod = OPNTDF[columns['EP_Method']].values[0]
+            EMMethod = OPNTDF[columns['EM_Method']].values[0]
+        else:
+            # Or use method specified in the toml
+            EPMethod = params['modelAverages'][ma]['EPMethod']
+            EMMethod = params['modelAverages'][ma]['EMMethod']
         # This is where all the analysis stored for this hadron/temperature
         thisAnaDir = os.path.join(params['modelAverages'][ma]['anaDir'], f'{OP}_{Nt}x32')
         # cmd = 'ls ' + thisAnaDir
         # print(cmd)
         # os.system(cmd)
         # Loading the central value
-        EP, EP_sysErr, EPSys, EPFTypes, EPFits = getSysErr(thisAnaDir, EPMethod, fTypes, '+')
+        EP, EP_sysErr, EPSys, EPFTypes, EPFits = getSysErr(thisAnaDir, EPMethod, EPfTypes, '+')
         # print(EP, EP_sysErr, EPSys, EPFTypes, EPFits)
-        EM, EM_sysErr, EMSys, EMFTypes, EMFits = getSysErr(thisAnaDir, EMMethod, fTypes, '-')
+        EM, EM_sysErr, EMSys, EMFTypes, EMFits = getSysErr(thisAnaDir, EMMethod, EMfTypes, '-')
         # print(EM, EM_sysErr, EMSys, EMFTypes, EMFits)
         # Update the csvDict for saving
         csvDict['anaDir'].append(thisAnaDir)
         csvDict['Nt'].append(Nt)
         csvDict['Operator'].append(OP)
-        csvDict['Hadron'].append(OPNTDF[columns['Hadron']].values[0])
+        if 'massCSV' in params.keys():
+            # Use the label in the csv
+            csvDict['Hadron'].append(OPNTDF[columns['Hadron']].values[0])
+        else:
+            # Use the label in the toml
+            csvDict['Hadron'].append(params['modelAverages'][ma]['Hadron'])
         csvDict['EP'].append(EP)
         csvDict['EPMethod'].append(EPMethod)
         csvDict['EP_Sys'].append(EP_sysErr)
@@ -150,7 +164,10 @@ def main(args: list):
     # Put the csvDict into a dataframe for saving
     csvSave = pd.DataFrame(csvDict)
     print(csvSave.head())
-    outCSV = params['massCSV'].split('.csv')[0] + '_sysErr.csv'
+    if 'massCSV' in params.keys():
+        outCSV = os.path.join(params['anaDir'], params['massCSV'].split('.csv')[0] + '_sysErr.csv')  # noqa: E501
+    else:
+        outCSV = os.path.join(params['anaDir'], 'mass_sysErr.csv')  # noqa: E501
     print(f'Saving csv to {outCSV}')
     csvSave.to_csv(outCSV)
     sys.exit('Finished')

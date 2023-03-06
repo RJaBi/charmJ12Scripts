@@ -1,0 +1,1209 @@
+#TOML MADE USING https://toml-online-parser.ovonick.com/
+
+norm = 'EP0'
+
+#massCSV = '/home/ryan/Documents/2022/Gen2L/Hawk/paperPlots/3expFits_14_07_2022/massChoices.csv'
+
+anaDir = '../output/'
+
+[modelAverages]
+mALabels = [#'N128', 'N64', 'N56', 'N48', 'N40', 'N36', 'N28',
+	    #'sigma12_3fl_uds128', 'sigma12_3fl_uds64', 'sigma12_3fl_uds56', 'sigma12_3fl_uds48', 'sigma12_3fl_uds40', 'sigma12_3fl_uds36', 'sigma12_3fl_uds28',
+	    #'doublet_2fl_ssu128', 'doublet_2fl_ssu64', 'doublet_2fl_ssu56', 'doublet_2fl_ssu48', 'doublet_2fl_ssu40', 'doublet_2fl_ssu36', 'doublet_2fl_ssu28',
+	    'sigma12_3fl_udc128', 'sigma12_3fl_udc64', 'sigma12_3fl_udc56', 'sigma12_3fl_udc48', 'sigma12_3fl_udc40', 'sigma12_3fl_udc36', #'sigma12_3fl_udc28',
+	    'sigma12_3fl_usc128', 'sigma12_3fl_usc64', 'sigma12_3fl_usc56', 'sigma12_3fl_usc48', 'sigma12_3fl_usc40', 'sigma12_3fl_usc36', #'sigma12_3fl_usc28',
+	    'doublet_2fl_ssc128', 'doublet_2fl_ssc64', 'doublet_2fl_ssc56', 'doublet_2fl_ssc48', 'doublet_2fl_ssc40', 'doublet_2fl_ssc36', #'doublet_2fl_ssc28',
+	    'lambda_3fl_udc128', 'lambda_3fl_udc64', 'lambda_3fl_udc56', 'lambda_3fl_udc48', 'lambda_3fl_udc40', 'lambda_3fl_udc36', #'lambda_3fl_udc28',
+	    'lambda_3fl_usc128', 'lambda_3fl_usc64', 'lambda_3fl_usc56', 'lambda_3fl_usc48', 'lambda_3fl_usc40', 'lambda_3fl_usc36', #'lambda_3fl_usc28',
+	    'doublet_2fl_ccu128', 'doublet_2fl_ccu64', 'doublet_2fl_ccu56', 'doublet_2fl_ccu48', 'doublet_2fl_ccu40', 'doublet_2fl_ccu36',# 'doublet_2fl_ccu28',
+	    'doublet_2fl_ccs128', 'doublet_2fl_ccs64', 'doublet_2fl_ccs56', 'doublet_2fl_ccs48', 'doublet_2fl_ccs40', 'doublet_2fl_ccs36',# 'doublet_2fl_ccs28',
+	    #'sigma32_3fl_udc128', 'sigma32_3fl_udc64', 'sigma32_3fl_udc56', 'sigma32_3fl_udc48', 'sigma32_3fl_udc40', 'sigma32_3fl_udc36', 'sigma32_3fl_udc28',
+	    #'sigma32_3fl_usc128', 'sigma32_3fl_usc64', 'sigma32_3fl_usc56', 'sigma32_3fl_usc48', 'sigma32_3fl_usc40', 'sigma32_3fl_usc36', 'sigma32_3fl_usc28',
+	    #'quadruplet_2fl_ssc128', 'quadruplet_2fl_ssc64', 'quadruplet_2fl_ssc56', 'quadruplet_2fl_ssc48', 'quadruplet_2fl_ssc40', 'quadruplet_2fl_ssc36', 'quadruplet_2fl_ssc28',
+	    #'quadruplet_2fl_ccu128', 'quadruplet_2fl_ccu64', 'quadruplet_2fl_ccu56', 'quadruplet_2fl_ccu48', 'quadruplet_2fl_ccu40', 'quadruplet_2fl_ccu36', 'quadruplet_2fl_ccu28',
+	    #'quadruplet_2fl_ccs128', 'quadruplet_2fl_ccs64', 'quadruplet_2fl_ccs56', 'quadruplet_2fl_ccs48', 'quadruplet_2fl_ccs40', 'quadruplet_2fl_ccs36', 'quadruplet_2fl_ccs28',
+	    #'quadruplet_1fl_ccc128', 'quadruplet_1fl_ccc64', 'quadruplet_1fl_ccc56', 'quadruplet_1fl_ccc48', 'quadruplet_1fl_ccc40', 'quadruplet_1fl_ccc36', 'quadruplet_1fl_ccc28',
+	    #'N32', 'sigma12_3fl_uds32', 'doublet_2fl_ssu32',
+	    'sigma12_3fl_udc32', 'sigma12_3fl_usc32', 'doublet_2fl_ssc32', 'lambda_3fl_udc32', 'lambda_3fl_usc32', 'doublet_2fl_ccu32', 'doublet_2fl_ccs32',
+	    #'sigma32_3fl_udc32', 'sigma32_3fl_usc32', 'quadruplet_2fl_ssc32', 'quadruplet_2fl_ccu32', 'quadruplet_2fl_ccs32', 'quadruplet_1fl_ccc32'
+	    ]
+
+allFTypes = ['AIC', 'pVal', 'AICP_AIC', 'AICP_pVal']
+
+#N doublet_2fl_uud
+[modelAverages.N128]
+Nt = 128
+anaDir = '../output/fits'
+operator = 'doublet_2fl_uud'
+EPMethod = 'AICP_AIC'
+EMMethod = 'AIC'
+Hadron = '$N(uud)$'
+EPfTypes = ['all']
+EMfTypes = ['AIC', 'AICP_AIC']
+[modelAverages.N64]
+Nt = 64
+anaDir = '../output/fits'
+operator = 'doublet_2fl_uud'
+EPMethod = 'AICP_AIC'
+EMMethod = 'AICP_AIC'
+Hadron = '$N(uud)$'
+EPfTypes = ['all']
+EMfTypes = ['AIC', 'AICP_AIC']
+[modelAverages.N56]
+Nt = 56
+anaDir = '../output/fits'
+operator = 'doublet_2fl_uud'
+EPMethod = 'AICP_pVal'
+EMMethod = 'AICP_AIC'
+Hadron = '$N(uud)$'
+EPfTypes = ['all']
+EMfTypes = ['AIC', 'AICP_AIC']
+[modelAverages.N48]
+Nt = 48
+anaDir = '../output/fits'
+operator = 'doublet_2fl_uud'
+EPMethod = 'pVal'
+EMMethod = 'AICP_pVal'
+Hadron = '$N(uud)$'
+EPfTypes = ['pVal', 'AICP_pVal']
+EMfTypes = ['all']
+[modelAverages.N40]
+Nt = 40
+anaDir = '../output/fits'
+operator = 'doublet_2fl_uud'
+EPMethod = 'pVal'
+EMMethod = 'AIC'
+Hadron = '$N(uud)$'
+EPfTypes = ['AIC', 'pVal', 'AICP_pVal']
+EMfTypes = ['all']
+[modelAverages.N36]
+Nt = 36
+anaDir = '../output/fits'
+operator = 'doublet_2fl_uud'
+EPMethod = 'AIC'
+EMMethod = 'AICP_AIC'
+Hadron = '$N(uud)$'
+EPfTypes = ['all']
+EMfTypes = ['all']
+[modelAverages.N28]
+Nt = 28
+anaDir = '../output/fits'
+operator = 'doublet_2fl_uud'
+EPMethod = 'AICP_AIC'
+EMMethod = 'AICP_AIC'
+Hadron = '$N(uud)$'
+EPfTypes = ['AIC', 'AICP_AIC']
+EMfTypes = ['AIC', 'AICP_AIC']
+#Sigma sigma12_3fl_uds
+[modelAverages.sigma12_3fl_uds128]
+Nt = 128
+anaDir = '../output/fits'
+operator = 'sigma12_3fl_uds'
+EPMethod = 'pVal'
+EMMethod = 'AICP_AIC'
+Hadron = '$\Sigma(uus)$'
+EPfTypes = ['all']
+EMfTypes = ['AIC', 'AICP_AIC', 'AICP_pVal']
+[modelAverages.sigma12_3fl_uds64]
+Nt = 64
+anaDir = '../output/fits'
+operator = 'sigma12_3fl_uds'
+EPMethod = 'AICP_pVal'
+EMMethod = 'AICP_AIC'
+Hadron = '$\Sigma(uus)$'
+EPfTypes = ['all']
+EMfTypes = ['all']
+[modelAverages.sigma12_3fl_uds56]
+Nt = 56
+anaDir = '../output/fits'
+operator = 'sigma12_3fl_uds'
+EPMethod = 'AICP_pVal'
+EMMethod = 'AICP_AIC'
+Hadron = '$\Sigma(uus)$'
+EPfTypes = ['all']
+EMfTypes = ['AIC', 'AICP_AIC']
+[modelAverages.sigma12_3fl_uds48]
+Nt = 48
+anaDir = '../output/fits'
+operator = 'sigma12_3fl_uds'
+EPMethod = 'AICP_pVal'
+EMMethod = 'AIC'
+Hadron = '$\Sigma(uus)$'
+EPfTypes = ['all']
+EMfTypes = ['AIC', 'AICP_AIC', 'pVal']
+[modelAverages.sigma12_3fl_uds40]
+Nt = 40
+anaDir = '../output/fits'
+operator = 'sigma12_3fl_uds'
+EPMethod = 'AICP_pVal'
+EMMethod = 'AIC'
+Hadron = '$\Sigma(uus)$'
+EPfTypes = ['all']
+EMfTypes = ['all']
+[modelAverages.sigma12_3fl_uds36]
+Nt = 36
+anaDir = '../output/fits'
+operator = 'sigma12_3fl_uds'
+EPMethod = 'AIC'
+EMMethod = 'AICP_pVal'
+Hadron = '$\Sigma(uus)$'
+EPfTypes = ['AIC', 'AICP_AIC', 'AICP_pVal']
+EMfTypes = ['AIC', 'AICP_AIC', 'AICP_pVal']
+[modelAverages.sigma12_3fl_uds28]
+Nt = 28
+anaDir = '../output/fits'
+operator = 'sigma12_3fl_uds'
+EPMethod = 'pVal'
+EMMethod = 'AICP_pVal'
+Hadron = '$\Sigma(uus)$'
+EPfTypes = ['all']
+EMfTypes = ['all']
+#Xi doublet_2fl_ssu
+[modelAverages.doublet_2fl_ssu128]
+Nt = 128
+anaDir = '../output/fits'
+operator = 'doublet_2fl_ssu'
+EPMethod = 'AICP_AIC'
+EMMethod = 'AICP_AIC'
+Hadron = '$\Xi(dss)$'
+EPfTypes = ['all']
+EMfTypes = ['all']
+[modelAverages.doublet_2fl_ssu64]
+Nt = 64
+anaDir = '../output/fits'
+operator = 'doublet_2fl_ssu'
+EPMethod = 'AICP_pVal'
+EMMethod = 'pVal'
+Hadron = '$\Xi(dss)$'
+EPfTypes = ['all']
+EMfTypes = ['all']
+[modelAverages.doublet_2fl_ssu56]
+Nt = 56
+anaDir = '../output/fits'
+operator = 'doublet_2fl_ssu'
+EPMethod = 'AICP_pVal'
+EMMethod = 'AIC'
+Hadron = '$\Xi(dss)$'
+EPfTypes = ['all']
+EMfTypes = ['all']
+[modelAverages.doublet_2fl_ssu48]
+Nt = 48
+anaDir = '../output/fits'
+operator = 'doublet_2fl_ssu'
+EPMethod = 'AICP_pVal'
+EMMethod = 'AICP_AIC'
+Hadron = '$\Xi(dss)$'
+EPfTypes = ['all']
+EMfTypes = ['all']
+[modelAverages.doublet_2fl_ssu40]
+Nt = 40
+anaDir = '../output/fits'
+operator = 'doublet_2fl_ssu'
+EPMethod = 'AICP_pVal'
+EMMethod = 'AICP_pVal'
+Hadron = '$\Xi(dss)$'
+EPfTypes = ['all']
+EMfTypes = ['all']
+[modelAverages.doublet_2fl_ssu36]
+Nt = 36
+anaDir = '../output/fits'
+operator = 'doublet_2fl_ssu'
+EPMethod = 'AICP_AIC'
+EMMethod = 'AICP_AIC'
+Hadron = '$\Xi(dss)$'
+EPfTypes = ['all']
+EMfTypes = ['all']
+[modelAverages.doublet_2fl_ssu28]
+Nt = 28
+anaDir = '../output/fits'
+operator = 'doublet_2fl_ssu'
+EPMethod = 'AIC'
+EMMethod = 'AICP_pVal'
+Hadron = '$\Xi(dss)$'
+EPfTypes = ['AIC', 'AICP_pVal', 'AICP_AIC']
+EMfTypes = ['all']
+#Sigma_c sigma12_3fl_udc
+[modelAverages.sigma12_3fl_udc128]
+Nt = 128
+anaDir = '../output/fits'
+operator = 'sigma12_3fl_udc'
+EPMethod = 'AIC'
+EMMethod = 'AICP_AIC'
+Hadron = '$\Sigma_{c}(udc)$'
+EPfTypes = ['all']
+EMfTypes = ['AIC', 'AICP_AIC', 'AICP_pVal']
+[modelAverages.sigma12_3fl_udc64]
+Nt = 64
+anaDir = '../output/fits'
+operator = 'sigma12_3fl_udc'
+EPMethod = 'AICP_AIC'
+EMMethod = 'AICP_AIC'
+Hadron = '$\Sigma_{c}(udc)$'
+EPfTypes = ['AIC', 'AICP_AIC', 'pVal']
+EMfTypes = ['AIC', 'AICP_AIC']
+[modelAverages.sigma12_3fl_udc56]
+Nt = 56
+anaDir = '../output/fits'
+operator = 'sigma12_3fl_udc'
+EPMethod = 'AICP_pVal'
+EMMethod = 'AICP_pVal'
+Hadron = '$\Sigma_{c}(udc)$'
+EPfTypes = ['all']
+EMfTypes = ['all']
+[modelAverages.sigma12_3fl_udc48]
+Nt = 48
+anaDir = '../output/fits'
+operator = 'sigma12_3fl_udc'
+EPMethod = 'AICP_pVal'
+EMMethod = 'AICP_pVal'
+Hadron = '$\Sigma_{c}(udc)$'
+EPfTypes = ['all']
+EMfTypes = ['all']
+[modelAverages.sigma12_3fl_udc40]
+Nt = 40
+anaDir = '../output/fits'
+operator = 'sigma12_3fl_udc'
+EPMethod = 'AICP_AIC'
+EMMethod = 'AICP_AIC'
+Hadron = '$\Sigma_{c}(udc)$'
+EPfTypes = ['all']
+EMfTypes = ['all']
+[modelAverages.sigma12_3fl_udc36]
+Nt = 36
+anaDir = '../output/fits'
+operator = 'sigma12_3fl_udc'
+EPMethod = 'pVal'
+EMMethod = 'AICP_pVal'
+Hadron = '$\Sigma_{c}(udc)$'
+EPfTypes = ['all']
+EMfTypes = ['all']
+[modelAverages.sigma12_3fl_udc28]
+Nt = 28
+anaDir = '../output/fits'
+operator = 'sigma12_3fl_udc'
+EPMethod = 'AICP_pVal'
+EMMethod = 'AICP_pVal'
+Hadron = '$\Sigma_{c}(udc)$'
+EPfTypes = ['all']
+EMfTypes = ['all']
+#Xi^prime sigma12_3fl_usc
+[modelAverages.sigma12_3fl_usc128]
+Nt = 128
+anaDir = '../output/fits'
+operator = 'sigma12_3fl_usc'
+EPMethod = 'AICP_AIC'
+EMMethod = 'AICP_AIC'
+Hadron = '$\Xi_{c}^{\prime}(usc)$'
+EPfTypes = ['all']
+EMfTypes = ['AIC', 'AICP_pVal', 'AICP_AIC']
+[modelAverages.sigma12_3fl_usc64]
+Nt = 64
+anaDir = '../output/fits'
+operator = 'sigma12_3fl_usc'
+EPMethod = 'AICP_AIC'
+EMMethod = 'AICP_AIC'
+Hadron = '$\Xi_{c}^{\prime}(usc)$'
+EPfTypes = ['all']
+EMfTypes = ['AIC', 'AICP_pVal', 'AICP_AIC']
+[modelAverages.sigma12_3fl_usc56]
+Nt = 56
+anaDir = '../output/fits'
+operator = 'sigma12_3fl_usc'
+EPMethod = 'pVal'
+EMMethod = 'AICP_AIC'
+Hadron = '$\Xi_{c}^{\prime}(usc)$'
+EPfTypes = ['all']
+EMfTypes = ['all']
+[modelAverages.sigma12_3fl_usc48]
+Nt = 48
+anaDir = '../output/fits'
+operator = 'sigma12_3fl_usc'
+EPMethod = 'AICP_pVal'
+EMMethod = 'AICP_pVal'
+Hadron = '$\Xi_{c}^{\prime}(usc)$'
+EPfTypes = ['all']
+EMfTypes = ['all']
+[modelAverages.sigma12_3fl_usc40]
+Nt = 40
+anaDir = '../output/fits'
+operator = 'sigma12_3fl_usc'
+EPMethod = 'AICP_pVal'
+EMMethod = 'AICP_pVal'
+Hadron = '$\Xi_{c}^{\prime}(usc)$'
+EPfTypes = ['AIC', 'AICP_pVal', 'AICP_AIC']
+EMfTypes = ['all']
+[modelAverages.sigma12_3fl_usc36]
+Nt = 36
+anaDir = '../output/fits'
+operator = 'sigma12_3fl_usc'
+EPMethod = 'pVal'
+EMMethod = 'pVal'
+Hadron = '$\Xi_{c}^{\prime}(usc)$'
+EPfTypes = ['pVal', 'AICP_pVal', 'AICP_AIC']
+EMfTypes = ['all']
+[modelAverages.sigma12_3fl_usc28]
+Nt = 28
+anaDir = '../output/fits'
+operator = 'sigma12_3fl_usc'
+EPMethod = 'pVal'
+EMMethod = 'pVal'
+Hadron = '$\Xi_{c}^{\prime}(usc)$'
+EPfTypes = ['all']
+EMfTypes = ['all']
+#Omega_c doublet_2fl_ssc
+[modelAverages.doublet_2fl_ssc128]
+Nt = 128
+anaDir = '../output/fits'
+operator = 'doublet_2fl_ssc'
+EPMethod = 'AICP_pVal'
+EMMethod = 'AICP_AIC'
+Hadron = '$\Omega_{c}(ssc)$'
+EPfTypes = ['AIC', 'AICP_pVal', 'AICP_AIC']
+EMfTypes = ['all']
+[modelAverages.doublet_2fl_ssc64]
+Nt = 64
+anaDir = '../output/fits'
+operator = 'doublet_2fl_ssc'
+EPMethod = 'AICP_pVal'
+EMMethod = 'AICP_AIC'
+Hadron = '$\Omega_{c}(ssc)$'
+EPfTypes = ['all']
+EMfTypes = ['AIC', 'AICP_AIC', 'AICP_pVal']
+[modelAverages.doublet_2fl_ssc56]
+Nt = 56
+anaDir = '../output/fits'
+operator = 'doublet_2fl_ssc'
+EPMethod = 'AICP_AIC'
+EMMethod = 'AICP_AIC'
+Hadron = '$\Omega_{c}(ssc)$'
+EPfTypes = ['all']
+EMfTypes = ['all']
+[modelAverages.doublet_2fl_ssc48]
+Nt = 48
+anaDir = '../output/fits'
+operator = 'doublet_2fl_ssc'
+EPMethod = 'AICP_pVal'
+EMMethod = 'AICP_AIC'
+Hadron = '$\Omega_{c}(ssc)$'
+EPfTypes = ['all']
+EMfTypes = ['all']
+[modelAverages.doublet_2fl_ssc40]
+Nt = 40
+anaDir = '../output/fits'
+operator = 'doublet_2fl_ssc'
+EPMethod = 'AICP_pVal'
+EMMethod = 'AICP_pVal'
+Hadron = '$\Omega_{c}(ssc)$'
+EPfTypes = ['all']
+EMfTypes = ['all']
+[modelAverages.doublet_2fl_ssc36]
+Nt = 36
+anaDir = '../output/fits'
+operator = 'doublet_2fl_ssc'
+EPMethod = 'AICP_pVal'
+EMMethod = 'AICP_AIC'
+Hadron = '$\Omega_{c}(ssc)$'
+EPfTypes = ['all']
+EMfTypes = ['all']
+[modelAverages.doublet_2fl_ssc28]
+Nt = 28
+anaDir = '../output/fits'
+operator = 'doublet_2fl_ssc'
+EPMethod = 'AICP_AIC'
+EMMethod = 'pVal'
+Hadron = '$\Omega_{c}(ssc)$'
+EPfTypes = ['all']
+EMfTypes = ['all']
+#Lambda_c lambda_3fl_udc
+[modelAverages.lambda_3fl_udc128]
+Nt = 128
+anaDir = '../output/fits'
+operator = 'lambda_3fl_udc'
+EPMethod = 'AICP_pVal'
+EMMethod = 'AICP_AIC'
+Hadron = '$\Lambda_{c}(udc)$'
+EPfTypes = ['all']
+EMfTypes = ['AICP_AIC', 'AIC']
+[modelAverages.lambda_3fl_udc64]
+Nt = 64
+anaDir = '../output/fits'
+operator = 'lambda_3fl_udc'
+EPMethod = 'AICP_AIC'
+EMMethod = 'AICP_AIC'
+Hadron = '$\Lambda_{c}(udc)$'
+EPfTypes = ['AIC', 'AICP_AIC',]
+EMfTypes = ['all']
+[modelAverages.lambda_3fl_udc56]
+Nt = 56
+anaDir = '../output/fits'
+operator = 'lambda_3fl_udc'
+EPMethod = 'AICP_pVal'
+EMMethod = 'AICP_AIC'
+Hadron = '$\Lambda_{c}(udc)$'
+EPfTypes = ['all']
+EMfTypes = ['all']
+[modelAverages.lambda_3fl_udc48]
+Nt = 48
+anaDir = '../output/fits'
+operator = 'lambda_3fl_udc'
+EPMethod = 'pVal'
+EMMethod = 'AICP_AIC'
+Hadron = '$\Lambda_{c}(udc)$'
+EPfTypes = ['pVal', 'AICP_pVal']
+EMfTypes = ['all']
+[modelAverages.lambda_3fl_udc40]
+Nt = 40
+anaDir = '../output/fits'
+operator = 'lambda_3fl_udc'
+EPMethod = 'AICP_pVal'
+EMMethod = 'AICP_AIC'
+Hadron = '$\Lambda_{c}(udc)$'
+EPfTypes = ['pVal', 'AICP_pVal']
+EMfTypes = ['AIC', 'AICP_pVal', 'AICP_AIC']
+[modelAverages.lambda_3fl_udc36]
+Nt = 36
+anaDir = '../output/fits'
+operator = 'lambda_3fl_udc'
+EPMethod = 'AICP_AIC'
+EMMethod = 'AICP_AIC'
+Hadron = '$\Lambda_{c}(udc)$'
+EPfTypes = ['AIC', 'AICP_AIC', 'AICP_pVal']
+EMfTypes = ['all']
+[modelAverages.lambda_3fl_udc28]
+Nt = 28
+anaDir = '../output/fits'
+operator = 'lambda_3fl_udc'
+EPMethod = 'pVal'
+EMMethod = 'pVal'
+Hadron = '$\Lambda_{c}(udc)$'
+EPfTypes = ['all']
+EMfTypes = ['all']
+#Xi_c lambda_3fl_usc
+[modelAverages.lambda_3fl_usc128]
+Nt = 128
+anaDir = '../output/fits'
+operator = 'lambda_3fl_usc'
+EPMethod = 'AICP_AIC'
+EMMethod = 'AICP_AIC'
+Hadron = '$\Xi_{c}(usc)$'
+EPfTypes = ['all']
+EMfTypes = ['AIC', 'AICP_AIC', 'AICP_pVal']
+[modelAverages.lambda_3fl_usc64]
+Nt = 64
+anaDir = '../output/fits'
+operator = 'lambda_3fl_usc'
+EPMethod = 'AIC'
+EMMethod = 'AIC'
+Hadron = '$\Xi_{c}(usc)$'
+EPfTypes = ['all']
+EMfTypes = ['all']
+[modelAverages.lambda_3fl_usc56]
+Nt = 56
+anaDir = '../output/fits'
+operator = 'lambda_3fl_usc'
+EPMethod = 'pVal'
+EMMethod = 'AIC'
+Hadron = '$\Xi_{c}(usc)$'
+EPfTypes = ['pVal', 'AICP_pVal']
+EMfTypes = ['all']
+[modelAverages.lambda_3fl_usc48]
+Nt = 48
+anaDir = '../output/fits'
+operator = 'lambda_3fl_usc'
+EPMethod = 'AICP_pVal'
+EMMethod = 'pVal'
+Hadron = '$\Xi_{c}(usc)$'
+EPfTypes = ['all']
+EMfTypes = ['all']
+[modelAverages.lambda_3fl_usc40]
+Nt = 40
+anaDir = '../output/fits'
+operator = 'lambda_3fl_usc'
+EPMethod = 'AICP_pVal'
+EMMethod = 'AICP_AIC'
+Hadron = '$\Xi_{c}(usc)$'
+EPfTypes = ['AIC', 'AICP_pVal', 'AICP_AIC']
+EMfTypes = ['all']
+[modelAverages.lambda_3fl_usc36]
+Nt = 36
+anaDir = '../output/fits'
+operator = 'lambda_3fl_usc'
+EPMethod = 'AIC'
+EMMethod = 'AICP_AIC'
+Hadron = '$\Xi_{c}(usc)$'
+EPfTypes = ['all']
+EMfTypes = ['all']
+[modelAverages.lambda_3fl_usc28]
+Nt = 28
+anaDir = '../output/fits'
+operator = 'lambda_3fl_usc'
+EPMethod = 'AIC'
+EMMethod = 'AICP_pVal'
+Hadron = '$\Xi_{c}(usc)$'
+EPfTypes = ['all']
+EMfTypes = ['all']
+#Xi_cc doublet_2fl_ccu
+[modelAverages.doublet_2fl_ccu128]
+Nt = 128
+anaDir = '../output/fits'
+operator = 'doublet_2fl_ccu'
+EPMethod = 'AICP_AIC'
+EMMethod = 'AICP_AIC'
+Hadron = '$\Xi_{cc}(ccu)$'
+EPfTypes = ['all']
+EMfTypes = ['all']
+[modelAverages.doublet_2fl_ccu64]
+Nt = 64
+anaDir = '../output/fits'
+operator = 'doublet_2fl_ccu'
+EPMethod = 'AICP_pVal'
+EMMethod = 'AICP_pVal'
+Hadron = '$\Xi_{cc}(ccu)$'
+EPfTypes = ['pVal', 'AICP_pVal', 'AICP_AIC']
+EMfTypes = ['all']
+[modelAverages.doublet_2fl_ccu56]
+Nt = 56
+anaDir = '../output/fits'
+operator = 'doublet_2fl_ccu'
+EPMethod = 'AICP_pVal'
+EMMethod = 'AICP_pVal'
+Hadron = '$\Xi_{cc}(ccu)$'
+EPfTypes = ['all']
+EMfTypes = ['AIC', 'AICP_AIC']
+[modelAverages.doublet_2fl_ccu48]
+Nt = 48
+anaDir = '../output/fits'
+operator = 'doublet_2fl_ccu'
+EPMethod = 'AICP_pVal'
+EMMethod = 'AICP_AIC'
+Hadron = '$\Xi_{cc}(ccu)$'
+EPfTypes = ['all']
+EMfTypes = ['all']
+[modelAverages.doublet_2fl_ccu40]
+Nt = 40
+anaDir = '../output/fits'
+operator = 'doublet_2fl_ccu'
+EPMethod = 'AICP_pVal'
+EMMethod = 'AICP_AIC'
+Hadron = '$\Xi_{cc}(ccu)$'
+EPfTypes = ['all']
+EMfTypes = ['all']
+[modelAverages.doublet_2fl_ccu36]
+Nt = 36
+anaDir = '../output/fits'
+operator = 'doublet_2fl_ccu'
+EPMethod = 'AICP_pVal'
+EMMethod = 'AICP_pVal'
+Hadron = '$\Xi_{cc}(ccu)$'
+#fTypes = ['pVal', 'AICP_AIC', 'AICP_pVal' ]
+EPfTypes = ['all']
+EMfTypes = ['pVal', 'AICP_AIC', 'AICP_pVal']
+[modelAverages.doublet_2fl_ccu28]
+Nt = 28
+anaDir = '../output/fits'
+operator = 'doublet_2fl_ccu'
+EPMethod = 'AICP_pVal'
+EMMethod = 'AICP_AIC'
+Hadron = '$\Xi_{cc}(ccu)$'
+EPfTypes = ['AIC', 'AICP_pVal', 'pVal']
+EMfTypes = ['all']
+#Omega_cc doublet_2fl_ccs
+[modelAverages.doublet_2fl_ccs128]
+Nt = 128
+anaDir = '../output/fits'
+operator = 'doublet_2fl_ccs'
+EPMethod = 'AICP_AIC'
+EMMethod = 'AICP_AIC'
+Hadron = '$\Omega_{cc}(ccs)$'
+EPfTypes = ['AIC', 'AICP_AIC', 'AICP_pVal']
+EMfTypes = ['AIC', 'AICP_AIC']
+[modelAverages.doublet_2fl_ccs64]
+Nt = 64
+anaDir = '../output/fits'
+operator = 'doublet_2fl_ccs'
+EPMethod = 'AICP_pVal'
+EMMethod = 'AICP_AIC'
+Hadron = '$\Omega_{cc}(ccs)$'
+EPfTypes = ['all']
+EMfTypes = ['all']
+[modelAverages.doublet_2fl_ccs56]
+Nt = 56
+anaDir = '../output/fits'
+operator = 'doublet_2fl_ccs'
+EPMethod = 'AICP_pVal'
+EMMethod = 'AICP_pVal'
+Hadron = '$\Omega_{cc}(ccs)$'
+EPfTypes = ['all']
+EMfTypes = ['all']
+[modelAverages.doublet_2fl_ccs48]
+Nt = 48
+anaDir = '../output/fits'
+operator = 'doublet_2fl_ccs'
+EPMethod = 'AICP_pVal'
+EMMethod = 'AICP_pVal'
+Hadron = '$\Omega_{cc}(ccs)$'
+EPfTypes = ['AICP_pVal', 'pVal']
+EMfTypes = ['all']
+[modelAverages.doublet_2fl_ccs40]
+Nt = 40
+anaDir = '../output/fits'
+operator = 'doublet_2fl_ccs'
+EPMethod = 'AICP_pVal'
+EMMethod = 'AICP_AIC'
+Hadron = '$\Omega_{cc}(ccs)$'
+EPfTypes = ['pVal', 'AICP_pVal']
+EMfTypes = ['AIC', 'AICP_AIC']
+[modelAverages.doublet_2fl_ccs36]
+Nt = 36
+anaDir = '../output/fits'
+operator = 'doublet_2fl_ccs'
+EPMethod = 'AICP_pVal'
+EMMethod = 'AICP_pVal'
+Hadron = '$\Omega_{cc}(ccs)$'
+#fTypes = ['pVal', 'AICP_AIC', 'AICP_pVal']
+EPfTypes = ['pVal', 'AICP_pVal']
+EMfTypes = ['pVal', 'AICP_pVal']
+[modelAverages.doublet_2fl_ccs28]
+Nt = 28
+anaDir = '../output/fits'
+operator = 'doublet_2fl_ccs'
+EPMethod = 'AICP_pVal'
+EMMethod = 'AIC'
+Hadron = '$\Omega_{cc}(ccs)$'
+EPfTypes = ['all']
+EMfTypes = ['all']
+############################################################################
+# J=3/2
+############################################################################
+#sigma_c sigma32_3fl_udc
+[modelAverages.sigma32_3fl_udc128]
+Nt = 128
+anaDir = '../output/fits'
+operator = 'sigma32_3fl_udc'
+EPMethod = 'AICP_AIC'
+EMMethod = 'AICP_AIC'
+Hadron = '$\Sigma_{c}(udc)$'
+EPfTypes = ['all']
+EMfTypes = ['AICP_AIC', 'AIC']
+[modelAverages.sigma32_3fl_udc64]
+Nt = 64
+anaDir = '../output/fits'
+operator = 'sigma32_3fl_udc'
+EPMethod = 'AICP_pVal'
+EMMethod = 'AICP_pVal'
+Hadron = '$\Sigma_{c}(udc)$'
+EPfTypes = ['all']
+EMfTypes = ['all']
+[modelAverages.sigma32_3fl_udc56]
+Nt = 56
+anaDir = '../output/fits'
+operator = 'sigma32_3fl_udc'
+EPMethod = 'AICP_AIC'
+EMMethod = 'AICP_AIC'
+Hadron = '$\Sigma_{c}(udc)$'
+EPfTypes = ['all']
+EMfTypes = ['AIC', 'AICP_AIC', 'AICP_pVal']
+[modelAverages.sigma32_3fl_udc48]
+Nt = 48
+anaDir = '../output/fits'
+operator = 'sigma32_3fl_udc'
+EPMethod = 'AICP_pVal'
+EMMethod = 'AICP_pVal'
+Hadron = '$\Sigma_{c}(udc)$'
+EPfTypes = ['pVal', 'AICP_pVal']
+EMfTypes = ['all']
+[modelAverages.sigma32_3fl_udc40]
+Nt = 40
+anaDir = '../output/fits'
+operator = 'sigma32_3fl_udc'
+EPMethod = 'AICP_pVal'
+EMMethod = 'AICP_pVal'
+Hadron = '$\Sigma_{c}(udc)$'
+EPfTypes = ['pVal', 'AICP_pVal', 'AICP_AIC']
+EMfTypes = ['all']
+[modelAverages.sigma32_3fl_udc36]
+Nt = 36
+anaDir = '../output/fits'
+operator = 'sigma32_3fl_udc'
+EPMethod = 'AICP_pVal'
+EMMethod = 'AICP_pVal'
+Hadron = '$\Sigma_{c}(udc)$'
+EPfTypes = ['all']
+EMfTypes = ['all']
+[modelAverages.sigma32_3fl_udc28]
+Nt = 28
+anaDir = '../output/fits'
+operator = 'sigma32_3fl_udc'
+EPMethod = 'AICP_AIC'
+EMMethod = 'AICP_pVal'
+Hadron = '$\Sigma_{c}(udc)$'
+EPfTypes = ['all']
+EMfTypes = ['all']
+#xi_c sigma32_3fl_usc
+[modelAverages.sigma32_3fl_usc128]
+Nt = 128
+anaDir = '../output/fits'
+operator = 'sigma32_3fl_usc'
+EPMethod = 'AICP_AIC'
+EMMethod = 'AIC'
+Hadron = '$\Xi_{c}(usc)$'
+EPfTypes = ['AICP_AIC', 'AICP_pVal', 'pVal']
+EMfTypes = ['AIC', 'AICP_AIC']
+[modelAverages.sigma32_3fl_usc64]
+Nt = 64
+anaDir = '../output/fits'
+operator = 'sigma32_3fl_usc'
+EPMethod = 'AICP_pVal'
+EMMethod = 'AICP_AIC'
+Hadron = '$\Xi_{c}(usc)$'
+EPfTypes = ['all']
+EMfTypes = ['all']
+[modelAverages.sigma32_3fl_usc56]
+Nt = 56
+anaDir = '../output/fits'
+operator = 'sigma32_3fl_usc'
+EPMethod = 'AICP_AIC'
+EMMethod = 'AICP_pVal'
+Hadron = '$\Xi_{c}(usc)$'
+EPfTypes = ['all']
+EMfTypes = ['all']
+[modelAverages.sigma32_3fl_usc48]
+Nt = 48
+anaDir = '../output/fits'
+operator = 'sigma32_3fl_usc'
+EPMethod = 'AICP_pVal'
+EMMethod = 'AICP_pVal'
+Hadron = '$\Xi_{c}(usc)$'
+EPfTypes = ['pVal', 'AICP_AIC', 'AICP_pVal']
+EMfTypes = ['all']
+[modelAverages.sigma32_3fl_usc40]
+Nt = 40
+anaDir = '../output/fits'
+operator = 'sigma32_3fl_usc'
+EPMethod = 'AICP_pVal'
+EMMethod = 'pVal'
+Hadron = '$\Xi_{c}(usc)$'
+EPfTypes = ['all']
+EMfTypes = ['all']
+[modelAverages.sigma32_3fl_usc36]
+Nt = 36
+anaDir = '../output/fits'
+operator = 'sigma32_3fl_usc'
+EPMethod = 'pVal'
+EMMethod = 'AICP_AIC'
+Hadron = '$\Xi_{c}(usc)$'
+EPfTypes = ['all']
+EMfTypes = ['all']
+[modelAverages.sigma32_3fl_usc28]
+Nt = 28
+anaDir = '../output/fits'
+operator = 'sigma32_3fl_usc'
+EPMethod = 'pVal'
+EMMethod = 'pVal'
+Hadron = '$\Xi_{c}(usc)$'
+EPfTypes = ['all']
+EMfTypes = ['all']
+#Omega_c quadruplet_2fl_ssc
+[modelAverages.quadruplet_2fl_ssc128]
+Nt = 128
+anaDir = '../output/fits'
+operator = 'quadruplet_2fl_ssc'
+EPMethod = 'AICP_AIC'
+EMMethod = 'AICP_AIC'
+Hadron = '$\Omega_{c}(ssc)$'
+EPfTypes = ['all']
+EMfTypes = ['AIC', 'AICP_AIC', 'AICP_pVal']
+[modelAverages.quadruplet_2fl_ssc64]
+Nt = 64
+anaDir = '../output/fits'
+operator = 'quadruplet_2fl_ssc'
+EPMethod = 'pVal'
+EMMethod = 'AICP_pVal'
+Hadron = '$\Omega_{c}(ssc)$'
+EPfTypes = ['all']
+EMfTypes = ['all']
+[modelAverages.quadruplet_2fl_ssc56]
+Nt = 56
+anaDir = '../output/fits'
+operator = 'quadruplet_2fl_ssc'
+EPMethod = 'AICP_AIC'
+EMMethod = 'pVal'
+Hadron = '$\Omega_{c}(ssc)$'
+EPfTypes = ['all']
+EMfTypes = ['pVal', 'AICP_pVal', 'AIC']
+[modelAverages.quadruplet_2fl_ssc48]
+Nt = 48
+anaDir = '../output/fits'
+operator = 'quadruplet_2fl_ssc'
+EPMethod = 'AICP_AIC'
+EMMethod = 'AICP_AIC'
+Hadron = '$\Omega_{c}(ssc)$'
+EPfTypes = ['all']
+EMfTypes = ['all']
+[modelAverages.quadruplet_2fl_ssc40]
+Nt = 40
+anaDir = '../output/fits'
+operator = 'quadruplet_2fl_ssc'
+EPMethod = 'AICP_pVal'
+EMMethod = 'AIC'
+Hadron = '$\Omega_{c}(ssc)$'
+EPfTypes = ['all']
+EMfTypes = ['AICP_AIC', 'AIC']
+[modelAverages.quadruplet_2fl_ssc36]
+Nt = 36
+anaDir = '../output/fits'
+operator = 'quadruplet_2fl_ssc'
+EPMethod = 'pVal'
+EMMethod = 'AICP_AIC'
+Hadron = '$\Omega_{c}(ssc)$'
+EPfTypes = ['all']
+EMfTypes = ['AIC', 'AICP_AIC', 'AICP_pVal']
+[modelAverages.quadruplet_2fl_ssc28]
+Nt = 28
+anaDir = '../output/fits'
+operator = 'quadruplet_2fl_ssc'
+EPMethod = 'AIC'
+EMMethod = 'AIC'
+Hadron = '$\Omega_{c}(ssc)$'
+EPfTypes = ['all']
+EMfTypes = ['all']
+#Xi_cc quadruplet_2fl_ccu
+[modelAverages.quadruplet_2fl_ccu128]
+Nt = 128
+anaDir = '../output/fits'
+operator = 'quadruplet_2fl_ccu'
+EPMethod = 'AICP_pVal'
+EMMethod = 'AICP_AIC'
+Hadron = '$\Xi_{cc}(ccu)$'
+EPfTypes = ['AICP_pVal', 'pVal']
+EMfTypes = ['all']
+[modelAverages.quadruplet_2fl_ccu64]
+Nt = 64
+anaDir = '../output/fits'
+operator = 'quadruplet_2fl_ccu'
+EPMethod = 'AICP_pVal'
+EMMethod = 'AICP_pVal'
+Hadron = '$\Xi_{cc}(ccu)$'
+EPfTypes = ['pVal', 'AICP_pVal', 'AICP_AIC']
+EMfTypes = ['all']
+[modelAverages.quadruplet_2fl_ccu56]
+Nt = 56
+anaDir = '../output/fits'
+operator = 'quadruplet_2fl_ccu'
+EPMethod = 'AICP_pVal'
+EMMethod = 'AICP_AIC'
+Hadron = '$\Xi_{cc}(ccu)$'
+EPfTypes = ['all']
+EMfTypes = ['all']
+[modelAverages.quadruplet_2fl_ccu48]
+Nt = 48
+anaDir = '../output/fits'
+operator = 'quadruplet_2fl_ccu'
+EPMethod = 'AICP_pVal'
+EMMethod = 'AIC'
+Hadron = '$\Xi_{cc}(ccu)$'
+EPfTypes = ['all']
+EMfTypes = ['all']
+[modelAverages.quadruplet_2fl_ccu40]
+Nt = 40
+anaDir = '../output/fits'
+operator = 'quadruplet_2fl_ccu'
+EPMethod = 'AICP_pVal'
+EMMethod = 'AIC'
+Hadron = '$\Xi_{cc}(ccu)$'
+EPfTypes = ['all']
+EMfTypes = ['all']
+[modelAverages.quadruplet_2fl_ccu36]
+Nt = 36
+anaDir = '../output/fits'
+operator = 'quadruplet_2fl_ccu'
+EPMethod = 'AICP_AIC'
+EMMethod = 'AICP_pVal'
+Hadron = '$\Xi_{cc}(ccu)$'
+EPfTypes = ['all']
+EMfTypes = ['all']
+[modelAverages.quadruplet_2fl_ccu28]
+Nt = 28
+anaDir = '../output/fits'
+operator = 'quadruplet_2fl_ccu'
+EPMethod = 'AICP_pVal'
+EMMethod = 'AICP_AIC'
+Hadron = '$\Xi_{cc}(ccu)$'
+EPfTypes = ['all']
+EMfTypes = ['all']
+#omega_cc quadruplet_2fl_ccs
+[modelAverages.quadruplet_2fl_ccs128]
+Nt = 128
+anaDir = '../output/fits'
+operator = 'quadruplet_2fl_ccs'
+EPMethod = 'AICP_AIC'
+EMMethod = 'AICP_AIC'
+Hadron = '$\Omega_{cc}(ccs)$'
+EPfTypes = ['all']
+EMfTypes = ['AIC', 'AICP_AIC']
+[modelAverages.quadruplet_2fl_ccs64]
+Nt = 64
+anaDir = '../output/fits'
+operator = 'quadruplet_2fl_ccs'
+EPMethod = 'AICP_pVal'
+EMMethod = 'AICP_pVal'
+Hadron = '$\Omega_{cc}(ccs)$'
+EPfTypes = ['pVal', 'AICP_pVal', 'AICP_AIC']
+EMfTypes = ['all']
+[modelAverages.quadruplet_2fl_ccs56]
+Nt = 56
+anaDir = '../output/fits'
+operator = 'quadruplet_2fl_ccs'
+EPMethod = 'AICP_pVal'
+EMMethod = 'AICP_AIC'
+Hadron = '$\Omega_{cc}(ccs)$'
+EPfTypes = ['all']
+EMfTypes = ['all']
+[modelAverages.quadruplet_2fl_ccs48]
+Nt = 48
+anaDir = '../output/fits'
+operator = 'quadruplet_2fl_ccs'
+EPMethod = 'AICP_pVal'
+EMMethod = 'AICP_pVal'
+Hadron = '$\Omega_{cc}(ccs)$'
+EPfTypes = ['all']
+EMfTypes = ['all']
+[modelAverages.quadruplet_2fl_ccs40]
+Nt = 40
+anaDir = '../output/fits'
+operator = 'quadruplet_2fl_ccs'
+EPMethod = 'AICP_pVal'
+EMMethod = 'AICP_AIC'
+Hadron = '$\Omega_{cc}(ccs)$'
+EPfTypes = ['AICP_pVal', 'pVal', 'AICP_AIC']
+EMfTypes = ['AIC', 'AICP_AIC', 'AICP_pVal']
+[modelAverages.quadruplet_2fl_ccs36]
+Nt = 36
+anaDir = '../output/fits'
+operator = 'quadruplet_2fl_ccs'
+EPMethod = 'AICP_pVal'
+EMMethod = 'AICP_AIC'
+Hadron = '$\Omega_{cc}(ccs)$'
+EPfTypes = ['all']
+EMfTypes = ['all']
+[modelAverages.quadruplet_2fl_ccs28]
+Nt = 28
+anaDir = '../output/fits'
+operator = 'quadruplet_2fl_ccs'
+EPMethod = 'pVal'
+EMMethod = 'pVal'
+Hadron = '$\Omega_{cc}(ccs)$'
+EPfTypes = ['pVal', 'AICP_AIC', 'AICP_AIC']
+EMfTypes = ['all']
+#omega_ccc quadruplet_1fl_ccc
+[modelAverages.quadruplet_1fl_ccc128]
+Nt = 128
+anaDir = '../output/fits'
+operator = 'quadruplet_1fl_ccc'
+EPMethod = 'AIC'
+EMMethod = 'AIC'
+Hadron = '$\Omega_{ccc}(ccc)$'
+EPfTypes = ['AIC', 'AICP_AIC']
+EMfTypes = ['AIC', 'AICP_AIC']
+[modelAverages.quadruplet_1fl_ccc64]
+Nt = 64
+anaDir = '../output/fits'
+operator = 'quadruplet_1fl_ccc'
+EPMethod = 'AICP_pVal'
+EMMethod = 'AICP_AIC'
+Hadron = '$\Omega_{ccc}(ccc)$'
+EPfTypes = ['all']
+EMfTypes = ['all']
+[modelAverages.quadruplet_1fl_ccc56]
+Nt = 56
+anaDir = '../output/fits'
+operator = 'quadruplet_1fl_ccc'
+EPMethod = 'AICP_pVal'
+EMMethod = 'AICP_AIC'
+Hadron = '$\Omega_{ccc}(ccc)$'
+EPfTypes = ['all']
+EMfTypes = ['all']
+[modelAverages.quadruplet_1fl_ccc48]
+Nt = 48
+anaDir = '../output/fits'
+operator = 'quadruplet_1fl_ccc'
+EPMethod = 'AICP_pVal'
+EMMethod = 'pVal'
+Hadron = '$\Omega_{ccc}(ccc)$'
+EPfTypes = ['all']
+EMfTypes = ['all']
+[modelAverages.quadruplet_1fl_ccc40]
+Nt = 40
+anaDir = '../output/fits'
+operator = 'quadruplet_1fl_ccc'
+EPMethod = 'AICP_pVal'
+EMMethod = 'AICP_pVal'
+Hadron = '$\Omega_{ccc}(ccc)$'
+EPfTypes = ['pVal', 'AICP_pVal', 'AICP_AIC']
+EMfTypes = ['all']
+[modelAverages.quadruplet_1fl_ccc36]
+Nt = 36
+anaDir = '../output/fits'
+operator = 'quadruplet_1fl_ccc'
+EPMethod = 'AICP_pVal'
+EMMethod = 'AICP_pVal'
+Hadron = '$\Omega_{ccc}(ccc)$'
+EPfTypes = ['all']
+EMfTypes = ['pVal', 'AICP_pVal', 'AICP_AIC']
+[modelAverages.quadruplet_1fl_ccc28]
+Nt = 28
+anaDir = '../output/fits'
+operator = 'quadruplet_1fl_ccc'
+EPMethod = 'AICP_pVal'
+EMMethod = 'pVal'
+Hadron = '$\Omega_{ccc}(ccc)$'
+EPfTypes = ['all']
+EMfTypes = ['all']
+#
+# Do the N_tau = 32 down here
+#
+[modelAverages.N32]
+Nt = 32
+anaDir = '../output/fits'
+operator = 'doublet_2fl_uud'
+EPMethod = 'AICP_pVal'
+EMMethod = 'pVal'
+Hadron = '$N(uud)$'
+EPfTypes = ['all']
+EMfTypes = ['all']
+[modelAverages.sigma12_3fl_uds32]
+Nt = 32
+anaDir = '../output/fits'
+operator = 'sigma12_3fl_uds'
+EPMethod = 'AICP_AIC'
+EMMethod = 'AICP_AIC'
+Hadron = '$\Sigma(uus)$'
+EPfTypes = ['AIC', 'AICP_AIC', 'AICP_pVal']
+EMfTypes = ['AIC', 'AICP_AIC', 'AICP_pVal']
+[modelAverages.doublet_2fl_ssu32]
+Nt = 32
+anaDir = '../output/fits'
+operator = 'doublet_2fl_ssu'
+EPMethod = 'AICP_AIC'
+EMMethod = 'pVal'
+Hadron = '$\Xi(dss)$'
+EPfTypes = ['all']
+EMfTypes = ['all']
+[modelAverages.sigma12_3fl_udc32]
+Nt = 32
+anaDir = '../output/fits'
+operator = 'sigma12_3fl_udc'
+EPMethod = 'AICP_AIC'
+EMMethod = 'AIC'
+Hadron = '$\Sigma_{c}(udc)$'
+EPfTypes = ['AIC', 'pVal', 'AICP_pVal']
+EMfTypes = ['AIC', 'pVal']
+[modelAverages.sigma12_3fl_usc32]
+Nt = 32
+anaDir = '../output/fits'
+operator = 'sigma12_3fl_usc'
+EPMethod = 'pVal'
+EMMethod = 'pVal'
+Hadron = '$\Xi_{c}^{\prime}(usc)$'
+EPfTypes = ['AIC', 'pVal']
+EMfTypes = ['all']
+[modelAverages.doublet_2fl_ssc32]
+Nt = 32
+anaDir = '../output/fits'
+operator = 'doublet_2fl_ssc'
+EPMethod = 'pVal'
+EMMethod = 'AIC'
+Hadron = '$\Omega_{c}(ssc)$'
+EPfTypes = ['AIC', 'AICP_pVal', 'pVal']
+EMfTypes = ['all']
+[modelAverages.lambda_3fl_udc32]
+Nt = 32
+anaDir = '../output/fits'
+operator = 'lambda_3fl_udc'
+EPMethod = 'AICP_pVal'
+EMMethod = 'pVal'
+Hadron = '$\Lambda_{c}(udc)$'
+EPfTypes = ['AIC', 'AICP_AIC', 'AICP_pVal']
+EMfTypes = ['all']
+[modelAverages.lambda_3fl_usc32]
+Nt = 32
+anaDir = '../output/fits'
+operator = 'lambda_3fl_usc'
+EPMethod = 'AICP_pVal'
+EMMethod = 'AIC'
+Hadron = '$\Xi_{c}(usc)$'
+EPfTypes = ['all']
+EMfTypes = ['all']
+[modelAverages.doublet_2fl_ccu32]
+Nt = 32
+anaDir = '../output/fits'
+operator = 'doublet_2fl_ccu'
+EPMethod = 'AICP_pVal'
+EMMethod = 'AIC'
+Hadron = '$\Xi_{cc}(ccu)$'
+EPfTypes = ['all']
+EMfTypes = ['all']
+[modelAverages.doublet_2fl_ccs32]
+Nt = 32
+anaDir = '../output/fits'
+operator = 'doublet_2fl_ccs'
+EPMethod = 'AICP_pVal'
+EMMethod = 'AICP_AIC'
+Hadron = '$\Omega_{cc}(ccs)$'
+EPfTypes = ['all']
+EMfTypes = ['all']
+# 3/2
+[modelAverages.sigma32_3fl_udc32]
+Nt = 32
+anaDir = '../output/fits'
+operator = 'sigma32_3fl_udc'
+EPMethod = 'AIC'
+EMMethod = 'AICP_AIC'
+Hadron = '$\Sigma_{c}(udc)$'
+EPfTypes = ['all']
+EMfTypes = ['all']
+[modelAverages.sigma32_3fl_usc32]
+Nt = 32
+anaDir = '../output/fits'
+operator = 'sigma32_3fl_usc'
+EPMethod = 'pVal'
+EMMethod = 'AIC'
+Hadron = '$\Xi_{c}(usc)$'
+EPfTypes = ['all']
+EMfTypes = ['AIC', 'AICP_AIC']
+[modelAverages.quadruplet_2fl_ssc32]
+Nt = 32
+anaDir = '../output/fits'
+operator = 'quadruplet_2fl_ssc'
+EPMethod = 'pVal'
+EMMethod = 'pVal'
+Hadron = '$\Omega_{c}(ssc)$'
+EPfTypes = ['AIC', 'pVal']
+EMfTypes = ['all']
+[modelAverages.quadruplet_2fl_ccu32]
+Nt = 32
+anaDir = '../output/fits'
+operator = 'quadruplet_2fl_ccu'
+EPMethod = 'pVal'
+EMMethod = 'pVal'
+Hadron = '$\Xi_{cc}(ccu)$'
+EPfTypes = ['all']
+EMfTypes = ['all']
+[modelAverages.quadruplet_2fl_ccs32]
+Nt = 32
+anaDir = '../output/fits'
+operator = 'quadruplet_2fl_ccs'
+EPMethod = 'pVal'
+EMMethod = 'pVal'
+Hadron = '$\Omega_{cc}(ccs)$'
+EPfTypes = ['all']
+EMfTypes = ['all']
+[modelAverages.quadruplet_1fl_ccc32]
+Nt = 32
+anaDir = '../output/fits'
+operator = 'quadruplet_1fl_ccc'
+EPMethod = 'AICP_pVal'
+EMMethod = 'AIC'
+Hadron = '$\Omega_{ccc}(ccc)$'
+EPfTypes = ['all']
+EMfTypes = ['all']

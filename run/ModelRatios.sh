@@ -11,7 +11,7 @@ pythonExe=python #/home/ryan/installs/conda/miniconda3/envs/gen/bin/python
 writeScript=${myDir}/writeModelRatios.py
 
 # Where we are putting all the modified toml files
-outTomlDir=${myDir}/AutoToml_Ratios/02_03_23/ModelRatio/
+outTomlDir=${myDir}/AutoToml_Ratios/02_03_2023/ModelRatio/
 # Make a folder to put the modified toml in
 mkdir -p ${outTomlDir}
 
@@ -29,8 +29,8 @@ dataDir=${myDir}/../
 # Loop over temperatures - cool, mid, hot
 #for temp in mid;
 #for temp in cool mid;
-#for temp in cool mid hot;
-for temp in hot;
+for temp in cool mid hot;
+#for temp in hot;
 do
     # The template toml file
     template=${myDir}/template-${temp}-base.toml

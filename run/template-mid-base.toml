@@ -1,5 +1,5 @@
 
-outToml = 'AutoToml_Ratios/02_03_23/EXT/UN_QQQ_mid_RAT_PAR'
+outToml = 'AutoToml_Ratios/02_03_2023/EXT/UN_QQQ_mid_RAT_PAR'
 
 massCSV = 'mass_sysErr.csv'
 # massFact = [0.95, 1.05]
@@ -47,7 +47,7 @@ RxLim = [ "None", "None",]
 RyLim = [ 0, 1,]
 RCurves = [ 4, 0, 1, 2, 3, 5, 6,]
 RXPoints = [ 47.50, 94.99, 108.56, 126.65, 151.99, 168.87, 189.98, 217.12, 253.31, 303.97, 379.96 ]
-anaDir = 'output_dev/ratios/02_03_23/UN_QQQ/mid/RAT/PAR'
+anaDir = 'output/ratios/02_03_2023/UN_QQQ/mid/RAT/PAR'
 src_t0 = 0
 # plotLayout = [3, 2]
 GxLim = ["None", "None"]

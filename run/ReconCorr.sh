@@ -27,8 +27,8 @@ dataDir=${myDir}/../
 
 # Loop over temperatures - cool, mid, hot
 #for temp in 48;
-for temp in cool mid;
-#for temp in cool mid hot;
+#for temp in cool mid;
+for temp in cool mid hot;
 #for temp in cool;
 do
     # The template toml file

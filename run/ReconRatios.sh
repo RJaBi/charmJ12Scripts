@@ -28,8 +28,8 @@ dataDir=${myDir}/../
 # Loop over temperatures - cool, mid, hot
 #for temp in mid;
 #for temp in cool mid;
-#for temp in cool mid hot;
-for temp in cool;
+for temp in cool mid hot;
+#for temp in cool;
 do
     # The template toml file
     template=${myDir}/template-${temp}-base.toml

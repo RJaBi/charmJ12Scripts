@@ -1,0 +1,15 @@
+
+# Where to read the inflection points from
+inflectCSV= [
+	    '../output/parityRatio/Inflect_M_Sdev.csv'
+	    ]
+# The superscript to put to the left of the 'ana' label
+# Matches inflectCSV
+leftSuperScript = ['']
+
+anaDir='../output/'
+
+Tpc = '167(2.5)'
+TpcLab = '$T_{c}^{\left\langle \overline{\Psi} \Psi \right\rangle_{R}}$'
+# Options are MeV and TTpc
+TpcType = 'MeV'

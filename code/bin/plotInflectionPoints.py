@@ -48,7 +48,7 @@ def main(args: list):
     ax = GVP.myHSpan(PsiTpc, ax, alpha=0.8, lab=params['TpcLab'])
     xLabels = []
     for dd, df in enumerate(inflectDFList):
-        plt.gca().set_prop_cycle(None)
+        # plt.gca().set_prop_cycle(None)
         print(dd, df)
         if params['TpcType'] == 'MeV':
             Tpc = gv.gvar(df['MeV'].values, df['MeVErr'].values)
@@ -64,16 +64,20 @@ def main(args: list):
         for xx, xV in enumerate(xAxis):
             xAxis[xx] = '${}^{' + leftScript + '}' + xV[1:] + '$'
         markers = GVP.markers
+        colCount = 0
         for x, y, mark in zip(xAxis, Tpc, markers):
             if y < 0.8 * PsiTpc or y > 1.2 * PsiTpc:
                 continue
-            if 'c' not in x:
-                # skipping C=0
-                # cycle the colour
-                next_colour = next(ax._get_lines.prop_cycler)['color']  # noqa: F841
-                continue
+            #if 'c' not in x:
+            #    # skipping C=0
+            #    # cycle the colour
+            #    next_colour = next(ax._get_lines.prop_cycler)['color']  # noqa: F841
+            #    continue
             xLabels.append(x)
-            ax = GVP.plot_gvEbar(x, y, ax, ma=mark, ls='')
+            ax = GVP.plot_gvEbar(x, y, ax, ma=mark, ls='', col=GVP.colours[colCount])
+            colCount = colCount + 1
+            if colCount > len(GVP.colours) - 1:
+                colCount = 0
     # finalise plot
     ax.set_xticklabels(xLabels, rotation=90)
     ax.set_ylabel('$T_{c}$' + yScale)

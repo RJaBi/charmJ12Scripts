@@ -191,6 +191,8 @@ def setYlim1Dim(params, ax, axScale, setY=True, ytrim = 0):
     # print(f'ysScale is {yScale}')
     # print('yLims', yLims)
     # print('middles', middles)
+    if 'yScale' in params.keys():
+        yScale = float(params['yScale'])
     for vv in range(0, np.shape(ax)[0]):
         vertMid = np.median(middles[:])
         yMinVV = vertMid - yScale / 2
@@ -472,11 +474,12 @@ def main(args: list):
         allLegends = []
         line_dashed = Line2D([], [], color='tab:green', linestyle='--', label='$P=+$ Exp.')  # noqa: E501
         point_pos= Line2D([0], [0], color='tab:green', linestyle='', marker='D', label='$P=+$')  # noqa: E501
-        allHandles.append(line_dashed)
-        allLegends.append('Pos. Par. Exp.')
         allHandles.append(point_pos)
         allLegends.append('Pos. Par. Lat.')
+        allHandles.append(line_dashed)
+        allLegends.append('Pos. Par. Exp.')
         # Not putting Exp in legend if there is no exp
+        print(k, expDict[k], expDict[k][0])
         if expDict[k][0]:
             PosOffset = len(allLegends)
             DiffOffset = len(allLegends)
@@ -491,25 +494,28 @@ def main(args: list):
             DiffOffset = -1
 
 
-        axB[0].legend(allHandles[:NegOffset], allLegends[:NegOffset], handlelength=1.5, loc='lower center', frameon=False)  # noqa: E501
-        allHandles = []
-        allLegends = []
-        line_dashed = Line2D([], [], color='tab:orange', linestyle='-.', label='$P=-$ Exp.')  # noqa: E501
-        point_pos= Line2D([0], [0], color='tab:orange', linestyle='', marker='D', label='$P=-$', markerfacecolor='white')  # noqa: E501
-        allHandles.append(line_dashed)
-        #allLegends.append('$P=$-ive Exp.')
-        allLegends.append('Neg. Par. Exp.')
-        allHandles.append(point_pos)
-        allLegends.append('Neg. Par. Lat.')
-        #allLegends.append('$P=$-ive')
-        axB[numChannels - 1].legend(allHandles[:NegOffset], allLegends[:NegOffset], handlelength=1.5, loc='lower center', frameon=False)  # noqa: E501
-            
-
         ax[numChannels - 1].legend(allHandles[:PosOffset], allLegends[:PosOffset], bbox_to_anchor=(params['posXOffset'], 1), borderaxespad=0, handlelength=1.5, fontsize=27)  # noqa: E501
         axM[numChannels - 1].legend(allHandles[:NegOffset], allLegends[:NegOffset], bbox_to_anchor=(params['negXOffset'], 1), borderaxespad=0, handlelength=1.5, fontsize=27)  # noqa: E501
         #axB[numChannels - 1].legend(allHandles[:NegOffset], allLegends[:NegOffset], bbox_to_anchor=(params['negXOffset'], 1), borderaxespad=0, handlelength=1.5, fontsize=27)  # noqa: E501
         #axB[numChannels - 1].legend(allHandles[:NegOffset], allLegends[:NegOffset], handlelength=1.5, fontsize=27, loc='lower center')  # noqa: E501
         axDiff[numChannels - 1].legend(allHandles[:DiffOffset], allLegends[:DiffOffset], bbox_to_anchor=(params['negXOffset']*1.15, 1), borderaxespad=0, handlelength=1.5, fontsize=27)  # noqa: E501
+
+
+    # This is set outside
+    axB[0].legend(allHandles, allLegends, handlelength=1.5, loc='lower center', frameon=False)  # noqa: E501
+    allHandles = []
+    allLegends = []
+    line_dashed = Line2D([], [], color='tab:orange', linestyle='-.', label='$P=-$ Exp.')  # noqa: E501
+    point_pos= Line2D([0], [0], color='tab:orange', linestyle='', marker='D', label='$P=-$', markerfacecolor='white')  # noqa: E501
+    allHandles.append(point_pos)
+    allLegends.append('Neg. Par. Lat.')
+    allHandles.append(line_dashed)
+    #allLegends.append('$P=$-ive Exp.')
+    allLegends.append('Neg. Par. Exp.')
+    #allLegends.append('$P=$-ive')
+    axB[numChannels - 1].legend(allHandles, allLegends, handlelength=1.5, loc='lower center', frameon=False)  # noqa: E501
+            
+
     # Now determine  and set y-limits and y-ticks
     # determine scales indivudually
     # so can set according to the largest

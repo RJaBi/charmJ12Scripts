@@ -42,13 +42,13 @@ echo ${pythonExe} ${scriptDir}/parityRatios.py ${myDir}/completeToml/parityJ1_2.
 # ${pythonExe} ${scriptDir}/parityRatios.py ${myDir}/completeToml/parityJ1_2.toml
 # COPY
 echo cp -av ${plotDir}/parityRatio/SummedParityRatio.pdf ${paperDir}/SummedParityRatio.pdf
-# cp -av ${plotDir}/parityRatio/SummedParityRatio.pdf ${paperDir}/SummedParityRatio.pdf
+cp -av ${plotDir}/parityRatio/SummedParityRatio.pdf ${paperDir}/SummedParityRatio.pdf
 # and the inflection points plot
 echo ${pythonExe} ${scriptDir}/plotInflectionPoints.py ${myDir}/completeToml/inflectionPoints.toml
 # ${pythonExe} ${scriptDir}/plotInflectionPoints.py ${myDir}/completeToml/inflectionPoints.toml
 # COPY
 echo cp -av ${plotDir}/inflectionPoints.pdf ${paperDir}/inflectionPoints.pdf
-# cp -av ${plotDir}/inflectionPoints.pdf ${paperDir}/inflectionPoints.pdf
+cp -av ${plotDir}/inflectionPoints.pdf ${paperDir}/inflectionPoints.pdf
 
 # Generate the ratio plots - ~<30 min
 # Plots of the correlator to the model correlator
@@ -60,9 +60,9 @@ for temp in cool mid; do
 	for RAT in double single; do
 	    for PAR in Pos Neg; do
 		echo ''
-		echo ${plotDir}/ratios/02_03_2023/${OP}/${temp}/${RAT}/${PAR}/G_ModelRatio.pdf
-		echo ${paperDir}/MR_${OP}_${temp}_${RAT}_${PAR}.pdf
-		# cp -av ${plotDir}/ratios/02_03_2023/${OP}/${temp}/${RAT}/${PAR}/G_ModelRatio.pdf ${paperDir}/MR_${OP}_${temp}_${RAT}_${PAR}.pdf
+		# echo ${plotDir}/ratios/02_03_2023/${OP}/${temp}/${RAT}/${PAR}/G_ModelRatio.pdf
+		# echo ${paperDir}/MR_${OP}_${temp}_${RAT}_${PAR}.pdf
+		cp -av ${plotDir}/ratios/02_03_2023/${OP}/${temp}/${RAT}/${PAR}/G_ModelRatio.pdf ${paperDir}/MR_${OP}_${temp}_${RAT}_${PAR}.pdf
 	    done
 	done
     done
@@ -82,9 +82,9 @@ for temp in cool mid; do
 	for RAT in single; do
 	    for PAR in Pos Neg; do
 		echo ''
-		echo ${plotDir}/ratios/02_03_2023/${OP}/${temp}/${RAT}/${PAR}/G_ReconRatio.pdf
-		echo ${paperDir}/RR_${OP}_${temp}_${RAT}_${PAR}.pdf
-		# cp -av ${plotDir}/ratios/02_03_2023/${OP}/${temp}/${RAT}/${PAR}/G_ReconRatio.pdf ${paperDir}/RR_${OP}_${temp}_${RAT}_${PAR}.pdf
+		# echo ${plotDir}/ratios/02_03_2023/${OP}/${temp}/${RAT}/${PAR}/G_ReconRatio.pdf
+		# echo ${paperDir}/RR_${OP}_${temp}_${RAT}_${PAR}.pdf
+		cp -av ${plotDir}/ratios/02_03_2023/${OP}/${temp}/${RAT}/${PAR}/G_ReconRatio.pdf ${paperDir}/RR_${OP}_${temp}_${RAT}_${PAR}.pdf
 	    done
 	done
     done
@@ -113,5 +113,14 @@ echo ${pythonExe} ${scriptDir}/addSysErr.py ${myDir}/completeToml/addSysErr.toml
 # Now the spectrum plot
 echo ${pythonExe} ${scriptDir}/plotSpectrum.py ${myDir}/completeToml/plotSpectrumJ1_2.toml
 # ${pythonExe} ${scriptDir}/plotSpectrum.py ${myDir}/completeToml/plotSpectrumJ1_2.toml
-# cp -av ${plotDir}/spectrumPlot.pdf ${paperDir}/spectrumPlot.pdf
+cp -av ${plotDir}/spectrumPlot.pdf ${paperDir}/spectrumPlot.pdf
 
+# now the mass as a function of temperature plot
+# C = 1
+echo ${pythonExe} ${scriptDir}/singlePlotSep.py ${myDir}/completeToml/singleJ1_2_C1.toml
+${pythonExe} ${scriptDir}/singlePlotSep.py ${myDir}/completeToml/singleJ1_2_C1.toml
+cp -av ${plotDir}/C1/singlePlotSep_BothParity.pdf ${paperDir}/C1_BothParity.pdf
+# C = 2
+echo ${pythonExe} ${scriptDir}/singlePlotSep.py ${myDir}/completeToml/singleJ1_2_C2.toml
+${pythonExe} ${scriptDir}/singlePlotSep.py ${myDir}/completeToml/singleJ1_2_C2.toml
+cp -av ${plotDir}/C2/singlePlotSep_BothParity.pdf ${paperDir}/C2_BothParity.pdf

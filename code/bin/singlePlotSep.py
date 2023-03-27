@@ -126,7 +126,7 @@ def setYlim2Dim(params, ax, axScale, ytrim = 0):
     return ax, yScale
 
 
-def setYlim1Dim(params, ax, axScale, setY=True, ytrim = 0):
+def setYlim1Dim(params, ax, axScale, setY=True, ytrim = 0, right=True):
     """
     Sets the ylims on each of the subplots
     such that they have the same scale
@@ -134,6 +134,7 @@ def setYlim1Dim(params, ax, axScale, setY=True, ytrim = 0):
     also returns the yScale
     only updates ymin, ymax if abs(ymin -ymax) > ytrim 
     """
+
     # First iterate over each axis
     # yScale is ymax - ymin
     yScale = 0
@@ -170,7 +171,10 @@ def setYlim1Dim(params, ax, axScale, setY=True, ytrim = 0):
                 labelright = False
             elif vv == np.shape(ax)[0] - 1:
                 labelleft = False
-                labelright = True
+                if right:
+                    labelright = True
+                else:
+                    labelRight = False
             else:
                 labelleft = False
                 labelright = False
@@ -217,7 +221,10 @@ def setYlim1Dim(params, ax, axScale, setY=True, ytrim = 0):
             labelright = False
         elif vv == np.shape(ax)[0] - 1:
             labelleft = False
-            labelright = True
+            if right:
+                labelright = True
+            else:
+                labelRight = False
         else:
             labelleft = False
             labelright = False
@@ -292,8 +299,8 @@ def main(args: list):
     fig, ax = plt.subplots(1, numChannels, figsize=(16.6, 11.6), sharey=sharey, sharex=True, gridspec_kw={'hspace': 0, 'wspace': 0})  # noqa: E501
     figM, axM = plt.subplots(1, numChannels, figsize=(16.6, 11.6), sharey=sharey, sharex=True, gridspec_kw={'hspace': 0, 'wspace': 0})  # noqa: E501
     # Both on same plot
-    figB, axB = plt.subplots(1, numChannels, figsize=(16.6, 11.6), sharey=sharey, sharex=True, gridspec_kw={'hspace': 0, 'wspace': 0})  # noqa: E501
-    figDiff, axDiff = plt.subplots(1, numChannels, figsize=(16.6, 11.6), sharey=sharey, sharex=True, gridspec_kw={'hspace': 0, 'wspace': 0})  # noqa: E501
+    figB, axB = plt.subplots(1, numChannels, figsize=(16.6, 11.6), sharey=True, sharex=True, gridspec_kw={'hspace': 0, 'wspace': 0})  # noqa: E501
+    figDiff, axDiff = plt.subplots(1, numChannels, figsize=(16.6, 11.6), sharey=True, sharex=True, gridspec_kw={'hspace': 0, 'wspace': 0})  # noqa: E501
     if numChannels == 1:
         ax = [ax]
         axM = [axM]
@@ -429,6 +436,9 @@ def main(args: list):
             thisAXB.get_xaxis().set_ticks([50,100,150,200])
             thisAXB.set_xticklabels([50,100,150,200], rotation=315)
             thisAXB.set_xlim([30,210])
+            thisAXDiff.get_xaxis().set_ticks([50,100,150,200])
+            thisAXDiff.set_xticklabels([50,100,150,200], rotation=315)
+            thisAXDiff.set_xlim([30,210])
             # neg parity
             if negMass:
                 thisAXB = GVP.plot_gvEbar(xPlot, EM, thisAXB, ma=marks[aa], ls='', col='tab:orange')
@@ -463,45 +473,27 @@ def main(args: list):
         figB.tight_layout()
         figB.supylabel('Mass (GeV)')
         # and for the diff
-        figDiff.supxlabel('Temperature (MeV)')
-        figDiff.supylabel('$\\frac{M^{-} - M^{+}}{M^{-} + M^{+}}$')
+        figDiff.supxlabel('Temperature (MeV)',y=0.05)
+        figDiff.supylabel('$\\frac{M^{-} - M^{+}}{M^{-} + M^{+}}$', x=0.05)
+
+    posExpLine = False
+    negExpLine = False
+    for k, v in expDict.items():
+        if v[0]:
+            posExpLine = True
+        if v[1]:
+            negExpLine = True
+        
     # Doing the legend
-    # Add a line for experiment
-    for k, v in allHandlesDict.items():
-        #allHandles = v
-        #allLegends = allLegendsDict[k]
-        allHandles = []
-        allLegends = []
-        line_dashed = Line2D([], [], color='tab:green', linestyle='--', label='$P=+$ Exp.')  # noqa: E501
-        point_pos= Line2D([0], [0], color='tab:green', linestyle='', marker='D', label='$P=+$')  # noqa: E501
-        allHandles.append(point_pos)
-        allLegends.append('Pos. Par. Lat.')
+    allHandles = []
+    allLegends = []
+    line_dashed = Line2D([], [], color='tab:green', linestyle='--', label='$P=+$ Exp.')  # noqa: E501
+    point_pos= Line2D([0], [0], color='tab:green', linestyle='', marker='D', label='$P=+$')  # noqa: E501
+    allHandles.append(point_pos)
+    allLegends.append('Pos. Par. Lat.')
+    if posExpLine:
         allHandles.append(line_dashed)
         allLegends.append('Pos. Par. Exp.')
-        # Not putting Exp in legend if there is no exp
-        print(k, expDict[k], expDict[k][0])
-        if expDict[k][0]:
-            PosOffset = len(allLegends)
-            DiffOffset = len(allLegends)
-        else:
-            PosOffset = -1
-            DiffOffset = -1
-        if expDict[k][1]:
-            NegOffset = len(allLegends)
-            DiffOffset = DiffOffset
-        else:
-            NegOffset = -1
-            DiffOffset = -1
-
-
-        ax[numChannels - 1].legend(allHandles[:PosOffset], allLegends[:PosOffset], bbox_to_anchor=(params['posXOffset'], 1), borderaxespad=0, handlelength=1.5, fontsize=27)  # noqa: E501
-        axM[numChannels - 1].legend(allHandles[:NegOffset], allLegends[:NegOffset], bbox_to_anchor=(params['negXOffset'], 1), borderaxespad=0, handlelength=1.5, fontsize=27)  # noqa: E501
-        #axB[numChannels - 1].legend(allHandles[:NegOffset], allLegends[:NegOffset], bbox_to_anchor=(params['negXOffset'], 1), borderaxespad=0, handlelength=1.5, fontsize=27)  # noqa: E501
-        #axB[numChannels - 1].legend(allHandles[:NegOffset], allLegends[:NegOffset], handlelength=1.5, fontsize=27, loc='lower center')  # noqa: E501
-        axDiff[numChannels - 1].legend(allHandles[:DiffOffset], allLegends[:DiffOffset], bbox_to_anchor=(params['negXOffset']*1.15, 1), borderaxespad=0, handlelength=1.5, fontsize=27)  # noqa: E501
-
-
-    # This is set outside
     axB[0].legend(allHandles, allLegends, handlelength=1.5, loc='lower center', frameon=False)  # noqa: E501
     allHandles = []
     allLegends = []
@@ -509,12 +501,20 @@ def main(args: list):
     point_pos= Line2D([0], [0], color='tab:orange', linestyle='', marker='D', label='$P=-$', markerfacecolor='white')  # noqa: E501
     allHandles.append(point_pos)
     allLegends.append('Neg. Par. Lat.')
-    allHandles.append(line_dashed)
-    #allLegends.append('$P=$-ive Exp.')
-    allLegends.append('Neg. Par. Exp.')
-    #allLegends.append('$P=$-ive')
-    axB[numChannels - 1].legend(allHandles, allLegends, handlelength=1.5, loc='lower center', frameon=False)  # noqa: E501
-            
+    if negExpLine:
+        allHandles.append(line_dashed)
+        allLegends.append('Neg. Par. Exp.')
+    axB[1].legend(allHandles, allLegends, handlelength=1.5, loc='lower center', frameon=False)  # noqa: E501
+    diffLegends = []
+    diffHandles = []
+    line_dashed = Line2D([], [], color='black', linestyle='--')  # noqa: E501
+    point_pos= Line2D([0], [0], color='black', linestyle='', marker='D')  # noqa: E501
+    diffHandles.append(point_pos)
+    diffLegends.append('Lat.')
+    if negExpLine and posExpLine:
+        diffHandles.append(line_dashed)
+        diffLegends.append('Exp.')
+    axDiff[0].legend(diffHandles, diffLegends, handlelength=1.5, loc='lower center', frameon=False)  # noqa: E501            
 
     # Now determine  and set y-limits and y-ticks
     # determine scales indivudually
@@ -533,7 +533,7 @@ def main(args: list):
                 axM, axMScale = setYlim1Dim(params, axM, axM)
         # and set axDiff separately
         # doesn't work if set on ax currently
-        axDiff = setYlim1Dim(params, axDiff, axDiff)
+        axDiff = setYlim1Dim(params, axDiff, axDiff, right=False)
         axB = setYlim1Dim(params, axB, axB)
     elif numChannels == 1:
         ax, axScale = setYlim1Dim(params, ax, ax, setY=False, ytrim=0.2)

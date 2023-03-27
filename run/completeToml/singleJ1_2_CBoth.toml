@@ -1,0 +1,172 @@
+
+#TOML MADE USING https://toml-online-parser.ovonick.com/
+
+# norm = 'EP0'
+# yLim = ['None', 'None']  # chooses auto if not present
+
+# Offset on the legend
+posXOffset = 210
+negXOffset = 3.1
+
+[eMass]
+# Physical masses of particles in GeV
+# Taken from particle data group
+# Averaged over charge combinations
+# see charmBaryonExpSurveyUsed
+unit = 'GeV'
+# spin 1/2
+[eMass.doublet_2fl_uud]
+# Formatted like this for gvar
+P = '0.93891875434(56)'
+M = '1.530(15)'
+name = 'N'
+J = '1/2'
+[eMass.sigma12_3fl_uds]
+P = '1.1893(7)'
+M = '1.6850(58)'
+name = '\Sigma'
+J = '1/2'
+[eMass.sigma12_3fl_udc]
+P = '2.45379(30)'
+M = ''
+name = '\Sigma_{c}'
+J = '1/2'
+[eMass.sigma12_3fl_usc]
+P = '2.57845(71)'
+M = ''
+name = '\Xi_{c}^{\prime}'
+J = '1/2'
+[eMass.doublet_2fl_ssu]
+P = '1.31828(21)'
+M = '1.655(32)'
+name = '\Xi'
+J = '1/2'
+[eMass.doublet_2fl_ssc]
+P = '2.6952(17)'
+M = '3.00041(22)'
+name = '\Omega_{c}'
+J = '1/2'
+[eMass.doublet_2fl_ccu]
+P = '3.6216(4)'
+M = ''
+name = '\Xi_{cc}'
+J = '1/2'
+[eMass.doublet_2fl_ccs]
+P = ''
+M = ''
+name = '\Omega_{cc}'
+J = '1/2'
+[eMass.lambda_3fl_udc]
+P = '2.2846(14)'
+M = '2.59225(28)'
+name = '\Lambda_{c}'
+J = '1/2'
+[eMass.lambda_3fl_usc]
+P = '2.46907(36)'
+M = '2.79290(71)'
+name = '\Xi_{c}'
+J = '1/2'
+# Spin 3/2
+[eMass.sigma32_3fl_udc]
+P = '2.51810(76)'
+M = '2.800(17)'
+name = '\Sigma_{c}'
+J = '3/2'
+[eMass.sigma32_3fl_usc]
+P = '2.64563(39)'
+M = '2.81815(39)'
+name = '\Xi_{c}'
+J = '3/2'
+[eMass.quadruplet_2fl_ssc]
+P = '2.7659(20)'
+M = '3.066(15)'
+name = '\Omega_{c}'
+J = '3/2'
+[eMass.quadruplet_2fl_ccu]
+P = '3.57025(98)'
+M = ''
+name = '\Xi_{cc}'
+J = '3/2'
+[eMass.quadruplet_2fl_ccs]
+P = ''
+M = ''
+name = '\Omega_{cc}'
+J = '3/2'
+[eMass.quadruplet_1fl_ccc]
+P = ''
+M = ''
+name = '\Omega_{ccc}'
+J = '3/2'
+
+[latMass]
+# Matched set of lists of y value and x-value and label, and the kappa 
+#mALabels = [['128', '64', '56', '48', '40', '36', '32', '24', '28', '20', '16']]
+mALabels = [['128', '64', '56', '48', '40', '36', '32'], #, '28']
+	    ['128', '64', '56', '48', '40', '36', '32'], #, '28']
+	    ['128', '64', '56', '48', '40', '36', '32'], # '28'],
+	    ['128', '64', '56', '48', '40', '36'], #, '28']
+	    ['128', '64', '56', '48', '40', '36', '32'], #, '28',]
+	    ['128', '64', '56', '48', '40', '36', '32'], # '28'],
+	    ['128', '64', '56', '48', '40'], #, '28']
+	    ]
+
+
+#NegMALabels = [['128', '64', '56', '48', '40', '36', '32'], #, '28']
+#	    ['128', '64', '56', '48', '40', '36', '32'], #, '28']
+#	    ['128', '64', '56', '48', '40', '36', '32', '28'],
+#	    ['128', '64', '56', '48', '40', '36', '32', '28'],
+#	    ['128', '64', '56', '48', '40'], #, '28']
+#	    ['128', '64', '56', '48', '40', '36'], #, '28']
+#	    ['128', '64', '56', '48', '40', '36', '32'], #, '28',]
+#	    ]
+
+NegMALabels = [['128', '64', '56', '48'],
+	       ['128', '64', '56', '48', ],
+	       ['128', '64', '56', '48'],
+	       ['128', '64', '56', '48'], #, '28']
+	       ['128', '64', '56', '48'], #, '28',]
+	       ['128', '64', '56', '48', '40'],
+	       ['128', '64', '56', '48', '40'], #, '28']
+	    ]
+
+#
+numChannels = 7
+horzGroup = [0, 1, 2, 3, 4,5,6]
+# Describes how the subplots are laid out
+vertSplit = 1
+vertGroup = [0, 0, 0, 0, 0, 0, 0,0,0]
+#vertGroup = [# 2, 2, 2,
+#	     1, 1, 1,
+#	     0, 0,
+#	     1, 1 ]
+#charmness = [2, 1,]
+charmness = ['']
+
+# Temperatures and NT MUST BE MATCHED
+#temperatures = [47.50, 94.99, 108.56, 126.65, 151.99, 168.87, 217.12]
+temperatures = [47, 95, 109, 127, 152, 169, 190]#, 217]
+NT = ['128', '64', '56', '48', '40', '36', '32']#, '28']
+#anaName = ['doublet_2fl_uud', 'sigma12_3fl_uds']
+
+
+anaName = [ 'sigma12_3fl_udc', 'sigma12_3fl_usc', 'doublet_2fl_ssc', 'lambda_3fl_udc', 'lambda_3fl_usc', 'doublet_2fl_ccu', 'doublet_2fl_ccs',]
+#anaName = [ 'sigma12_3fl_udc', 'sigma12_3fl_usc', 'doublet_2fl_ssc', 'lambda_3fl_udc', 'lambda_3fl_usc']
+
+colours = [ 'tab:pink', 'tab:olive', 'tab:orange', 'tab:gray', 'tab:cyan', 'tab:red', 'tab:brown']
+#colours = [ 'tab:pink', 'tab:olive', 'tab:orange', 'tab:gray', 'tab:cyan']
+#markers = ['P', '*', 'X', 'd', '<', '>', '$\boxtimes$', '$\\bigoplus$', '$\\bigotimes$']
+markers = ['P', '*', 'X', 'd', '<', '>', '$\boxtimes$']
+#markers = ['P', '*', 'X', 'd', '<', '$\\bigoplus$', '$\\bigotimes$']
+
+# Formatted like this for gvar
+# spatial lattice spacing in fm
+as = '0.11208(31)'
+# anisotropy
+xi = '3.453(6)'
+
+# T_c in Gev. 
+T_c = '166.7(2.5)'
+
+anaDir='../output/CB'
+
+massCSV='../workingOutput/output/mass_sysErr.csv'

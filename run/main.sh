@@ -124,3 +124,7 @@ cp -av ${plotDir}/C1/singlePlotSep_BothParity.pdf ${paperDir}/C1_BothParity.pdf
 echo ${pythonExe} ${scriptDir}/singlePlotSep.py ${myDir}/completeToml/singleJ1_2_C2.toml
 ${pythonExe} ${scriptDir}/singlePlotSep.py ${myDir}/completeToml/singleJ1_2_C2.toml
 cp -av ${plotDir}/C2/singlePlotSep_BothParity.pdf ${paperDir}/C2_BothParity.pdf
+# C =1, 2
+echo ${pythonExe} ${scriptDir}/singlePlotSep.py ${myDir}/completeToml/singleJ1_2_CBoth.toml
+${pythonExe} ${scriptDir}/singlePlotSep.py ${myDir}/completeToml/singleJ1_2_CBoth.toml
+cp -av ${plotDir}/CB/singlePlotSep_Diff.pdf ${paperDir}/CB_DiffParity.pdf

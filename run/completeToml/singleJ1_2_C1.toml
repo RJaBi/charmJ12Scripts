@@ -5,7 +5,7 @@
 # yLim = ['None', 'None']  # chooses auto if not present
 
 # Offset on the legend
-posXOffset = 3.1
+posXOffset = 210
 negXOffset = 3.1
 
 [eMass]
@@ -104,8 +104,8 @@ J = '3/2'
 mALabels = [['128', '64', '56', '48', '40', '36', '32'], #, '28']
 	    ['128', '64', '56', '48', '40', '36', '32'], #, '28']
 	    ['128', '64', '56', '48', '40', '36', '32'], # '28'],
-	    ['128', '64', '56', '48', '40', '36', '32'], # '28'],
-	    ['128', '64', '56', '48', '40'], #, '28']
+	    #['128', '64', '56', '48', '40', '36', '32'], # '28'],
+	    #['128', '64', '56', '48', '40'], #, '28']
 	    ['128', '64', '56', '48', '40', '36'], #, '28']
 	    ['128', '64', '56', '48', '40', '36', '32'], #, '28',]
 	    ]
@@ -123,20 +123,24 @@ mALabels = [['128', '64', '56', '48', '40', '36', '32'], #, '28']
 NegMALabels = [['128', '64', '56', '48'],
 	       ['128', '64', '56', '48', ],
 	       ['128', '64', '56', '48'],
-	       ['128', '64', '56', '48', '40'],
-	       ['128', '64', '56', '48', '40'], #, '28']
+	       #['128', '64', '56', '48', '40'],
+	       #['128', '64', '56', '48', '40'], #, '28']
 	       ['128', '64', '56', '48'], #, '28']
 	       ['128', '64', '56', '48'], #, '28',]
 	    ]
 
-
+#
+numChannels = 5
+horzGroup = [0, 1, 2, 3, 4]
 # Describes how the subplots are laid out
-vertSplit = 2
-vertGroup = [# 2, 2, 2,
-	     1, 1, 1,
-	     0, 0,
-	     1, 1 ]
-charmness = [2, 1,]
+vertSplit = 1
+vertGroup = [0, 0, 0, 0, 0, 0, 0]
+#vertGroup = [# 2, 2, 2,
+#	     1, 1, 1,
+#	     0, 0,
+#	     1, 1 ]
+#charmness = [2, 1,]
+charmness = [1]
 
 # Temperatures and NT MUST BE MATCHED
 #temperatures = [47.50, 94.99, 108.56, 126.65, 151.99, 168.87, 217.12]
@@ -145,10 +149,13 @@ NT = ['128', '64', '56', '48', '40', '36', '32']#, '28']
 #anaName = ['doublet_2fl_uud', 'sigma12_3fl_uds']
 
 
-anaName = [ 'sigma12_3fl_udc', 'sigma12_3fl_usc', 'doublet_2fl_ssc', 'doublet_2fl_ccu', 'doublet_2fl_ccs', 'lambda_3fl_udc', 'lambda_3fl_usc']
+#anaName = [ 'sigma12_3fl_udc', 'sigma12_3fl_usc', 'doublet_2fl_ssc', 'doublet_2fl_ccu', 'doublet_2fl_ccs', 'lambda_3fl_udc', 'lambda_3fl_usc']
+anaName = [ 'sigma12_3fl_udc', 'sigma12_3fl_usc', 'doublet_2fl_ssc', 'lambda_3fl_udc', 'lambda_3fl_usc']
 
-colours = [ 'tab:pink', 'tab:olive', 'tab:orange', 'tab:red', 'tab:brown', 'tab:gray', 'tab:cyan']
-markers = ['P', '*', 'X', 'd', '<', '>', '$\boxtimes$', '$\\bigoplus$', '$\\bigotimes$']
+#colours = [ 'tab:pink', 'tab:olive', 'tab:orange', 'tab:red', 'tab:brown', 'tab:gray', 'tab:cyan']
+colours = [ 'tab:pink', 'tab:olive', 'tab:orange', 'tab:gray', 'tab:cyan']
+#markers = ['P', '*', 'X', 'd', '<', '>', '$\boxtimes$', '$\\bigoplus$', '$\\bigotimes$']
+markers = ['P', '*', 'X', 'd', '<', '$\\bigoplus$', '$\\bigotimes$']
 
 # Formatted like this for gvar
 # spatial lattice spacing in fm
@@ -159,6 +166,6 @@ xi = '3.453(6)'
 # T_c in Gev. 
 T_c = '166.7(2.5)'
 
-anaDir='../output'
+anaDir='../output/C1'
 
 massCSV='../workingOutput/output/mass_sysErr.csv'

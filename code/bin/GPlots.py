@@ -87,10 +87,22 @@ def main(args: list):
             mpl.rcParams['lines.markersize'] = 8.0
         else:
             mark = 'd'
-        ax = GVP.plot_gvEbar(x[plotXStart:plotXMin], G[plotXStart:plotXMin], ax, ma=mark, ls='', lab=ana)  # type: ignore  # noqa: E501
-        axAna = GVP.plot_gvEbar(x[plotXStart:plotXMin], G[plotXStart:plotXMin], axAna, ma=mark, ls='', lab=ana)  # type: ignore  # noqa: E501
-        axAna.set_xlabel('$\\tau / a_\\tau$')
-        axAna.set_ylabel('$\\mathcal{O}(\\tau)$')  # noqa: W605
+        if 'labelsToPlot' in params['analysis'].keys():
+            myLab = params['analysis']['labelsToPlot'][aa]
+        else:
+            myLab = ana
+        if 'xlabel' in params['analysis'].keys():
+            myXLab = params['analysis']['xlabel']
+        else:
+            myXLab = '$\\tau / a_\\tau$'
+        if 'ylabel' in params['analysis'].keys():
+            myYLab = params['analysis']['ylabel']
+        else:
+            myYLab = '$\\mathcal{O}(\\tau)$'  # noqa: W605
+        ax = GVP.plot_gvEbar(x[plotXStart:plotXMin], G[plotXStart:plotXMin], ax, ma=mark, ls='', lab=myLab)  # type: ignore  # noqa: E501
+        axAna = GVP.plot_gvEbar(x[plotXStart:plotXMin], G[plotXStart:plotXMin], axAna, ma=mark, ls='', lab=myLab)  # type: ignore  # noqa: E501
+        axAna.set_xlabel(myXLab)
+        axAna.set_ylabel(myYLab)
         axAna.legend(loc='best', ncol=2)
 
         # Plot the rest of the data faded
@@ -138,9 +150,9 @@ def main(args: list):
                 xmax = xl[1]
         ax.set_xlim([xmin, xmax])
     # and back to the rest
-    ax.set_xlabel('$\\tau / a_\\tau$')
-    ax.set_ylabel('$\\mathcal{O}(\\tau)$')  # noqa: W605
-    ax.legend(loc='best', ncol=2)
+    ax.set_xlabel(myXLab)
+    ax.set_ylabel(myYLab)
+    ax.legend(loc='best', ncol=2, fontsize=28)
     ax.set_xlim(params['analysis']['GxLim'])
     ax.set_ylim(params['analysis']['GyLim'])
     # plt.show()
@@ -154,4 +166,5 @@ def main(args: list):
 
 if __name__ == '__main__':
     mo.initBigPlotSettings()
+    mpl.rcParams['font.size'] = 28
     main(sys.argv[1:])

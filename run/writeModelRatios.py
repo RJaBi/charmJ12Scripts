@@ -30,6 +30,7 @@ def main(args: list):
     symMathLabels = []
     symMathMaths = []
     labelsToAnalyse = []
+    labelsToPlot = []
     xMins = []
     for NT in params['cfuns']['NT']:
         # These two just hold the maths for this temperature
@@ -165,16 +166,19 @@ def main(args: list):
                     # xMins.append(f'{OPUN}_{qqq}_{NT}')
                     xMins.append(toyShortName)
                 labelsToAnalyse.append(ratDoubleName)
+                labelsToPlot.append('$N_\\tau = ' + str(NT) + '$')
             if params['maths']['single']:
                 # Just analyse the single ratios
                 if params['maths']['negParity']:
                     labelsToAnalyse.append(f'F_{ratShortName}')
+                    labelsToPlot.append('$N_\\tau = ' + str(NT) + '$')
                     # xMins.append(f'F_{toyShortName}')
                     xMins.append(f'F_{OPUN}_{qqq}_{NT}')
                 else:
                     # xMins.append(toyShortName)
                     xMins.append(f'{OPUN}_{qqq}_{NT}')
                     labelsToAnalyse.append(ratShortName)
+                    labelsToPlot.append('$N_\\tau = ' + str(NT) + '$')
             if params['maths']['G']:
                 # Just the correlator and model correlator
                 if params['maths']['negParity']:
@@ -182,13 +186,17 @@ def main(args: list):
                     # xMins.append(f'F_{OPUN}_{qqq}_{NT}')
                     # xMins.append(f'F_{OPUN}_{qqq}_{NT}')
                     labelsToAnalyse.append('F_{toyShortName}')
+                    labelsToPlot.append('Model G^{-}($N_\\tau = ' + str(NT) + ')$')
                     labelsToAnalyse.append(f'F_{OPUN}_{qqq}_{NT}')
+                    labelsToPlot.append('$G^{-}(N_\\tau = ' + str(NT) + ')$')
                 else:
                     # xMins.append(toyShortName)
                     # xMins.append(f'{OPUN}_{qqq}_{NT}')
                     # xMins.append(f'{OPUN}_{qqq}_{NT}')
                     labelsToAnalyse.append(toyShortName)
+                    labelsToPlot.append('Model G^{+}($N_\\tau = ' + str(NT) + ')$')
                     labelsToAnalyse.append(f'{OPUN}_{qqq}_{NT}')
+                    labelsToPlot.append('$G^{+}(N_\\tau = ' + str(NT) + ')$')
     # done
     if len(labelsToAnalyse) == 0:
         # Why are you doing this?
@@ -200,10 +208,29 @@ def main(args: list):
     params['analysis'].update({
         'symMathLabels': symMathLabels,
         'symMathMaths': symMathMaths,
-        'labelsToAnalyse': labelsToAnalyse})
+        'labelsToAnalyse': labelsToAnalyse,
+        'labelsToPlot': labelsToPlot})
     if len(xMins) > 0:
         params['analysis'].update({'xMins': xMins})
         # 'anaName': anaNames})
+    # custom y labels
+    yLabSet = False
+    yLab = ''
+    if params['maths']['double']:
+        yLab = '$R(\\tau;T;T_0)$'
+        yLabSet = True
+    elif params['maths']['single']:
+        yLab = '$r(\\tau;T;T_0)$'
+        if yLabSet:
+            yLab = ''
+        yLabSet = True
+    elif params['maths']['G']:
+        yLab = 'G'
+        if yLabSet:
+            yLab = ''
+        yLabSet = True
+    if yLab != '':
+        params['analysis'].update({'ylabel': yLab}) 
 
     # Making the folder to put the toml in if necessary
     outDir = os.path.join(*params["outToml"].split('/')[:-1])

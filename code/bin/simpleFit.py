@@ -1158,9 +1158,12 @@ def main(args: list):
         sortOrder = np.flip(prMD.argsort())
         sortPrMD = prMD[sortOrder][0: nFits]
         sortWins = np.asarray(wins)[sortOrder][0: nFits]
+        for sw, val in enumerate(sortWins):
+            sortWins[sw] = val.split(':')[0]
         sortEP = fEP[sortOrder][0: nFits]
         sortEM = fEM[sortOrder][0: nFits]
-        fig, (ax1, ax3, ax2) = plt.subplots(3, figsize=(16.6, 11.6), sharex=True, gridspec_kw={'height_ratios': [2, 2, 0.5]})  # noqa: E501
+        #fig, (ax1, ax3, ax2) = plt.subplots(3, figsize=(16.6, 11.6), sharex=True, gridspec_kw={'height_ratios': [2, 2, 0.5]})  # noqa: E501
+        fig, (ax1, ax3, ax2) = plt.subplots(3, figsize=(16.6, 11.6), sharex=True, gridspec_kw={'height_ratios': [2, 2, 0.5], 'hspace': 0, 'wspace': 0})
         # Plot the fit values
         ax1.errorbar(sortWins, y=gv.mean(sortEP), yerr=gv.sdev(sortEP), marker='d', linestyle='')
         ax3.errorbar(sortWins, y=gv.mean(sortEM), yerr=gv.sdev(sortEM), marker='d', linestyle='')
@@ -1171,9 +1174,9 @@ def main(args: list):
         # ax1.set_xlim([sortWins[0], None])
         ax1.set_xlim([-1, len(sortWins) + 1])
         ax2.plot(sortWins, sortPrMD, marker='d', linestyle='')
-        ax2.set_xticklabels(sortWins, rotation=90)  # , ha='right')
+        ax2.set_xticklabels(sortWins, rotation=315)  # , ha='right')
         ax1.tick_params(labelbottom=False, labeltop=True, top='on', direction='out')
-        ax1.set_xticklabels(sortWins, rotation=90)
+        ax1.set_xticklabels(sortWins, rotation=315)
         for tickLab in ax1.get_xaxis().get_ticklabels()[1::2]:  # Getting every odd xtick label
             tickLab.set_visible(False)
         for tickLab in ax2.get_xaxis().get_ticklabels()[::2]:  # Getting every 2nd xtick label
@@ -1185,7 +1188,7 @@ def main(args: list):
         ax1.set_ylabel('$a_\\tau\,E_{fit}^{+}$', fontsize=36)  # noqa: W605
         ax3.set_ylabel('$a_\\tau\,E_{fit}^{-}$', fontsize=36)  # noqa: W605
         ax2.set_xlabel('fit window')
-        ax2.set_ylabel('weight')
+        ax2.set_ylabel('$\\tilde{w}_f$')
         pdf.savefig(fig)
         plt.close(fig)
         print(f'averaged len(wins), {len(wins)} fits')

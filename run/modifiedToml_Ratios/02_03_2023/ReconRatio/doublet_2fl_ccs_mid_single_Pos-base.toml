@@ -1,0 +1,63 @@
+
+outToml = 'AutoToml_Ratios/02_03_2023/ReconRatio/doublet_2fl_ccs_mid_single_Pos'
+
+massCSV = 'mass_sysErr.csv'
+# massFact = [0.95, 1.05]
+
+nameMod = 'ReconRatio'
+
+[cfuns]
+# The base location of the correlators
+cfDirBase = "correlators/NTx32/data/doublet.2fl_ccs/"
+cfListBase = "correlators/NTx32/lists/doublet.2fl.ccs-sX.list"
+
+# Temperatures to consider
+NT = ['128', '48', '40', '36', '32',] # '40', '36', '32', '28', '24', '20', '16']
+#NT = ['64', '128', '64', '56', '48',] # '40', '36', '32', '28', '24', '20', '16']
+
+# The temperature we take zero-temp mass parameters from
+T0NT = '128'
+#T0NT = '64'
+
+
+cshifts = [ 0, 1, 2, 3, 4, 5, 6, 7]
+
+hadronType = "baryon"
+norm = "post:src"
+cfSkip = [ "STRINGNOTIN",]
+cfCut = 100000
+
+# Matching lists
+operators = [ 'doublet.2fl' ]
+quarks = [ 'ccs']
+hadrons = 'Omega_{cc}(ccs)'
+#operators = [ 'sigma12_3fl', 'sigma12_3fl', 'doublet_2fl']
+#quarks = ['udc', 'usc', 'ssc']
+#hadrons = ['\Sigma_{c}(udc)', '\Xi_{c}^\prime(usc)', '\Omega_{c}(ssc)']
+
+[maths]
+averageCShift = true
+single = true
+double = false
+G = false
+negParity = false
+
+[analysis]
+RxLim = [ "None", "None",]
+RyLim = [ 0, 1,]
+RCurves = [ 4, 0, 1, 2, 3, 5, 6,]
+RXPoints = [ 47.50, 94.99, 108.56, 126.65, 151.99, 168.87, 189.98, 217.12, 253.31, 303.97, 379.96 ]
+anaDir = 'output/ratios/02_03_2023/doublet_2fl_ccs/mid/single/Pos'
+src_t0 = 0
+# plotLayout = [3, 2]
+GxLim = ["None", "None"]
+#GyLim = [0.0, 0.21]  # Appropriate for single
+#GyLim = [-0.25, 3.5]  # Appropriate for double not anymore
+#GyLim = [-0.25, 1.0]  # Appropriate for double neg parity
+GyLim = ["None", "None"]  # Appropriate for G
+xStart = 1
+# logY = false
+# logData = true
+# hozLine = 0.0
+# plotEnd = 'half'
+

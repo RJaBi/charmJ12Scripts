@@ -1,0 +1,282 @@
+outToml = "AutoToml_Ratios/02_03_2023/ReconRatio/doublet_2fl_ccu_mid_single_Neg"
+massCSV = "mass_sysErr.csv"
+nameMod = "ReconRatio"
+
+[cfuns]
+cfDirBase = "correlators/NTx32/data/doublet.2fl_ccu/"
+cfListBase = "correlators/NTx32/lists/doublet.2fl.ccu-sX.list"
+NT = [ "128", "48", "40", "36", "32",]
+T0NT = "128"
+cshifts = [ 0, 1, 2, 3, 4, 5, 6, 7,]
+hadronType = "baryon"
+norm = "post:src"
+cfSkip = [ "STRINGNOTIN",]
+cfCut = 100000
+operators = [ "doublet.2fl",]
+quarks = [ "ccu",]
+hadrons = "Xi_{cc}(ccu)"
+cfLabels = [ "doublet_2fl_ccu_128s0", "doublet_2fl_ccu_128s1", "doublet_2fl_ccu_128s2", "doublet_2fl_ccu_128s3", "doublet_2fl_ccu_128s4", "doublet_2fl_ccu_128s5", "doublet_2fl_ccu_128s6", "doublet_2fl_ccu_128s7", "doublet_2fl_ccu_48s0", "doublet_2fl_ccu_48s1", "doublet_2fl_ccu_48s2", "doublet_2fl_ccu_48s3", "doublet_2fl_ccu_48s4", "doublet_2fl_ccu_48s5", "doublet_2fl_ccu_48s6", "doublet_2fl_ccu_48s7", "doublet_2fl_ccu_40s0", "doublet_2fl_ccu_40s1", "doublet_2fl_ccu_40s2", "doublet_2fl_ccu_40s3", "doublet_2fl_ccu_40s4", "doublet_2fl_ccu_40s5", "doublet_2fl_ccu_40s6", "doublet_2fl_ccu_40s7", "doublet_2fl_ccu_36s0", "doublet_2fl_ccu_36s1", "doublet_2fl_ccu_36s2", "doublet_2fl_ccu_36s3", "doublet_2fl_ccu_36s4", "doublet_2fl_ccu_36s5", "doublet_2fl_ccu_36s6", "doublet_2fl_ccu_36s7", "doublet_2fl_ccu_32s0", "doublet_2fl_ccu_32s1", "doublet_2fl_ccu_32s2", "doublet_2fl_ccu_32s3", "doublet_2fl_ccu_32s4", "doublet_2fl_ccu_32s5", "doublet_2fl_ccu_32s6", "doublet_2fl_ccu_32s7",]
+
+[maths]
+averageCShift = true
+single = true
+double = false
+G = false
+negParity = true
+
+[analysis]
+RxLim = [ "None", "None",]
+RyLim = [ 0, 1,]
+RCurves = [ 4, 0, 1, 2, 3, 5, 6,]
+RXPoints = [ 47.5, 94.99, 108.56, 126.65, 151.99, 168.87, 189.98, 217.12, 253.31, 303.97, 379.96,]
+anaDir = "output/ratios/02_03_2023/doublet_2fl_ccu/mid/single/Neg"
+src_t0 = 0
+GxLim = [ "None", "None",]
+GyLim = [ 0.9, 4.65]
+xStart = 1
+symMathLabels = [ "doublet_2fl_ccu_128", "F_doublet_2fl_ccu_128", "doublet_2fl_ccu_48", "F_doublet_2fl_ccu_48", "doublet_2fl_ccu_40", "F_doublet_2fl_ccu_40", "doublet_2fl_ccu_36", "F_doublet_2fl_ccu_36", "doublet_2fl_ccu_32", "F_doublet_2fl_ccu_32", "Recon_doublet_2fl_ccu_48_48", "F_Recon_doublet_2fl_ccu_48_48", "ReconRatio_doublet_2fl_ccu_48_48", "F_ReconRatio_doublet_2fl_ccu_48_48", "ReconRatio_doublet_2fl_ccu_48_48_128", "F_ReconRatio_doublet_2fl_ccu_48_48_128", "Recon_doublet_2fl_ccu_40_40", "F_Recon_doublet_2fl_ccu_40_40", "ReconRatio_doublet_2fl_ccu_40_40", "F_ReconRatio_doublet_2fl_ccu_40_40", "ReconRatio_doublet_2fl_ccu_40_40_128", "F_ReconRatio_doublet_2fl_ccu_40_40_128", "Recon_doublet_2fl_ccu_36_36", "F_Recon_doublet_2fl_ccu_36_36", "ReconRatio_doublet_2fl_ccu_36_36", "F_ReconRatio_doublet_2fl_ccu_36_36", "ReconRatio_doublet_2fl_ccu_36_36_128", "F_ReconRatio_doublet_2fl_ccu_36_36_128", "Recon_doublet_2fl_ccu_32_32", "F_Recon_doublet_2fl_ccu_32_32", "ReconRatio_doublet_2fl_ccu_32_32", "F_ReconRatio_doublet_2fl_ccu_32_32", "ReconRatio_doublet_2fl_ccu_32_32_128", "F_ReconRatio_doublet_2fl_ccu_32_32_128",]
+symMathMaths = [ "M:doublet_2fl_ccu_128s0,doublet_2fl_ccu_128s1,doublet_2fl_ccu_128s2,doublet_2fl_ccu_128s3,doublet_2fl_ccu_128s4,doublet_2fl_ccu_128s5,doublet_2fl_ccu_128s6,doublet_2fl_ccu_128s7:(doublet_2fl_ccu_128s0+doublet_2fl_ccu_128s1+doublet_2fl_ccu_128s2+doublet_2fl_ccu_128s3+doublet_2fl_ccu_128s4+doublet_2fl_ccu_128s5+doublet_2fl_ccu_128s6+doublet_2fl_ccu_128s7)/8", "flip:doublet_2fl_ccu_128:doublet_2fl_ccu_128", "M:doublet_2fl_ccu_48s0,doublet_2fl_ccu_48s1,doublet_2fl_ccu_48s2,doublet_2fl_ccu_48s3,doublet_2fl_ccu_48s4,doublet_2fl_ccu_48s5,doublet_2fl_ccu_48s6,doublet_2fl_ccu_48s7:(doublet_2fl_ccu_48s0+doublet_2fl_ccu_48s1+doublet_2fl_ccu_48s2+doublet_2fl_ccu_48s3+doublet_2fl_ccu_48s4+doublet_2fl_ccu_48s5+doublet_2fl_ccu_48s6+doublet_2fl_ccu_48s7)/8", "flip:doublet_2fl_ccu_48:doublet_2fl_ccu_48", "M:doublet_2fl_ccu_40s0,doublet_2fl_ccu_40s1,doublet_2fl_ccu_40s2,doublet_2fl_ccu_40s3,doublet_2fl_ccu_40s4,doublet_2fl_ccu_40s5,doublet_2fl_ccu_40s6,doublet_2fl_ccu_40s7:(doublet_2fl_ccu_40s0+doublet_2fl_ccu_40s1+doublet_2fl_ccu_40s2+doublet_2fl_ccu_40s3+doublet_2fl_ccu_40s4+doublet_2fl_ccu_40s5+doublet_2fl_ccu_40s6+doublet_2fl_ccu_40s7)/8", "flip:doublet_2fl_ccu_40:doublet_2fl_ccu_40", "M:doublet_2fl_ccu_36s0,doublet_2fl_ccu_36s1,doublet_2fl_ccu_36s2,doublet_2fl_ccu_36s3,doublet_2fl_ccu_36s4,doublet_2fl_ccu_36s5,doublet_2fl_ccu_36s6,doublet_2fl_ccu_36s7:(doublet_2fl_ccu_36s0+doublet_2fl_ccu_36s1+doublet_2fl_ccu_36s2+doublet_2fl_ccu_36s3+doublet_2fl_ccu_36s4+doublet_2fl_ccu_36s5+doublet_2fl_ccu_36s6+doublet_2fl_ccu_36s7)/8", "flip:doublet_2fl_ccu_36:doublet_2fl_ccu_36", "M:doublet_2fl_ccu_32s0,doublet_2fl_ccu_32s1,doublet_2fl_ccu_32s2,doublet_2fl_ccu_32s3,doublet_2fl_ccu_32s4,doublet_2fl_ccu_32s5,doublet_2fl_ccu_32s6,doublet_2fl_ccu_32s7:(doublet_2fl_ccu_32s0+doublet_2fl_ccu_32s1+doublet_2fl_ccu_32s2+doublet_2fl_ccu_32s3+doublet_2fl_ccu_32s4+doublet_2fl_ccu_32s5+doublet_2fl_ccu_32s6+doublet_2fl_ccu_32s7)/8", "flip:doublet_2fl_ccu_32:doublet_2fl_ccu_32", "recon:doublet_2fl_ccu_128:baryon:48:min", "flip:Recon_doublet_2fl_ccu_48_48:Recon_doublet_2fl_ccu_48_48", "M:doublet_2fl_ccu_48,Recon_doublet_2fl_ccu_48_48:Recon_doublet_2fl_ccu_48_48/doublet_2fl_ccu_48", "flip:ReconRatio_doublet_2fl_ccu_48_48:ReconRatio_doublet_2fl_ccu_48_48", "ext:ReconRatio_doublet_2fl_ccu_48_48:128_min_end", "ext:F_ReconRatio_doublet_2fl_ccu_48_48:128_min_end", "recon:doublet_2fl_ccu_128:baryon:40:min", "flip:Recon_doublet_2fl_ccu_40_40:Recon_doublet_2fl_ccu_40_40", "M:doublet_2fl_ccu_40,Recon_doublet_2fl_ccu_40_40:Recon_doublet_2fl_ccu_40_40/doublet_2fl_ccu_40", "flip:ReconRatio_doublet_2fl_ccu_40_40:ReconRatio_doublet_2fl_ccu_40_40", "ext:ReconRatio_doublet_2fl_ccu_40_40:128_min_end", "ext:F_ReconRatio_doublet_2fl_ccu_40_40:128_min_end", "recon:doublet_2fl_ccu_128:baryon:36:min", "flip:Recon_doublet_2fl_ccu_36_36:Recon_doublet_2fl_ccu_36_36", "M:doublet_2fl_ccu_36,Recon_doublet_2fl_ccu_36_36:Recon_doublet_2fl_ccu_36_36/doublet_2fl_ccu_36", "flip:ReconRatio_doublet_2fl_ccu_36_36:ReconRatio_doublet_2fl_ccu_36_36", "ext:ReconRatio_doublet_2fl_ccu_36_36:128_min_end", "ext:F_ReconRatio_doublet_2fl_ccu_36_36:128_min_end", "recon:doublet_2fl_ccu_128:baryon:32:min", "flip:Recon_doublet_2fl_ccu_32_32:Recon_doublet_2fl_ccu_32_32", "M:doublet_2fl_ccu_32,Recon_doublet_2fl_ccu_32_32:Recon_doublet_2fl_ccu_32_32/doublet_2fl_ccu_32", "flip:ReconRatio_doublet_2fl_ccu_32_32:ReconRatio_doublet_2fl_ccu_32_32", "ext:ReconRatio_doublet_2fl_ccu_32_32:128_min_end", "ext:F_ReconRatio_doublet_2fl_ccu_32_32:128_min_end",]
+labelsToAnalyse = [ "F_ReconRatio_doublet_2fl_ccu_48_48", "F_ReconRatio_doublet_2fl_ccu_40_40", "F_ReconRatio_doublet_2fl_ccu_36_36", "F_ReconRatio_doublet_2fl_ccu_32_32",]
+labelsToPlot = [ "$N_\\tau = 48$", "$N_\\tau = 40$", "$N_\\tau = 36$", "$N_\\tau = 32$",]
+xMins = [ "F_doublet_2fl_ccu_48", "F_doublet_2fl_ccu_40", "F_doublet_2fl_ccu_36", "F_doublet_2fl_ccu_32",]
+ylabel = "$r(\\tau;T;T_0)$"
+
+[cfuns.doublet_2fl_ccu_128s0]
+cfDir = "correlators/128x32/data/doublet.2fl_ccu/"
+cfList = "correlators/128x32/lists/doublet.2fl.ccu-s0.list"
+latt = 128
+ext = ""
+
+[cfuns.doublet_2fl_ccu_128s1]
+cfDir = "correlators/128x32/data/doublet.2fl_ccu/"
+cfList = "correlators/128x32/lists/doublet.2fl.ccu-s1.list"
+latt = 128
+ext = ""
+
+[cfuns.doublet_2fl_ccu_128s2]
+cfDir = "correlators/128x32/data/doublet.2fl_ccu/"
+cfList = "correlators/128x32/lists/doublet.2fl.ccu-s2.list"
+latt = 128
+ext = ""
+
+[cfuns.doublet_2fl_ccu_128s3]
+cfDir = "correlators/128x32/data/doublet.2fl_ccu/"
+cfList = "correlators/128x32/lists/doublet.2fl.ccu-s3.list"
+latt = 128
+ext = ""
+
+[cfuns.doublet_2fl_ccu_128s4]
+cfDir = "correlators/128x32/data/doublet.2fl_ccu/"
+cfList = "correlators/128x32/lists/doublet.2fl.ccu-s4.list"
+latt = 128
+ext = ""
+
+[cfuns.doublet_2fl_ccu_128s5]
+cfDir = "correlators/128x32/data/doublet.2fl_ccu/"
+cfList = "correlators/128x32/lists/doublet.2fl.ccu-s5.list"
+latt = 128
+ext = ""
+
+[cfuns.doublet_2fl_ccu_128s6]
+cfDir = "correlators/128x32/data/doublet.2fl_ccu/"
+cfList = "correlators/128x32/lists/doublet.2fl.ccu-s6.list"
+latt = 128
+ext = ""
+
+[cfuns.doublet_2fl_ccu_128s7]
+cfDir = "correlators/128x32/data/doublet.2fl_ccu/"
+cfList = "correlators/128x32/lists/doublet.2fl.ccu-s7.list"
+latt = 128
+ext = ""
+
+[cfuns.doublet_2fl_ccu_48s0]
+cfDir = "correlators/48x32/data/doublet.2fl_ccu/"
+cfList = "correlators/48x32/lists/doublet.2fl.ccu-s0.list"
+latt = 48
+ext = ""
+
+[cfuns.doublet_2fl_ccu_48s1]
+cfDir = "correlators/48x32/data/doublet.2fl_ccu/"
+cfList = "correlators/48x32/lists/doublet.2fl.ccu-s1.list"
+latt = 48
+ext = ""
+
+[cfuns.doublet_2fl_ccu_48s2]
+cfDir = "correlators/48x32/data/doublet.2fl_ccu/"
+cfList = "correlators/48x32/lists/doublet.2fl.ccu-s2.list"
+latt = 48
+ext = ""
+
+[cfuns.doublet_2fl_ccu_48s3]
+cfDir = "correlators/48x32/data/doublet.2fl_ccu/"
+cfList = "correlators/48x32/lists/doublet.2fl.ccu-s3.list"
+latt = 48
+ext = ""
+
+[cfuns.doublet_2fl_ccu_48s4]
+cfDir = "correlators/48x32/data/doublet.2fl_ccu/"
+cfList = "correlators/48x32/lists/doublet.2fl.ccu-s4.list"
+latt = 48
+ext = ""
+
+[cfuns.doublet_2fl_ccu_48s5]
+cfDir = "correlators/48x32/data/doublet.2fl_ccu/"
+cfList = "correlators/48x32/lists/doublet.2fl.ccu-s5.list"
+latt = 48
+ext = ""
+
+[cfuns.doublet_2fl_ccu_48s6]
+cfDir = "correlators/48x32/data/doublet.2fl_ccu/"
+cfList = "correlators/48x32/lists/doublet.2fl.ccu-s6.list"
+latt = 48
+ext = ""
+
+[cfuns.doublet_2fl_ccu_48s7]
+cfDir = "correlators/48x32/data/doublet.2fl_ccu/"
+cfList = "correlators/48x32/lists/doublet.2fl.ccu-s7.list"
+latt = 48
+ext = ""
+
+[cfuns.doublet_2fl_ccu_40s0]
+cfDir = "correlators/40x32/data/doublet.2fl_ccu/"
+cfList = "correlators/40x32/lists/doublet.2fl.ccu-s0.list"
+latt = 40
+ext = ""
+
+[cfuns.doublet_2fl_ccu_40s1]
+cfDir = "correlators/40x32/data/doublet.2fl_ccu/"
+cfList = "correlators/40x32/lists/doublet.2fl.ccu-s1.list"
+latt = 40
+ext = ""
+
+[cfuns.doublet_2fl_ccu_40s2]
+cfDir = "correlators/40x32/data/doublet.2fl_ccu/"
+cfList = "correlators/40x32/lists/doublet.2fl.ccu-s2.list"
+latt = 40
+ext = ""
+
+[cfuns.doublet_2fl_ccu_40s3]
+cfDir = "correlators/40x32/data/doublet.2fl_ccu/"
+cfList = "correlators/40x32/lists/doublet.2fl.ccu-s3.list"
+latt = 40
+ext = ""
+
+[cfuns.doublet_2fl_ccu_40s4]
+cfDir = "correlators/40x32/data/doublet.2fl_ccu/"
+cfList = "correlators/40x32/lists/doublet.2fl.ccu-s4.list"
+latt = 40
+ext = ""
+
+[cfuns.doublet_2fl_ccu_40s5]
+cfDir = "correlators/40x32/data/doublet.2fl_ccu/"
+cfList = "correlators/40x32/lists/doublet.2fl.ccu-s5.list"
+latt = 40
+ext = ""
+
+[cfuns.doublet_2fl_ccu_40s6]
+cfDir = "correlators/40x32/data/doublet.2fl_ccu/"
+cfList = "correlators/40x32/lists/doublet.2fl.ccu-s6.list"
+latt = 40
+ext = ""
+
+[cfuns.doublet_2fl_ccu_40s7]
+cfDir = "correlators/40x32/data/doublet.2fl_ccu/"
+cfList = "correlators/40x32/lists/doublet.2fl.ccu-s7.list"
+latt = 40
+ext = ""
+
+[cfuns.doublet_2fl_ccu_36s0]
+cfDir = "correlators/36x32/data/doublet.2fl_ccu/"
+cfList = "correlators/36x32/lists/doublet.2fl.ccu-s0.list"
+latt = 36
+ext = ""
+
+[cfuns.doublet_2fl_ccu_36s1]
+cfDir = "correlators/36x32/data/doublet.2fl_ccu/"
+cfList = "correlators/36x32/lists/doublet.2fl.ccu-s1.list"
+latt = 36
+ext = ""
+
+[cfuns.doublet_2fl_ccu_36s2]
+cfDir = "correlators/36x32/data/doublet.2fl_ccu/"
+cfList = "correlators/36x32/lists/doublet.2fl.ccu-s2.list"
+latt = 36
+ext = ""
+
+[cfuns.doublet_2fl_ccu_36s3]
+cfDir = "correlators/36x32/data/doublet.2fl_ccu/"
+cfList = "correlators/36x32/lists/doublet.2fl.ccu-s3.list"
+latt = 36
+ext = ""
+
+[cfuns.doublet_2fl_ccu_36s4]
+cfDir = "correlators/36x32/data/doublet.2fl_ccu/"
+cfList = "correlators/36x32/lists/doublet.2fl.ccu-s4.list"
+latt = 36
+ext = ""
+
+[cfuns.doublet_2fl_ccu_36s5]
+cfDir = "correlators/36x32/data/doublet.2fl_ccu/"
+cfList = "correlators/36x32/lists/doublet.2fl.ccu-s5.list"
+latt = 36
+ext = ""
+
+[cfuns.doublet_2fl_ccu_36s6]
+cfDir = "correlators/36x32/data/doublet.2fl_ccu/"
+cfList = "correlators/36x32/lists/doublet.2fl.ccu-s6.list"
+latt = 36
+ext = ""
+
+[cfuns.doublet_2fl_ccu_36s7]
+cfDir = "correlators/36x32/data/doublet.2fl_ccu/"
+cfList = "correlators/36x32/lists/doublet.2fl.ccu-s7.list"
+latt = 36
+ext = ""
+
+[cfuns.doublet_2fl_ccu_32s0]
+cfDir = "correlators/32x32/data/doublet.2fl_ccu/"
+cfList = "correlators/32x32/lists/doublet.2fl.ccu-s0.list"
+latt = 32
+ext = ""
+
+[cfuns.doublet_2fl_ccu_32s1]
+cfDir = "correlators/32x32/data/doublet.2fl_ccu/"
+cfList = "correlators/32x32/lists/doublet.2fl.ccu-s1.list"
+latt = 32
+ext = ""
+
+[cfuns.doublet_2fl_ccu_32s2]
+cfDir = "correlators/32x32/data/doublet.2fl_ccu/"
+cfList = "correlators/32x32/lists/doublet.2fl.ccu-s2.list"
+latt = 32
+ext = ""
+
+[cfuns.doublet_2fl_ccu_32s3]
+cfDir = "correlators/32x32/data/doublet.2fl_ccu/"
+cfList = "correlators/32x32/lists/doublet.2fl.ccu-s3.list"
+latt = 32
+ext = ""
+
+[cfuns.doublet_2fl_ccu_32s4]
+cfDir = "correlators/32x32/data/doublet.2fl_ccu/"
+cfList = "correlators/32x32/lists/doublet.2fl.ccu-s4.list"
+latt = 32
+ext = ""
+
+[cfuns.doublet_2fl_ccu_32s5]
+cfDir = "correlators/32x32/data/doublet.2fl_ccu/"
+cfList = "correlators/32x32/lists/doublet.2fl.ccu-s5.list"
+latt = 32
+ext = ""
+
+[cfuns.doublet_2fl_ccu_32s6]
+cfDir = "correlators/32x32/data/doublet.2fl_ccu/"
+cfList = "correlators/32x32/lists/doublet.2fl.ccu-s6.list"
+latt = 32
+ext = ""
+
+[cfuns.doublet_2fl_ccu_32s7]
+cfDir = "correlators/32x32/data/doublet.2fl_ccu/"
+cfList = "correlators/32x32/lists/doublet.2fl.ccu-s7.list"
+latt = 32
+ext = ""

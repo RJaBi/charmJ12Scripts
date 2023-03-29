@@ -19,9 +19,9 @@ exe=GPlots.py
 # Data Dir
 dataDir=${myDir}/../
 
-for temp in cool;
+#for temp in cool;
 #for temp in mid;
-#for temp in cool mid;
+for temp in cool mid;
 do
     for RAT in single;
     do

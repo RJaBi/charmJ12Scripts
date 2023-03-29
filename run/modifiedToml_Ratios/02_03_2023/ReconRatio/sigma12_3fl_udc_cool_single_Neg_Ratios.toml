@@ -1,0 +1,232 @@
+outToml = "AutoToml_Ratios/02_03_2023/ReconRatio/sigma12_3fl_udc_cool_single_Neg"
+massCSV = "mass_sysErr.csv"
+nameMod = "ReconRatio"
+
+[cfuns]
+cfDirBase = "correlators/NTx32/data/sigma12.3fl_udc/"
+cfListBase = "correlators/NTx32/lists/sigma12.3fl.udc-sX.list"
+NT = [ "128", "128", "64", "56", "48",]
+T0NT = "128"
+cshifts = [ 0, 1, 2, 3, 4, 5, 6, 7,]
+hadronType = "baryon"
+norm = "post:src"
+cfSkip = [ "STRINGNOTIN",]
+cfCut = 100000
+operators = [ "sigma12.3fl",]
+quarks = [ "udc",]
+hadrons = "Sigma_{c}(udc)"
+cfLabels = [ "sigma12_3fl_udc_128s0", "sigma12_3fl_udc_128s1", "sigma12_3fl_udc_128s2", "sigma12_3fl_udc_128s3", "sigma12_3fl_udc_128s4", "sigma12_3fl_udc_128s5", "sigma12_3fl_udc_128s6", "sigma12_3fl_udc_128s7", "sigma12_3fl_udc_128s0", "sigma12_3fl_udc_128s1", "sigma12_3fl_udc_128s2", "sigma12_3fl_udc_128s3", "sigma12_3fl_udc_128s4", "sigma12_3fl_udc_128s5", "sigma12_3fl_udc_128s6", "sigma12_3fl_udc_128s7", "sigma12_3fl_udc_64s0", "sigma12_3fl_udc_64s1", "sigma12_3fl_udc_64s2", "sigma12_3fl_udc_64s3", "sigma12_3fl_udc_64s4", "sigma12_3fl_udc_64s5", "sigma12_3fl_udc_64s6", "sigma12_3fl_udc_64s7", "sigma12_3fl_udc_56s0", "sigma12_3fl_udc_56s1", "sigma12_3fl_udc_56s2", "sigma12_3fl_udc_56s3", "sigma12_3fl_udc_56s4", "sigma12_3fl_udc_56s5", "sigma12_3fl_udc_56s6", "sigma12_3fl_udc_56s7", "sigma12_3fl_udc_48s0", "sigma12_3fl_udc_48s1", "sigma12_3fl_udc_48s2", "sigma12_3fl_udc_48s3", "sigma12_3fl_udc_48s4", "sigma12_3fl_udc_48s5", "sigma12_3fl_udc_48s6", "sigma12_3fl_udc_48s7",]
+
+[maths]
+averageCShift = true
+single = true
+double = false
+G = false
+negParity = true
+
+[analysis]
+RxLim = [ "None", "None",]
+RyLim = [ 0, 1,]
+RCurves = [ 4, 0, 1, 2, 3, 5, 6,]
+RXPoints = [ 47.5, 94.99, 108.56, 126.65, 151.99, 168.87, 189.98, 217.12, 253.31, 303.97, 379.96,]
+anaDir = "output/ratios/02_03_2023/sigma12_3fl_udc/cool/single/Neg"
+src_t0 = 0
+GxLim = [ "None", "None",]
+GyLim = [ "None", "None",]
+xStart = 1
+symMathLabels = [ "sigma12_3fl_udc_128", "F_sigma12_3fl_udc_128", "sigma12_3fl_udc_128", "F_sigma12_3fl_udc_128", "sigma12_3fl_udc_64", "F_sigma12_3fl_udc_64", "sigma12_3fl_udc_56", "F_sigma12_3fl_udc_56", "sigma12_3fl_udc_48", "F_sigma12_3fl_udc_48", "Recon_sigma12_3fl_udc_128_128", "F_Recon_sigma12_3fl_udc_128_128", "ReconRatio_sigma12_3fl_udc_128_128", "F_ReconRatio_sigma12_3fl_udc_128_128", "ReconRatio_sigma12_3fl_udc_128_128_128", "F_ReconRatio_sigma12_3fl_udc_128_128_128", "Recon_sigma12_3fl_udc_64_64", "F_Recon_sigma12_3fl_udc_64_64", "ReconRatio_sigma12_3fl_udc_64_64", "F_ReconRatio_sigma12_3fl_udc_64_64", "ReconRatio_sigma12_3fl_udc_64_64_128", "F_ReconRatio_sigma12_3fl_udc_64_64_128", "Recon_sigma12_3fl_udc_56_56", "F_Recon_sigma12_3fl_udc_56_56", "ReconRatio_sigma12_3fl_udc_56_56", "F_ReconRatio_sigma12_3fl_udc_56_56", "ReconRatio_sigma12_3fl_udc_56_56_128", "F_ReconRatio_sigma12_3fl_udc_56_56_128", "Recon_sigma12_3fl_udc_48_48", "F_Recon_sigma12_3fl_udc_48_48", "ReconRatio_sigma12_3fl_udc_48_48", "F_ReconRatio_sigma12_3fl_udc_48_48", "ReconRatio_sigma12_3fl_udc_48_48_128", "F_ReconRatio_sigma12_3fl_udc_48_48_128",]
+symMathMaths = [ "M:sigma12_3fl_udc_128s0,sigma12_3fl_udc_128s1,sigma12_3fl_udc_128s2,sigma12_3fl_udc_128s3,sigma12_3fl_udc_128s4,sigma12_3fl_udc_128s5,sigma12_3fl_udc_128s6,sigma12_3fl_udc_128s7:(sigma12_3fl_udc_128s0+sigma12_3fl_udc_128s1+sigma12_3fl_udc_128s2+sigma12_3fl_udc_128s3+sigma12_3fl_udc_128s4+sigma12_3fl_udc_128s5+sigma12_3fl_udc_128s6+sigma12_3fl_udc_128s7)/8", "flip:sigma12_3fl_udc_128:sigma12_3fl_udc_128", "M:sigma12_3fl_udc_128s0,sigma12_3fl_udc_128s1,sigma12_3fl_udc_128s2,sigma12_3fl_udc_128s3,sigma12_3fl_udc_128s4,sigma12_3fl_udc_128s5,sigma12_3fl_udc_128s6,sigma12_3fl_udc_128s7:(sigma12_3fl_udc_128s0+sigma12_3fl_udc_128s1+sigma12_3fl_udc_128s2+sigma12_3fl_udc_128s3+sigma12_3fl_udc_128s4+sigma12_3fl_udc_128s5+sigma12_3fl_udc_128s6+sigma12_3fl_udc_128s7)/8", "flip:sigma12_3fl_udc_128:sigma12_3fl_udc_128", "M:sigma12_3fl_udc_64s0,sigma12_3fl_udc_64s1,sigma12_3fl_udc_64s2,sigma12_3fl_udc_64s3,sigma12_3fl_udc_64s4,sigma12_3fl_udc_64s5,sigma12_3fl_udc_64s6,sigma12_3fl_udc_64s7:(sigma12_3fl_udc_64s0+sigma12_3fl_udc_64s1+sigma12_3fl_udc_64s2+sigma12_3fl_udc_64s3+sigma12_3fl_udc_64s4+sigma12_3fl_udc_64s5+sigma12_3fl_udc_64s6+sigma12_3fl_udc_64s7)/8", "flip:sigma12_3fl_udc_64:sigma12_3fl_udc_64", "M:sigma12_3fl_udc_56s0,sigma12_3fl_udc_56s1,sigma12_3fl_udc_56s2,sigma12_3fl_udc_56s3,sigma12_3fl_udc_56s4,sigma12_3fl_udc_56s5,sigma12_3fl_udc_56s6,sigma12_3fl_udc_56s7:(sigma12_3fl_udc_56s0+sigma12_3fl_udc_56s1+sigma12_3fl_udc_56s2+sigma12_3fl_udc_56s3+sigma12_3fl_udc_56s4+sigma12_3fl_udc_56s5+sigma12_3fl_udc_56s6+sigma12_3fl_udc_56s7)/8", "flip:sigma12_3fl_udc_56:sigma12_3fl_udc_56", "M:sigma12_3fl_udc_48s0,sigma12_3fl_udc_48s1,sigma12_3fl_udc_48s2,sigma12_3fl_udc_48s3,sigma12_3fl_udc_48s4,sigma12_3fl_udc_48s5,sigma12_3fl_udc_48s6,sigma12_3fl_udc_48s7:(sigma12_3fl_udc_48s0+sigma12_3fl_udc_48s1+sigma12_3fl_udc_48s2+sigma12_3fl_udc_48s3+sigma12_3fl_udc_48s4+sigma12_3fl_udc_48s5+sigma12_3fl_udc_48s6+sigma12_3fl_udc_48s7)/8", "flip:sigma12_3fl_udc_48:sigma12_3fl_udc_48", "recon:sigma12_3fl_udc_128:baryon:128:min", "flip:Recon_sigma12_3fl_udc_128_128:Recon_sigma12_3fl_udc_128_128", "M:sigma12_3fl_udc_128,Recon_sigma12_3fl_udc_128_128:Recon_sigma12_3fl_udc_128_128/sigma12_3fl_udc_128", "flip:ReconRatio_sigma12_3fl_udc_128_128:ReconRatio_sigma12_3fl_udc_128_128", "ext:ReconRatio_sigma12_3fl_udc_128_128:128_min_end", "ext:F_ReconRatio_sigma12_3fl_udc_128_128:128_min_end", "recon:sigma12_3fl_udc_128:baryon:64:min", "flip:Recon_sigma12_3fl_udc_64_64:Recon_sigma12_3fl_udc_64_64", "M:sigma12_3fl_udc_64,Recon_sigma12_3fl_udc_64_64:Recon_sigma12_3fl_udc_64_64/sigma12_3fl_udc_64", "flip:ReconRatio_sigma12_3fl_udc_64_64:ReconRatio_sigma12_3fl_udc_64_64", "ext:ReconRatio_sigma12_3fl_udc_64_64:128_min_end", "ext:F_ReconRatio_sigma12_3fl_udc_64_64:128_min_end", "recon:sigma12_3fl_udc_128:baryon:56:min", "flip:Recon_sigma12_3fl_udc_56_56:Recon_sigma12_3fl_udc_56_56", "M:sigma12_3fl_udc_56,Recon_sigma12_3fl_udc_56_56:Recon_sigma12_3fl_udc_56_56/sigma12_3fl_udc_56", "flip:ReconRatio_sigma12_3fl_udc_56_56:ReconRatio_sigma12_3fl_udc_56_56", "ext:ReconRatio_sigma12_3fl_udc_56_56:128_min_end", "ext:F_ReconRatio_sigma12_3fl_udc_56_56:128_min_end", "recon:sigma12_3fl_udc_128:baryon:48:min", "flip:Recon_sigma12_3fl_udc_48_48:Recon_sigma12_3fl_udc_48_48", "M:sigma12_3fl_udc_48,Recon_sigma12_3fl_udc_48_48:Recon_sigma12_3fl_udc_48_48/sigma12_3fl_udc_48", "flip:ReconRatio_sigma12_3fl_udc_48_48:ReconRatio_sigma12_3fl_udc_48_48", "ext:ReconRatio_sigma12_3fl_udc_48_48:128_min_end", "ext:F_ReconRatio_sigma12_3fl_udc_48_48:128_min_end",]
+labelsToAnalyse = [ "F_ReconRatio_sigma12_3fl_udc_128_128", "F_ReconRatio_sigma12_3fl_udc_64_64", "F_ReconRatio_sigma12_3fl_udc_56_56", "F_ReconRatio_sigma12_3fl_udc_48_48",]
+xMins = [ "F_sigma12_3fl_udc_128", "F_sigma12_3fl_udc_64", "F_sigma12_3fl_udc_56", "F_sigma12_3fl_udc_48",]
+
+[cfuns.sigma12_3fl_udc_128s0]
+cfDir = "correlators/128x32/data/sigma12.3fl_udc/"
+cfList = "correlators/128x32/lists/sigma12.3fl.udc-s0.list"
+latt = 128
+ext = ""
+
+[cfuns.sigma12_3fl_udc_128s1]
+cfDir = "correlators/128x32/data/sigma12.3fl_udc/"
+cfList = "correlators/128x32/lists/sigma12.3fl.udc-s1.list"
+latt = 128
+ext = ""
+
+[cfuns.sigma12_3fl_udc_128s2]
+cfDir = "correlators/128x32/data/sigma12.3fl_udc/"
+cfList = "correlators/128x32/lists/sigma12.3fl.udc-s2.list"
+latt = 128
+ext = ""
+
+[cfuns.sigma12_3fl_udc_128s3]
+cfDir = "correlators/128x32/data/sigma12.3fl_udc/"
+cfList = "correlators/128x32/lists/sigma12.3fl.udc-s3.list"
+latt = 128
+ext = ""
+
+[cfuns.sigma12_3fl_udc_128s4]
+cfDir = "correlators/128x32/data/sigma12.3fl_udc/"
+cfList = "correlators/128x32/lists/sigma12.3fl.udc-s4.list"
+latt = 128
+ext = ""
+
+[cfuns.sigma12_3fl_udc_128s5]
+cfDir = "correlators/128x32/data/sigma12.3fl_udc/"
+cfList = "correlators/128x32/lists/sigma12.3fl.udc-s5.list"
+latt = 128
+ext = ""
+
+[cfuns.sigma12_3fl_udc_128s6]
+cfDir = "correlators/128x32/data/sigma12.3fl_udc/"
+cfList = "correlators/128x32/lists/sigma12.3fl.udc-s6.list"
+latt = 128
+ext = ""
+
+[cfuns.sigma12_3fl_udc_128s7]
+cfDir = "correlators/128x32/data/sigma12.3fl_udc/"
+cfList = "correlators/128x32/lists/sigma12.3fl.udc-s7.list"
+latt = 128
+ext = ""
+
+[cfuns.sigma12_3fl_udc_64s0]
+cfDir = "correlators/64x32/data/sigma12.3fl_udc/"
+cfList = "correlators/64x32/lists/sigma12.3fl.udc-s0.list"
+latt = 64
+ext = ""
+
+[cfuns.sigma12_3fl_udc_64s1]
+cfDir = "correlators/64x32/data/sigma12.3fl_udc/"
+cfList = "correlators/64x32/lists/sigma12.3fl.udc-s1.list"
+latt = 64
+ext = ""
+
+[cfuns.sigma12_3fl_udc_64s2]
+cfDir = "correlators/64x32/data/sigma12.3fl_udc/"
+cfList = "correlators/64x32/lists/sigma12.3fl.udc-s2.list"
+latt = 64
+ext = ""
+
+[cfuns.sigma12_3fl_udc_64s3]
+cfDir = "correlators/64x32/data/sigma12.3fl_udc/"
+cfList = "correlators/64x32/lists/sigma12.3fl.udc-s3.list"
+latt = 64
+ext = ""
+
+[cfuns.sigma12_3fl_udc_64s4]
+cfDir = "correlators/64x32/data/sigma12.3fl_udc/"
+cfList = "correlators/64x32/lists/sigma12.3fl.udc-s4.list"
+latt = 64
+ext = ""
+
+[cfuns.sigma12_3fl_udc_64s5]
+cfDir = "correlators/64x32/data/sigma12.3fl_udc/"
+cfList = "correlators/64x32/lists/sigma12.3fl.udc-s5.list"
+latt = 64
+ext = ""
+
+[cfuns.sigma12_3fl_udc_64s6]
+cfDir = "correlators/64x32/data/sigma12.3fl_udc/"
+cfList = "correlators/64x32/lists/sigma12.3fl.udc-s6.list"
+latt = 64
+ext = ""
+
+[cfuns.sigma12_3fl_udc_64s7]
+cfDir = "correlators/64x32/data/sigma12.3fl_udc/"
+cfList = "correlators/64x32/lists/sigma12.3fl.udc-s7.list"
+latt = 64
+ext = ""
+
+[cfuns.sigma12_3fl_udc_56s0]
+cfDir = "correlators/56x32/data/sigma12.3fl_udc/"
+cfList = "correlators/56x32/lists/sigma12.3fl.udc-s0.list"
+latt = 56
+ext = ""
+
+[cfuns.sigma12_3fl_udc_56s1]
+cfDir = "correlators/56x32/data/sigma12.3fl_udc/"
+cfList = "correlators/56x32/lists/sigma12.3fl.udc-s1.list"
+latt = 56
+ext = ""
+
+[cfuns.sigma12_3fl_udc_56s2]
+cfDir = "correlators/56x32/data/sigma12.3fl_udc/"
+cfList = "correlators/56x32/lists/sigma12.3fl.udc-s2.list"
+latt = 56
+ext = ""
+
+[cfuns.sigma12_3fl_udc_56s3]
+cfDir = "correlators/56x32/data/sigma12.3fl_udc/"
+cfList = "correlators/56x32/lists/sigma12.3fl.udc-s3.list"
+latt = 56
+ext = ""
+
+[cfuns.sigma12_3fl_udc_56s4]
+cfDir = "correlators/56x32/data/sigma12.3fl_udc/"
+cfList = "correlators/56x32/lists/sigma12.3fl.udc-s4.list"
+latt = 56
+ext = ""
+
+[cfuns.sigma12_3fl_udc_56s5]
+cfDir = "correlators/56x32/data/sigma12.3fl_udc/"
+cfList = "correlators/56x32/lists/sigma12.3fl.udc-s5.list"
+latt = 56
+ext = ""
+
+[cfuns.sigma12_3fl_udc_56s6]
+cfDir = "correlators/56x32/data/sigma12.3fl_udc/"
+cfList = "correlators/56x32/lists/sigma12.3fl.udc-s6.list"
+latt = 56
+ext = ""
+
+[cfuns.sigma12_3fl_udc_56s7]
+cfDir = "correlators/56x32/data/sigma12.3fl_udc/"
+cfList = "correlators/56x32/lists/sigma12.3fl.udc-s7.list"
+latt = 56
+ext = ""
+
+[cfuns.sigma12_3fl_udc_48s0]
+cfDir = "correlators/48x32/data/sigma12.3fl_udc/"
+cfList = "correlators/48x32/lists/sigma12.3fl.udc-s0.list"
+latt = 48
+ext = ""
+
+[cfuns.sigma12_3fl_udc_48s1]
+cfDir = "correlators/48x32/data/sigma12.3fl_udc/"
+cfList = "correlators/48x32/lists/sigma12.3fl.udc-s1.list"
+latt = 48
+ext = ""
+
+[cfuns.sigma12_3fl_udc_48s2]
+cfDir = "correlators/48x32/data/sigma12.3fl_udc/"
+cfList = "correlators/48x32/lists/sigma12.3fl.udc-s2.list"
+latt = 48
+ext = ""
+
+[cfuns.sigma12_3fl_udc_48s3]
+cfDir = "correlators/48x32/data/sigma12.3fl_udc/"
+cfList = "correlators/48x32/lists/sigma12.3fl.udc-s3.list"
+latt = 48
+ext = ""
+
+[cfuns.sigma12_3fl_udc_48s4]
+cfDir = "correlators/48x32/data/sigma12.3fl_udc/"
+cfList = "correlators/48x32/lists/sigma12.3fl.udc-s4.list"
+latt = 48
+ext = ""
+
+[cfuns.sigma12_3fl_udc_48s5]
+cfDir = "correlators/48x32/data/sigma12.3fl_udc/"
+cfList = "correlators/48x32/lists/sigma12.3fl.udc-s5.list"
+latt = 48
+ext = ""
+
+[cfuns.sigma12_3fl_udc_48s6]
+cfDir = "correlators/48x32/data/sigma12.3fl_udc/"
+cfList = "correlators/48x32/lists/sigma12.3fl.udc-s6.list"
+latt = 48
+ext = ""
+
+[cfuns.sigma12_3fl_udc_48s7]
+cfDir = "correlators/48x32/data/sigma12.3fl_udc/"
+cfList = "correlators/48x32/lists/sigma12.3fl.udc-s7.list"
+latt = 48
+ext = ""

@@ -433,12 +433,19 @@ def main(args: list):
             # Both on same plot
             thisAXB = GVP.plot_gvEbar(xPlot, EP, thisAXB, ma=marks[aa], ls='', col='tab:green')
             thisAXB = GVP.plot_gvEbar(xPlot, EPSys, thisAXB, ma=marks[aa], ls='', col='tab:green', alpha=0.5)
-            thisAXB.get_xaxis().set_ticks([50,100,150,200])
-            thisAXB.set_xticklabels([50,100,150,200], rotation=315)
-            thisAXB.set_xlim([30,210])
-            thisAXDiff.get_xaxis().set_ticks([50,100,150,200])
-            thisAXDiff.set_xticklabels([50,100,150,200], rotation=315)
-            thisAXDiff.set_xlim([30,210])
+            # customise x-axis
+            #thisAXB.get_xaxis().set_ticks([50,100,150,200])
+            #thisAXB.set_xticklabels([50,100,150,200], rotation=315)
+            #thisAXB.set_xlim([30,210])
+            for myAX in [thisAXB, thisAXDiff, thisAXM, thisAX]:
+                myAX.get_xaxis().set_ticks([50,100,150,200])
+                myAX.set_xticklabels([50,100,150,200], rotation=315)
+                myAX.set_xlim([30,210])
+                # Put the label above
+                secAXB = myAX.secondary_xaxis('top')
+                secAXB.set_xticklabels([lab], fontdict={'fontsize': 32})
+                secAXB.xaxis.set_tick_params(length=0)
+                secAXB.get_xaxis().set_ticks([30 + 90])
             # neg parity
             if negMass:
                 thisAXB = GVP.plot_gvEbar(xPlot, EM, thisAXB, ma=marks[aa], ls='', col='tab:orange')
@@ -452,18 +459,18 @@ def main(args: list):
         # outside loop
         fig.supxlabel('Temperature (MeV)')
         fig.supylabel('Mass (GeV)')
-        for vs in range(0, numChannels):
-            had = allLegendsDict[vs][0][1:-1]
-            if numChannels > 1:
-                ax[vs].text(0.15, 0.8, '$' + f'{had}' + '$', transform=ax[vs].transAxes, usetex=True)  # noqa: E501
-                axM[vs].text(0.15, 0.85, '$' + f'{had}' + '$', transform=axM[vs].transAxes, usetex=True)  # noqa: E501
-                axB[vs].text(0.15, 0.90, '$' + f'{had}' + '$', transform=axB[vs].transAxes, usetex=True)  # noqa: E501
-                axDiff[vs].text(0.15, 0.85, '$' + f'{had}' + '$', transform=axDiff[vs].transAxes, usetex=True)  # noqa: E501
-            else:
-                ax[vs].text(0.15, 0.8, '$' + f'{had}' + '$', transform=ax[vs].transAxes, usetex=True)  # noqa: E501
-                axM[vs].text(0.15, 0.85, '$' + f'{had}' + '$', transform=axM[vs].transAxes, usetex=True)  # noqa: E501
-                axB[vs].text(0.15, 0.90, '$' + f'{had}' + '$', transform=axB[vs].transAxes, usetex=True)  # noqa: E501
-                axDiff[vs].text(0.15, 0.85, '$' + f'{had}' + '$', transform=axDiff[vs].transAxes, usetex=True)  # noqa: E501
+#TEXTINPLOT#        for vs in range(0, numChannels):
+#TEXTINPLOT#            had = allLegendsDict[vs][0][1:-1]
+#TEXTINPLOT#            if numChannels > 1:
+#TEXTINPLOT#                ax[vs].text(0.15, 0.8, '$' + f'{had}' + '$', transform=ax[vs].transAxes, usetex=True)  # noqa: E501
+#TEXTINPLOT#                axM[vs].text(0.15, 0.85, '$' + f'{had}' + '$', transform=axM[vs].transAxes, usetex=True)  # noqa: E501
+#TEXTINPLOT#                axB[vs].text(0.15, 0.90, '$' + f'{had}' + '$', transform=axB[vs].transAxes, usetex=True)  # noqa: E501
+#TEXTINPLOT#                axDiff[vs].text(0.15, 0.85, '$' + f'{had}' + '$', transform=axDiff[vs].transAxes, usetex=True)  # noqa: E501
+#TEXTINPLOT#            else:
+#TEXTINPLOT#                ax[vs].text(0.15, 0.8, '$' + f'{had}' + '$', transform=ax[vs].transAxes, usetex=True)  # noqa: E501
+#TEXTINPLOT#                axM[vs].text(0.15, 0.85, '$' + f'{had}' + '$', transform=axM[vs].transAxes, usetex=True)  # noqa: E501
+#TEXTINPLOT#                axB[vs].text(0.15, 0.90, '$' + f'{had}' + '$', transform=axB[vs].transAxes, usetex=True)  # noqa: E501
+#TEXTINPLOT#                axDiff[vs].text(0.15, 0.85, '$' + f'{had}' + '$', transform=axDiff[vs].transAxes, usetex=True)  # noqa: E501
         # Removing xticks
         
         figM.supxlabel('Temperature (MeV)')
@@ -569,16 +576,16 @@ def main(args: list):
     # else:
     #     ax[0].set_xlim(xRan)
     fig.tight_layout()
-    fig.savefig(pdfName)
+    fig.savefig(pdfName, bbox_inches='tight')
     plt.close(fig)
     figM.tight_layout()
-    figM.savefig(pdfNameM)
+    figM.savefig(pdfNameM, bbox_inches='tight')
     plt.close(figM)
     figB.tight_layout()
-    figB.savefig(pdfNameB)
+    figB.savefig(pdfNameB, bbox_inches='tight')
     plt.close(figB)
     figDiff.tight_layout()
-    figDiff.savefig(pdfNameDiff)
+    figDiff.savefig(pdfNameDiff, bbox_inches='tight')
     plt.close(figDiff)
     sys.exit('Finished')
 

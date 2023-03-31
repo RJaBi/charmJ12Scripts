@@ -9,6 +9,7 @@ posXOffset = 210
 negXOffset = 3.1
 
 yScale = 1.0142016698328837
+ylim = [3.4, 4.414201669832884]
 
 [eMass]
 # Physical masses of particles in GeV

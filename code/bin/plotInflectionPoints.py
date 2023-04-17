@@ -79,7 +79,7 @@ def main(args: list):
             if colCount > len(GVP.colours) - 1:
                 colCount = 0
     # finalise plot
-    ax.set_xticklabels(xLabels, rotation=90)
+    ax.set_xticklabels(xLabels, rotation=0)
     ax.set_ylabel('$T_{c}$' + yScale)
     ax.set_xlabel('Baryon')
     ax.legend(loc='best', ncol=2, fontsize=36)

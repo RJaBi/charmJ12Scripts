@@ -46,9 +46,11 @@ def plotWinLines(ax, wins: List[str]):
     return ax
 
 
-def getWinTicks(ax, wins: List[str]) -> List[str]:
+def getWinTicks(ax, wins: List[str], endcut=None, startcut=0) -> List[str]:
     """
     Returns a list of ticklabels where only the start t0 is labelled
+    start after starcut's label
+    end before endcut's label
     """
     # Getting all the ticks
     startTicks = []
@@ -93,7 +95,10 @@ def getWinTicks(ax, wins: List[str]) -> List[str]:
         tickCount = tickCount + 1
     # Changing the ticks to only be the ones we want
     ax.set_xticks(xticks)
-    return startTicks
+    if endcut == None:
+        return [''] * startcut + startTicks[startcut:]
+    else:
+        return [''] * startcut + startTicks[startcut:-endcut] + [''] * endcut
 
 
 # As suggested in 2007.04188

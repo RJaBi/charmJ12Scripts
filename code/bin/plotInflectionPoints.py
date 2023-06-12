@@ -82,16 +82,17 @@ def main(args: list):
     ax.set_xticklabels(xLabels, rotation=0)
     ax.set_ylabel('$T_{c}$' + yScale)
     ax.set_xlabel('Baryon')
-    ax.legend(loc='best', ncol=2, fontsize=36)
+    ax.legend(loc='best', ncol=2, fontsize=40)
     plt.savefig(os.path.join(anaDir, 'inflectionPoints.pdf'))
     sys.exit('Finished')
 
 
 if __name__ == '__main__':
     mo.initBigPlotSettings()
-    mpl.rcParams['lines.markersize'] = 16.0
+    mpl.rcParams['lines.markersize'] = 28.0
     # For Poster/Presentation
     mpl.rcParams['ytick.labelsize'] = 32
-    mpl.rcParams['xtick.labelsize'] = 32
+    mpl.rcParams['xtick.labelsize'] = 36
     mpl.rcParams['font.size'] = 36
+    mpl.rcParams['errorbar.capsize'] = 5  # making error bar caps slightly wider
     main(sys.argv[1:])

@@ -158,12 +158,13 @@ def main(args: list):
             lMSys = dataDF['lMSys'][count]
         xStr = '${}^{' + J + '}' + xV.split('J')[0] + '$'+'  ' + '\n$' + f'({qqq})$'
         if J == '1/2':
-            colP = 'tab:blue'
-            colM = 'tab:red'
-        else:
+            # This is only used if doing J=3/2 and J=1/2 on both
             colP = 'tab:green'
             colM = 'tab:orange'
-        colExp = 'tab:grey'
+        else:
+            colP = 'tab:blue'
+            colM = 'tab:red'
+        colExp = 'black'  # 'tab:grey'
         # Plot the lattice data points
         ax = GVP.plot_gvEbar(xStr, lP, ax, col=colP, ma='d')
         ax = GVP.plot_gvEbar(xStr, lM, ax, col=colM, ma='*')
@@ -188,14 +189,14 @@ def main(args: list):
     ax.set_ylabel(f'Mass ({unit})')
     handles, labels = ax.get_legend_handles_labels()
     # Add pos/neg parity symbols to legend manually
-    line_dashed = mpl.lines.Line2D([], [], color='black', linestyle='', label='Positive Parity', marker='d', markersize=12)  # noqa: E501
+    line_dashed = mpl.lines.Line2D([], [], color=colP, linestyle='', label='Positive Parity', marker='d', markersize=12)  # noqa: E501
     handles.append(line_dashed)
     labels.append('Positive Parity')
     # and neg
-    line_dashed = mpl.lines.Line2D([], [], color='black', linestyle='', label='Negative Parity', marker='*', markersize=16)  # noqa: E501
+    line_dashed = mpl.lines.Line2D([], [], color=colM, linestyle='', label='Negative Parity', marker='*', markersize=16)  # noqa: E501
     handles.append(line_dashed)
     labels.append('Negative Parity')
-    ax.legend(handles, labels, loc='upper left', ncol=2)
+    ax.legend(handles, labels, loc='upper left', ncol=2, fontsize=32)
     pdf.savefig(fig)
     # plt.show()
     pdf.close()
@@ -207,8 +208,8 @@ if __name__ == '__main__':
     mpl.rcParams['lines.markersize'] = 10
     mpl.rcParams['errorbar.capsize'] = 10
     mpl.rcParams['lines.markeredgewidth'] = 1.5
-    mpl.rcParams['ytick.labelsize'] = 28
-    mpl.rcParams['xtick.labelsize'] = 28
-    mpl.rcParams['font.size'] = 28
+    mpl.rcParams['ytick.labelsize'] = 36
+    mpl.rcParams['xtick.labelsize'] = 36
+    mpl.rcParams['font.size'] = 36
 
     main(sys.argv[1:])

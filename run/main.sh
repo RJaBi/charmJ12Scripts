@@ -52,7 +52,7 @@ cp -av ${plotDir}/inflectionPoints.pdf ${paperDir}/inflectionPoints.pdf
 
 # Generate the ratio plots - ~<30 min
 # Plots of the correlator to the model correlator
-# echo bash ${myDir}/ModelRatios.sh
+echo bash ${myDir}/ModelRatios.sh
 #bash ${myDir}/ModelRatios.sh
 # COPY PLOTS
 for temp in cool mid; do
@@ -74,8 +74,8 @@ done
 # bash ${myDir}/ModelCorr.sh
 
 # Plots of the correlator to the recon correlator
-# echo bash ${myDir}/ReconRatios.sh
-# bash ${myDir}/ReconRatios.sh
+echo bash ${myDir}/ReconRatios.sh
+#bash ${myDir}/ReconRatios.sh
 # COPY PLOTS
 for temp in cool mid; do
     for OP in sigma12_3fl_udc doublet_2fl_ccs; do
@@ -101,7 +101,7 @@ echo bash ${myDir}/run_fits.sh
 # Now copy the specific plots for the xi_cc 128
 xicc=${plotDir}/fits/doublet_2fl_ccu_128x32/mAve.pdf
 pdfseparate -f 1 -l 1 ${xicc} ${paperDir}/Figure1.pdf
-pdfseparate -f 14 -l 14 ${xicc} ${paperDir}/Figure2.pdf
+pdfseparate -f 13 -l 13 ${xicc} ${paperDir}/Figure2.pdf
 pdfseparate -f 17 -l 17 ${xicc} ${paperDir}/Figure3.pdf
 pdfseparate -f 18 -l 18 ${xicc} ${paperDir}/Figure4.pdf
 
@@ -118,13 +118,13 @@ cp -av ${plotDir}/spectrumPlot.pdf ${paperDir}/spectrumPlot.pdf
 # now the mass as a function of temperature plot
 # C = 1
 echo ${pythonExe} ${scriptDir}/singlePlotSep.py ${myDir}/completeToml/singleJ1_2_C1.toml
-${pythonExe} ${scriptDir}/singlePlotSep.py ${myDir}/completeToml/singleJ1_2_C1.toml
+#${pythonExe} ${scriptDir}/singlePlotSep.py ${myDir}/completeToml/singleJ1_2_C1.toml
 cp -av ${plotDir}/C1/singlePlotSep_BothParity.pdf ${paperDir}/C1_BothParity.pdf
 # C = 2
 echo ${pythonExe} ${scriptDir}/singlePlotSep.py ${myDir}/completeToml/singleJ1_2_C2.toml
-${pythonExe} ${scriptDir}/singlePlotSep.py ${myDir}/completeToml/singleJ1_2_C2.toml
+#${pythonExe} ${scriptDir}/singlePlotSep.py ${myDir}/completeToml/singleJ1_2_C2.toml
 cp -av ${plotDir}/C2/singlePlotSep_BothParity.pdf ${paperDir}/C2_BothParity.pdf
 # C =1, 2
 echo ${pythonExe} ${scriptDir}/singlePlotSep.py ${myDir}/completeToml/singleJ1_2_CBoth.toml
-${pythonExe} ${scriptDir}/singlePlotSep.py ${myDir}/completeToml/singleJ1_2_CBoth.toml
+#${pythonExe} ${scriptDir}/singlePlotSep.py ${myDir}/completeToml/singleJ1_2_CBoth.toml
 cp -av ${plotDir}/CB/singlePlotSep_Diff.pdf ${paperDir}/CB_DiffParity.pdf

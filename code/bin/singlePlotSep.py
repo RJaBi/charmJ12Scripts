@@ -361,10 +361,10 @@ def main(args: list):
                 expDict[thisVGroup][1] = True
             else:
                 physEM = gv.gvar(None)
-            thisAX = GVP.myHSpan(physEP, thisAX, colour='tab:green', alpha=0.8)
-            thisAXM = GVP.myHSpan(physEM, thisAXM, colour='tab:orange', alpha=0.8)
-            thisAXB = GVP.myHSpan(physEP, thisAXB, colour='tab:green', alpha=0.8)
-            thisAXB = GVP.myHSpan(physEM, thisAXB, colour='tab:orange', alpha=0.8, ls='-.')
+            thisAX = GVP.myHSpan(physEP, thisAX, colour='tab:blue', alpha=0.8)
+            thisAXM = GVP.myHSpan(physEM, thisAXM, colour='tab:red', alpha=0.8)
+            thisAXB = GVP.myHSpan(physEP, thisAXB, colour='tab:blue', alpha=0.8)
+            thisAXB = GVP.myHSpan(physEM, thisAXB, colour='tab:red', alpha=0.8, ls='-.')
             #thisAXB = GVP.myHSpan(physEP, thisAXB, colour=cols[aa], alpha=0.8)
             #thisAXB = GVP.myHSpan(physEM, thisAXB, colour=cols[aa], alpha=0.8)
             thisAXDiff = GVP.myHSpan(-1.0 * (physEP - physEM) / (physEM + physEP), thisAXDiff, colour=cols[aa], alpha=0.8)  # noqa: E501
@@ -423,16 +423,17 @@ def main(args: list):
             # and now plot
             # pos parity
             thisAX = GVP.plot_gvEbar(xPlot+0.01*xPlot, physEP, thisAX, alpha=0, ma='D')
-            thisAX = GVP.plot_gvEbar(xPlot, EP, thisAX, ma=marks[aa], ls='', col='tab:green')
-            thisAX = GVP.plot_gvEbar(xPlot, EPSys, thisAX, ma=marks[aa], ls='', col='tab:green', alpha=0.5)
+            thisAX = GVP.plot_gvEbar(xPlot, EP, thisAX, ma=marks[aa], ls='', col='tab:blue')
+            thisAX = GVP.plot_gvEbar(xPlot, EPSys, thisAX, ma=marks[aa], ls='', col='tab:blue', alpha=0.5)
             # neg parity
             if negMass:
                 thisAXM = GVP.plot_gvEbar(xPlot+0.01*xPlot, physEM, thisAXM, alpha=0, ma='D')
-                thisAXM = GVP.plot_gvEbar(xPlot, EM, thisAXM, ma=marks[aa], ls='', col='tab:orange')
-                thisAXM = GVP.plot_gvEbar(xPlot, EMSys, thisAXM, ma=marks[aa], ls='', col='tab:orange', alpha=0.5)
+                thisAXM = GVP.plot_gvEbar(xPlot, EM, thisAXM, ma=marks[aa], ls='', col='tab:red')
+                thisAXM = GVP.plot_gvEbar(xPlot, EMSys, thisAXM, ma=marks[aa], ls='', col='tab:red', alpha=0.5)
             # Both on same plot
-            thisAXB = GVP.plot_gvEbar(xPlot, EP, thisAXB, ma=marks[aa], ls='', col='tab:green')
-            thisAXB = GVP.plot_gvEbar(xPlot, EPSys, thisAXB, ma=marks[aa], ls='', col='tab:green', alpha=0.5)
+            # marks[aa]
+            thisAXB = GVP.plot_gvEbar(xPlot, EP, thisAXB, ma='D', ls='', col='tab:blue')
+            thisAXB = GVP.plot_gvEbar(xPlot, EPSys, thisAXB, ma='D', ls='', col='tab:blue', alpha=0.5)
             # customise x-axis
             #thisAXB.get_xaxis().set_ticks([50,100,150,200])
             #thisAXB.set_xticklabels([50,100,150,200], rotation=315)
@@ -443,14 +444,16 @@ def main(args: list):
                 myAX.set_xlim([30,210])
                 # Put the label above
                 secAXB = myAX.secondary_xaxis('top')
-                secAXB.set_xticklabels([lab], fontdict={'fontsize': 32})
+                secAXB.set_xticklabels([lab], fontdict={'fontsize': 34})
                 secAXB.xaxis.set_tick_params(length=0)
                 secAXB.get_xaxis().set_ticks([30 + 90])
             # neg parity
             if negMass:
-                thisAXB = GVP.plot_gvEbar(xPlot, EM, thisAXB, ma=marks[aa], ls='', col='tab:orange')
-                thisAXB = GVP.plot_gvEbar(xPlot, EMSys, thisAXB, ma=marks[aa], ls='', col='tab:orange', alpha=0.5)
-                thisAXB.plot(xPlot, gv.mean(EM), marker=marks[aa], ls='', alpha=1.0, color='tab:orange', markerfacecolor='white', zorder=10)
+                #marks[aa]
+                # arbitarily offset
+                thisAXB = GVP.plot_gvEbar(xPlot+5, EM, thisAXB, ma='o', ls='', col='tab:red')
+                thisAXB = GVP.plot_gvEbar(xPlot+5, EMSys, thisAXB, ma='o', ls='', col='tab:red', alpha=0.5)
+                thisAXB.plot(xPlot+5, gv.mean(EM), marker='o', ls='', alpha=1.0, color='tab:red', markerfacecolor='white', zorder=10)
             # the difference
             if negMass:
                 thisAXDiff = GVP.plot_gvEbar(xPlot, ((EM - EP) / (EM + EP)), thisAXDiff, ma=marks[aa], ls='', col=cols[aa])
@@ -494,8 +497,8 @@ def main(args: list):
     # Doing the legend
     allHandles = []
     allLegends = []
-    line_dashed = Line2D([], [], color='tab:green', linestyle='--', label='$P=+$ Exp.')  # noqa: E501
-    point_pos= Line2D([0], [0], color='tab:green', linestyle='', marker='D', label='$P=+$')  # noqa: E501
+    line_dashed = Line2D([], [], color='tab:blue', linestyle='--', label='$P=+$ Exp.')  # noqa: E501
+    point_pos= Line2D([0], [0], color='tab:blue', linestyle='', marker='D', label='$P=+$')  # noqa: E501
     allHandles.append(point_pos)
     allLegends.append('Pos. Par. Lat.')
     if posExpLine:
@@ -504,8 +507,8 @@ def main(args: list):
     axB[0].legend(allHandles, allLegends, handlelength=1.5, loc='lower center', frameon=False)  # noqa: E501
     allHandles = []
     allLegends = []
-    line_dashed = Line2D([], [], color='tab:orange', linestyle='-.', label='$P=-$ Exp.')  # noqa: E501
-    point_pos= Line2D([0], [0], color='tab:orange', linestyle='', marker='D', label='$P=-$', markerfacecolor='white')  # noqa: E501
+    line_dashed = Line2D([], [], color='tab:red', linestyle='-.', label='$P=-$ Exp.')  # noqa: E501
+    point_pos= Line2D([0], [0], color='tab:red', linestyle='', marker='o', label='$P=-$', markerfacecolor='white')  # noqa: E501
     allHandles.append(point_pos)
     allLegends.append('Neg. Par. Lat.')
     if negExpLine:
@@ -595,5 +598,7 @@ if __name__ == '__main__':
     rcParams['lines.markersize'] = 8
     rcParams['font.size'] = 32
     rcParams['ytick.labelsize'] = 32
-    rcParams['lines.markersize'] = 12.0
+    rcParams['xtick.labelsize'] = 24
+    rcParams['lines.markersize'] = 13.0
+    rcParams['errorbar.capsize'] = 5  # making error bar caps slightly wider
     main(sys.argv[1:])

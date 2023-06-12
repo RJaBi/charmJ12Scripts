@@ -414,7 +414,7 @@ def main(args: list):
 
 if __name__ == '__main__':
     mo.initBigPlotSettings()
-    mpl.rcParams['lines.markersize'] = 10.0
+    mpl.rcParams['lines.markersize'] = 12.0
     # For Poster/Presentation
     mpl.rcParams['ytick.labelsize'] = 32
     mpl.rcParams['xtick.labelsize'] = 32

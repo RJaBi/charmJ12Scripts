@@ -73,6 +73,9 @@ def main(args: list):
         if 'xMins' in params['analysis'].keys():
             plotXMin = np.argmin(cfDict['data'][params['analysis']['xMins'][aa]])
             plotAll = False
+            if params['analysis']['GxLim'][1] is not None:
+                if params['analysis']['GxLim'][1] < plotXMin:
+                    plotXMin = params['analysis']['GxLim'][1]
         else:
             plotXMin = len(G)  # type: ignore
         if 'xStart' in params['analysis'].keys():
@@ -99,7 +102,17 @@ def main(args: list):
             myYLab = params['analysis']['ylabel']
         else:
             myYLab = '$\\mathcal{O}(\\tau)$'  # noqa: W605
-        ax = GVP.plot_gvEbar(x[plotXStart:plotXMin], G[plotXStart:plotXMin], ax, ma=mark, ls='', lab=myLab)  # type: ignore  # noqa: E501
+        # setting NT=48 to be same colours on both
+        setRed = False
+        if '48' in myLab:
+            col = 'tab:red'
+            setRed = True
+        else:
+            col = next(ax._get_lines.prop_cycler)['color']
+            if setRed:
+                if col == '#d1615d':  # know this is red
+                    col = next(ax._get_lines.prop_cycler)['color']
+        ax = GVP.plot_gvEbar(x[plotXStart:plotXMin], G[plotXStart:plotXMin], ax, ma=mark, ls='', lab=myLab, col=col)  # type: ignore  # noqa: E501
         axAna = GVP.plot_gvEbar(x[plotXStart:plotXMin], G[plotXStart:plotXMin], axAna, ma=mark, ls='', lab=myLab)  # type: ignore  # noqa: E501
         axAna.set_xlabel(myXLab)
         axAna.set_ylabel(myYLab)
@@ -123,6 +136,7 @@ def main(args: list):
             axAna.plot(x[plotXMin:], gv.mean(G[plotXMin:]), marker=mark, linestyle='', alpha=1.0, color=col, markerfacecolor='white')  # type: ignore
             axAna.set_ylim(ylims[-1])
             axAna.set_ylim(xlims[-1])
+            axAna.xaxis.set_major_locator(mpl.ticker.MaxNLocator(integer=True))
         axAna.set_xlim(params['analysis']['GxLim'])
         axAna.set_ylim(params['analysis']['GyLim'])
         figAna.savefig(os.path.join(thisAnaDir, 'G.pdf'))
@@ -152,14 +166,16 @@ def main(args: list):
     # and back to the rest
     ax.set_xlabel(myXLab)
     ax.set_ylabel(myYLab)
-    ax.legend(loc='best', ncol=2, fontsize=28)
-    ax.set_xlim(params['analysis']['GxLim'])
+    ax.legend(loc='best', ncol=2, fontsize=36)
+    if 'xMins' not in params['analysis'].keys():
+        ax.set_xlim(params['analysis']['GxLim'])
     ax.set_ylim(params['analysis']['GyLim'])
     # plt.show()
     if 'nameMod' in params.keys():
         name = f'G_{params["nameMod"]}.pdf'
     else:
         name = 'G.pdf'
+    ax.xaxis.set_major_locator(mpl.ticker.MaxNLocator(integer=True))
     fig.savefig(os.path.join(anaDir, name))
     plt.close()
 
@@ -167,4 +183,7 @@ def main(args: list):
 if __name__ == '__main__':
     mo.initBigPlotSettings()
     mpl.rcParams['font.size'] = 28
+    mpl.rcParams['ytick.labelsize'] = 28
+    mpl.rcParams['xtick.labelsize'] = 28
+    mpl.rcParams['axes.labelsize'] = 40
     main(sys.argv[1:])

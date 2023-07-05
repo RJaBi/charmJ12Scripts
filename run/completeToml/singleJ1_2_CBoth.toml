@@ -152,7 +152,7 @@ NT = ['128', '64', '56', '48', '40', '36', '32']#, '28']
 anaName = [ 'sigma12_3fl_udc', 'sigma12_3fl_usc', 'doublet_2fl_ssc', 'lambda_3fl_udc', 'lambda_3fl_usc', 'doublet_2fl_ccu', 'doublet_2fl_ccs',]
 #anaName = [ 'sigma12_3fl_udc', 'sigma12_3fl_usc', 'doublet_2fl_ssc', 'lambda_3fl_udc', 'lambda_3fl_usc']
 
-colours = [ 'tab:pink', 'tab:olive', 'tab:orange', 'tab:gray', 'tab:cyan', 'tab:red', 'tab:brown']
+colours = [ 'tab:pink', 'tab:green', 'tab:orange', 'tab:gray', 'tab:cyan', 'tab:red', 'tab:brown']
 #colours = [ 'tab:pink', 'tab:olive', 'tab:orange', 'tab:gray', 'tab:cyan']
 #markers = ['P', '*', 'X', 'd', '<', '>', '$\boxtimes$', '$\\bigoplus$', '$\\bigotimes$']
 markers = ['P', '*', 'X', 'd', '<', '>', '$\boxtimes$']

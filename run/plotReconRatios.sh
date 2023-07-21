@@ -10,7 +10,7 @@ myDir=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 pythonExe=python #/home/ryan/installs/conda/miniconda3/envs/gen/bin/python
 
 # Where modified toml files are
-outTomlDir=${myDir}/modifiedToml_Ratios/02_03_2023/ReconRatio/
+outTomlDir=${myDir}/modifiedToml_Ratios/12_06_2023/ReconRatio/
 
 # the plotting script
 scriptDir=${myDir}/../code/bin/

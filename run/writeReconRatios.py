@@ -10,6 +10,7 @@ import sys
 import toml
 import gvar as gv  # type: ignore
 import pandas as pd  # type: ignore
+import numpy as np  # type: ignore  # for max
 from pathlib import Path
 modDir = os.path.join(Path(__file__).resolve().parent, '..', 'code', 'lib')
 sys.path.insert(0, modDir)
@@ -219,9 +220,14 @@ def main(args: list):
     # Custom y labels
     yLabSet = False
     yLab = ''
+    # the longest non-zero temp
+    maxNT = np.max(np.asarray(params['cfuns']['NT'][1:], dtype=int))
+    xDiv = 2
     if params['maths']['double']:
         yLab = '$R(\\tau;T;T_0)$'
         yLabSet = True
+        if maxNT == int(T0NT):
+            xDiv = 4
     elif params['maths']['single']:
         yLab = '$r(\\tau;T;T_0)$'
         if yLabSet:
@@ -235,7 +241,9 @@ def main(args: list):
     if yLab != '':
         params['analysis'].update({'ylabel': yLab})
 
-        
+    # Setting the x-axis bounds
+    # when GPlots called, as have xMins, it will use this for data, not for 'view'
+    params['analysis']['GxLim'] = [0, int(maxNT / xDiv)]
     # Making the folder to put the toml in if necessary
     outDir = os.path.join(*params["outToml"].split('/')[:-1])
     print(f'OUTDIR IS !!!!!!! {outDir}')

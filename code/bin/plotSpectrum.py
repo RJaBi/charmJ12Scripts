@@ -211,5 +211,8 @@ if __name__ == '__main__':
     mpl.rcParams['ytick.labelsize'] = 36
     mpl.rcParams['xtick.labelsize'] = 36
     mpl.rcParams['font.size'] = 36
+    mpl.rcParams['xtick.minor.visible'] = False
+    mpl.rcParams['ytick.minor.visible'] = False
 
+    
     main(sys.argv[1:])

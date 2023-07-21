@@ -9,6 +9,8 @@
    * * Loads the toml file in the arguments
  * initBigPlotSettings()
    * * Initialise a bunch of plot settings that make the plots look nicer
+ * GertPlotSettings()
+   * * Initialise a bunch of plot settings that make the plots look nicer after discussion with Gert Aarts
  * refineXYLims(params, subDict: 'analysis') -> Dict[str, Any]
    * * Toml doesn't support None type. This converts any string 'None' value in the params[subDict] dictionary to be None type. just does params if subDict=None
  * removeZero(data: np.ndarray) -> Tuple[np.ndarray, List[int]]:
@@ -87,7 +89,7 @@
    * * N0/N = fac
  * extCorr(G: np.ndarray, NT: int, extType: str, where: str) -> np.ndarray:
    * * extends correlator G to NT points
-   * * padding depending upon extType (zero or min)
+   * * padding depending upon extType (zero or min, sub)
    * * padding at 'end', midpoint ('NT2') or minimum of G ('min')
  * initCorrelatorsGvar(params):
    * * Loads all correlators in params['cfuns'] in
@@ -111,6 +113,10 @@
    * * Puts all the dict entries of differening lengths in different dictionaries
  * saveCSV(anaDir: str, suffix: str, GVD, keys=['all']):
    * * Combines the above functions to save a csv for each length (NT)
+ * def getFactorPlus(N: int, N0: int, add: int=0) -> int:
+   * * returns the number such that (N0 + add) / N is an odd integer
+   * * acts recursively, increasing add
+   
 
 ### myEffE
 *Taking an effective mass (energy) of correlators*

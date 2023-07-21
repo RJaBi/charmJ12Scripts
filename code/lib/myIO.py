@@ -7,7 +7,7 @@ import gvar as gv  # type: ignore
 import os
 import sympy as sp  # type: ignore
 import opt_einsum  # type: ignore
-from myModules import clean_filename
+from myModules import clean_filename, jackCov, doJack
 
 
 gvarSeed = 100
@@ -424,7 +424,7 @@ def initCorrelators(params):
     resample = False
     if np.any(['resample' in x for x in smMaths]):
         resample = True
-        resampleDict = {}        
+        resampleDict = {}
         sys.exit('symMath labels and Maths must be matched pair of lists')
     for lab, math in zip(smLabels, smMaths):
         print('Doing math for ', lab, math)
@@ -526,14 +526,14 @@ def initCorrelators(params):
                     sys.exit('Exiting')
                 # Grab the data
                 myVar.update({var: cfDict['data'][var]})
-                myVarJack.append(mo.doJack(cfDict['data'][var], order=2))
+                myVarJack.append(doJack(cfDict['data'][var], order=2))
             # Package into a tuple so can unpack
             myVarJackTuple = tuple(myVarJack)
             # and call the function
             dataJack = func(*myVarJackTuple)
-            dataGV = gv.gvar(dataJack[0, 0, ...], mo.jackCov(dataJack[:, 0, ...]))
-            del myVarJack
-            gc.collect()
+            dataGV = gv.gvar(dataJack[0, 0, ...], jackCov(dataJack[:, 0, ...]))
+            # del myVarJack
+            # gc.collect()
             # Put it in the resampleDictionary for later
             resampleDict.update({lab: dataGV})
             # and update the rest of the lists
@@ -660,14 +660,57 @@ def autoPadLength(N: int, N0: int, fac: int) -> int:
     return pad
 
 
+def getFactorPlus(N: int, N0: int, add: int = 0) -> int:
+    """
+    Works out the the factor to multiply N by such that N0/N is an odd integer
+    with N New greater than N
+    Does it by counting 1 by 1
+    """
+    NNew = N0 + add
+    div = NNew / N
+    if div.is_integer():
+        if div % 2 != 0:
+            return int(div)
+        else:
+            return getFactorPlus(N, N0, add + 1)
+    else:
+        return getFactorPlus(N, N0, add + 1)
+
+
 def extCorr(G: np.ndarray, NT: int, extType: str, where: str) -> np.ndarray:
     """
     A function to pad the correlator with specified value
     at specified values
     """
     if NT <= len(G):
-        # Dont need to pad
-        GR = G
+        if extType != 'sub':
+            # Dont need to pad
+            GR = G
+        else:
+            padLength = -1.0 * (NT - len(G))
+            # Unfortunately need to repeat this cause
+            # while if structure same
+            # code is different
+            # subtracting from either side
+            # handles odd/even padd
+            if padLength % 2 == 0:
+                padL = int(padLength / 2)
+                padR = int(padLength / 2)
+            else:
+                padL = int((padLength - 1) / 2) - 1
+                padR = int((padLength - 1) / 2)
+            if where == 'end':
+                GR = G[:-int(padLength)]
+            else:
+                if where == 'NT2':
+                    mid = int(len(G) / 2)
+                elif where == 'min':
+                    mid = np.argmin(G)  # type: ignore
+                else:
+                    sys.exit(f'Unsupported extend location {where}')
+                leftG = G[:mid - padL]
+                rightG = G[mid + padR:]
+                GR = np.concatenate((leftG, rightG))
     else:
         # Need to pad
         if extType == 'zero':
@@ -679,22 +722,20 @@ def extCorr(G: np.ndarray, NT: int, extType: str, where: str) -> np.ndarray:
         elif extType == 'fit':
             sys.exit('Not yet implemented. Will do linear fit to log at where')
         else:
-            sys.exit(f'Bad extType = {extType}. Valid are zero, min')
+            sys.exit(f'Bad extType = {extType}. Valid are zero, min, sub (somtimes)')
         # where?
         if where == 'end':
             GR = np.concatenate((G, pad))
-        elif where == 'NT2':
-            mid = int(len(G) / 2)
-            leftG = G[:mid]
-            rightG = G[mid:]
-            GR = np.concatenate((leftG, pad, rightG))
-        elif where == 'min':
-            mid = np.argmin(G)  # type: ignore
-            leftG = G[:mid]
-            rightG = G[mid:]
-            GR = np.concatenate((leftG, pad, rightG))
         else:
-            sys.exit(f'Unsupported extend location {where}')
+            if where == 'NT2':
+                mid = int(len(G) / 2)
+            elif where == 'min':
+                mid = np.argmin(G)  # type: ignore
+            else:
+                sys.exit(f'Unsupported extend location {where}')
+            leftG = G[:mid]
+            rightG = G[mid:]
+            GR = np.concatenate((leftG, pad, rightG))
     return GR
 
 
@@ -988,13 +1029,25 @@ def initCorrelatorsGvar(params):
             # The length of the original correlator
             N0 = len(G)
             if reconType == 'baryon':
-                div = int(np.floor(N0 / NT))
-                # Must be odd multiple
-                if div % 2 == 0:
-                    fac = div + 1
+                div = np.floor(N0 / NT)
+                if extType != 'sub':
+                    # get the factor
+                    fac = getFactorPlus(NT, N0)
+                    # get the number of points to pad
+                    pad = autoPadLength(NT, N0, fac)
                 else:
-                    fac = div
-                pad = autoPadLength(NT, N0, fac)
+                    # the number is different for sub
+                    # Must be odd multiple
+                    if div % 2 == 0:
+                        fac = div - 1
+                    else:
+                        fac = div
+                    # get the number
+                    pad = -(N0 - NT * fac)
+                    # Sometimes you can't subtract off enough for a factor of 3
+                    # i.e. 128, 64,
+                    if ((N0 + pad) / NT) % 3 != 0:
+                        sys.exit(f'Bad pad length {pad} for NT={NT}, N0={N0}')
                 Gext = extCorr(G, N0 + pad, extType, 'min')
                 # Also add the extended correlator to the dataset
                 GVD.update({f'{lab}_ext': Gext})
@@ -1161,4 +1214,3 @@ def saveCSV(anaDir: str, suffix: str, GVD, keys=['all']):
             continue
         outFile = os.path.join(anaDir, f'NT_{NT}_{suffix}.csv')
         writeGVDCSV(outFile, d, keys=keysD)
-

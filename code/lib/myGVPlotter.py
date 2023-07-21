@@ -1,11 +1,13 @@
 import numpy as np  # type: ignore
 import gvar as gv  # type: ignore
 
-colours = ['tab:blue', 'tab:green', 'tab:purple', 'tab:pink', 'tab:olive', 'tab:orange', 'tab:red', 'tab:brown', 'tab:gray', 'tab:cyan']
+colours = ['tab:blue', 'tab:green', 'tab:purple', 'tab:pink', 'tab:olive', 'tab:orange', 'tab:red', 'tab:brown', 'tab:gray', 'tab:cyan']  # noqa: E501
 
-markers = ['o', 's', 'p', 'P', '*', 'X', 'd', '<', '>', '$\\boxtimes$', '$\\bigoplus$', '$\\bigotimes$']  # noqa: E501
+# markers = ['o', 's', 'p', 'P', '*', 'X', 'd', '<', '>', '$\\boxtimes$', '$\\bigoplus$', '$\\bigotimes$']  # noqa: E501
+markers = ['o', 's', 'p', 'P', '*', 'X', 'd', '<', '>', '$\boxtimes$', '$\\bigoplus$', '$\\bigotimes$']  # noqa: E501
 
-def plot_gvEbar(x: np.ndarray, y: np.ndarray, ax, ma=None, ls=None, lab=None, col=None, alpha=1, fillstyle='full', mac=None):
+
+def plot_gvEbar(x: np.ndarray, y: np.ndarray, ax, ma=None, ls=None, lab=None, col=None, alpha=1, fillstyle='full', mac=None):  # noqa: E501
     """
     Just tidies up an error bar plot of a GV some
     """

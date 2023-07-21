@@ -136,6 +136,7 @@ def getEffE(params: Dict[str, Any], massdt: np.float64, GJ2: np.ndarray) -> np.n
         nanSdev = np.isnan(gv.sdev(effEJ2))
         effEJ2[nanMean] = gv.gvar('0(0)')
         effEJ2[nanSdev] = gv.gvar('0(0)')
+        effEJ2[effEJ2 == 0] = gv.gvar('0(0)')
     else:
         np.nan_to_num(effEJ2, copy=False)
     return effEJ2

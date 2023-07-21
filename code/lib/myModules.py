@@ -24,6 +24,27 @@ def GetArgs(args: list) -> MutableMapping[str, Any]:
     return params
 
 
+def GertPlotSettings():
+    """
+    Updates more plot settings!
+    """
+    mpl.rcParams['font.size'] = 28
+    mpl.rcParams['ytick.labelsize'] = 28
+    mpl.rcParams['xtick.labelsize'] = 28
+    mpl.rcParams['axes.labelsize'] = 40
+    # Increase tick size
+    mpl.rcParams['xtick.major.size'] = 6
+    mpl.rcParams['ytick.major.size'] = 6
+    # Set yticks on both sides, pointing in only
+    mpl.rcParams['ytick.left'] = True
+    mpl.rcParams['ytick.right'] = True
+    mpl.rcParams['ytick.direction'] = 'in'
+    # Make minor ticks visible
+    mpl.rcParams['xtick.minor.visible'] = True
+    mpl.rcParams['ytick.minor.visible'] = True
+    print('Updated Gert Plot Settings')
+
+
 def initBigPlotSettings():
     """
     Initialise a bunch of plot settings that make the plots look nicer
@@ -31,7 +52,7 @@ def initBigPlotSettings():
     mpl.rcParams['ytick.labelsize'] = 20
     mpl.rcParams['xtick.labelsize'] = 20
     mpl.rcParams['errorbar.capsize'] = 3  # restoring the caps on error bars
-    print(mpl.rcParams['lines.linewidth'])
+    # print(mpl.rcParams['lines.linewidth'])
     mpl.rcParams['lines.linewidth'] = 2
     mpl.rcParams['lines.markeredgewidth'] = 0.5
     mpl.rcParams['figure.max_open_warning'] = 50
@@ -40,8 +61,17 @@ def initBigPlotSettings():
     mpl.rcParams['figure.autolayout'] = True
     mpl.rcParams['mathtext.fontset'] = 'cm'
     mpl.rcParams['font.serif'] = ['Computer Modern']
+    # FUCKING LATEX
+    mpl.rcParams['text.usetex'] = True
+    mpl.rcParams['text.latex.preamble'] = r'\usepackage{amssymb}'
+    mpl.rcParams['font.family'] = 'serif'
     mpl.rcParams['lines.markersize'] = 5.0
     mpl.rcParams['figure.figsize'] = (16.6, 11.6)
+    # reduce pdf compression (zero is none)
+    mpl.rcParams['pdf.compression'] = 1
+    # make type 42 types for easier editing in pdf editor
+    mpl.rcParams['pdf.fonttype'] = 42
+    GertPlotSettings()
     print('Updated Plot Settings')
 
 
@@ -134,6 +164,7 @@ def replace_nth(s, sub, repl, n=1):
 # #######################################################
 # Old jackknife resampling code
 # Still works i gues
+
 
 def doJack(data: np.ndarray, order=2):
     """

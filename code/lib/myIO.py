@@ -22,34 +22,10 @@ def strToLambda(string):
     where f(...) must be an appropriate maths function
     such as x**2 + 2*x + 1
     """
-    # print(string)
-    # Splitting the string into variables and functions
     outVar, allVar, func = string.split(':')
     allVar = allVar.split(',')
-    # initialising symbolic variables with keys
-    varDict = {}
-    for v in allVar:
-        varDict.update({v: sp.symbols(v)})
-    # now putting the variables into a tuple
-    symVars = []
-    for k, v in varDict.items():
-        symVars.append(v)
-    # reverse to make ordering logical (i.e. 1st variables is first now)
-    symVars = tuple(reversed(symVars))
-    # print(func, type(func))
-    # print(symVars, type(symVars[0]))
-    # Making the lambda function
-    # print(symVars, func)
-    f = lambda *symVars: eval(func)  # noqa: E731
-    # Dumping the variables into global namespace
-    # So can make symbolic lambda function
-    globals().update(varDict)
-    # Making symbolic lambda function
-    lam_f = sp.lambdify(symVars, f(*symVars))
-    # print(lam_f(1, 2, 3))
-    # print(allVar, func)
-    return lam_f, allVar, outVar
-
+    lam = sp.lambdify(allVar, func)
+    return lam, allVar, outVar
 
 def sortEvals(w: np.ndarray, vl: np.ndarray, vr: np.ndarray) -> np.ndarray:
     """

@@ -68,7 +68,7 @@ def main(args: list):
         for x, y, mark in zip(xAxis, Tpc, markers):
             if y < 0.8 * PsiTpc or y > 1.2 * PsiTpc:
                 continue
-            #if 'c' not in x:
+            # if 'c' not in x:
             #    # skipping C=0
             #    # cycle the colour
             #    next_colour = next(ax._get_lines.prop_cycler)['color']  # noqa: F841
@@ -95,4 +95,6 @@ if __name__ == '__main__':
     mpl.rcParams['xtick.labelsize'] = 36
     mpl.rcParams['font.size'] = 36
     mpl.rcParams['errorbar.capsize'] = 5  # making error bar caps slightly wider
+    mpl.rcParams['xtick.minor.visible'] = False
+    mpl.rcParams['ytick.minor.visible'] = False
     main(sys.argv[1:])

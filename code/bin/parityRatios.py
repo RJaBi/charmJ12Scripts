@@ -99,7 +99,7 @@ def getInflectionPoint(params, XPoints: np.ndarray, yData: np.ndarray, minSearch
         interval = gv.root.search(derivFunc, minSearch)
         myInterval = [interval[0], interval[1]]
         if interval[1] > 1.075 * TpcScale:
-            print(interval, interval[1])
+            # print(interval, interval[1])
             myInterval[1] = 1.05 * TpcScale
         GVInflectVal = gv.root.refine(derivFunc, myInterval)
         # print(f'minSearch = {minSearch}, GV inflection Point = {GVInflectVal}')
@@ -179,12 +179,13 @@ def getInflectionPoint(params, XPoints: np.ndarray, yData: np.ndarray, minSearch
             sys.exit(f'Unsupported extra Inflection Point method {meth}')
     # Check if the other methods produce close values
     compVal = inflects[inflectTypes[0]]
+    # print(inflects)
     close = []
-    print('compVal', compVal)
+    # print('compVal', compVal)
     for lab, val in inflects.items():
         if lab == inflectTypes[0]:
             continue
-        print('    ', lab, val, gvIsClose(compVal, val, per=0.1))
+        # print('    ', lab, val, gvIsClose(compVal, val, per=0.1))
         thisClose = gvIsClose(compVal, val, per=0.1)
         close.append(thisClose)
     if np.any(np.asarray(close)):
@@ -194,7 +195,6 @@ def getInflectionPoint(params, XPoints: np.ndarray, yData: np.ndarray, minSearch
     # print(finalInflectVal)
     return gvSpline, finalInflectVal
 
-    
 
 def main(args: list):
     """
@@ -219,7 +219,7 @@ def main(args: list):
         
     # where we put the analysis
     anaDir = os.path.join(params['analysis']['anaDir'])
-    print('Analysis output directory is ', anaDir)
+    # print('Analysis output directory is ', anaDir)
     if not os.path.exists(anaDir):
         os.makedirs(anaDir)
 
@@ -230,7 +230,7 @@ def main(args: list):
         TpcScale = params['analysis']['TpcScale']
     else:
         TpcScale = 1.0
-        
+    # setup figure
     figRn0, axRn0 = plt.subplots(figsize=(16.6, 11.6))
     pdf = PdfPages(os.path.join(anaDir, 'SummedParityRatio.pdf'))
     colCount = 0
@@ -334,6 +334,7 @@ def main(args: list):
     markCount = 0
     inflectVals = {}
     inflectLabs = {}
+    # print('allAnaOps', allAnaOps)
     for taa, ana in enumerate(allAnaOps):
         thisAnaLab = params['cfuns']['hadrons'][taa]
         # find the inflection points

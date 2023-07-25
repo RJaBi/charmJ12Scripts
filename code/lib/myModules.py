@@ -94,6 +94,8 @@ def refineXYLims(params, subDict='analysis') -> Dict[str, Any]:
             for ii, x in enumerate(v):
                 if x == 'None':
                     v[ii] = None
+                else:
+                    v[ii] = float(x)
     # Now that have updated, return.
     return params
 

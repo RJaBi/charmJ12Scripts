@@ -9,7 +9,7 @@ import gvar as gv  # type: ignore
 # from typing import Dict, Any
 from pathlib import Path
 # Loading some functions from elsewhere in this repo
-insertPath = os.path.join(Path(__file__).resolve().parent, '..','lib')
+insertPath = os.path.join(Path(__file__).resolve().parent, '..', 'lib')
 sys.path.insert(0, insertPath)
 import myIO as io  # type: ignore  # noqa: E402
 import myModules as mo  # type: ignore  # noqa: E402
@@ -75,7 +75,7 @@ def main(args: list):
             plotAll = False
             if params['analysis']['GxLim'][1] is not None:
                 if params['analysis']['GxLim'][1] < plotXMin:
-                    plotXMin = params['analysis']['GxLim'][1]
+                    plotXMin = int(params['analysis']['GxLim'][1])  # type: ignore
         else:
             plotXMin = len(G)  # type: ignore
         if 'xStart' in params['analysis'].keys():
@@ -90,6 +90,9 @@ def main(args: list):
             mpl.rcParams['lines.markersize'] = 8.0
         else:
             mark = 'd'
+        if 'markers' in params['analysis'].keys():
+            mark = params['analysis']['markers'][aa]
+            mpl.rcParams['lines.markersize'] = 10.0
         if 'labelsToPlot' in params['analysis'].keys():
             myLab = params['analysis']['labelsToPlot'][aa]
         else:
@@ -112,11 +115,15 @@ def main(args: list):
             if setRed:
                 if col == '#d1615d':  # know this is red
                     col = next(ax._get_lines.prop_cycler)['color']
+        print(plotXStart, plotXMin)
         ax = GVP.plot_gvEbar(x[plotXStart:plotXMin], G[plotXStart:plotXMin], ax, ma=mark, ls='', lab=myLab, col=col)  # type: ignore  # noqa: E501
         axAna = GVP.plot_gvEbar(x[plotXStart:plotXMin], G[plotXStart:plotXMin], axAna, ma=mark, ls='', lab=myLab)  # type: ignore  # noqa: E501
         axAna.set_xlabel(myXLab)
         axAna.set_ylabel(myYLab)
-        axAna.legend(loc='best', ncol=2)
+        if 'legendNCol' in params['analysis'].keys():
+            axAna.legend(loc='best', ncol=params['analysis']['legendNCol'], fontsize=36)
+        else:
+            axAna.legend(loc='best', ncol=2, fontsize=36)
 
         # Plot the rest of the data faded
         # Reset the ylimits back to the subset of data
@@ -126,18 +133,19 @@ def main(args: list):
             ylims.append(axAna.get_ylim())
             col = ax.get_lines()[-1].get_c()
             # First plot the data with some error bars and alpha
-            ax = GVP.plot_gvEbar(x[plotXMin:], G[plotXMin:], ax, ma=mark, ls='', alpha=0.35, col=col, mac=(1,1,1,1))  # type: ignore  # noqa: E501
+            ax = GVP.plot_gvEbar(x[plotXMin:], G[plotXMin:], ax, ma=mark, ls='', alpha=0.35, col=col, mac=(1, 1, 1, 1))  # type: ignore  # noqa: E501
             # Now make the marker face white
             # This removes the line from crossing the marker face
-            ax.plot(x[plotXMin:], gv.mean(G[plotXMin:]), marker=mark, linestyle='', alpha=1.0, color=col, markerfacecolor='white')  # type: ignore
+            ax.plot(x[plotXMin:], gv.mean(G[plotXMin:]), marker=mark, linestyle='', alpha=1.0, color=col, markerfacecolor='white')  # type: ignore  # noqa: E501
             # Similarly for the single plot
             col = axAna.get_lines()[-1].get_c()
             axAna = GVP.plot_gvEbar(x[plotXMin:], G[plotXMin:], axAna, ma=mark, ls='', alpha=0.35, col=col, mac='none')  # type: ignore  # noqa: E501
-            axAna.plot(x[plotXMin:], gv.mean(G[plotXMin:]), marker=mark, linestyle='', alpha=1.0, color=col, markerfacecolor='white')  # type: ignore
+            axAna.plot(x[plotXMin:], gv.mean(G[plotXMin:]), marker=mark, linestyle='', alpha=1.0, color=col, markerfacecolor='white')  # type: ignore  # noqa: E501
             axAna.set_ylim(ylims[-1])
             axAna.set_ylim(xlims[-1])
             axAna.xaxis.set_major_locator(mpl.ticker.MaxNLocator(integer=True))
-        axAna.set_xlim(params['analysis']['GxLim'])
+        # axAna.set_xlim(params['analysis']['GxLim'])
+        axAna.set_xlim(left=params['analysis']['GxLim'][0], right=params['analysis']['GxLim'][1])
         axAna.set_ylim(params['analysis']['GyLim'])
         figAna.savefig(os.path.join(thisAnaDir, 'G.pdf'))
         plt.close(figAna)
@@ -166,16 +174,30 @@ def main(args: list):
     # and back to the rest
     ax.set_xlabel(myXLab)
     ax.set_ylabel(myYLab)
-    ax.legend(loc='best', ncol=2, fontsize=36)
+    if 'legendNCol' in params['analysis'].keys():
+        ax.legend(loc='best', ncol=params['analysis']['legendNCol'], fontsize=36)
+    else:
+        ax.legend(loc='best', ncol=2, fontsize=36)
     if 'xMins' not in params['analysis'].keys():
-        ax.set_xlim(params['analysis']['GxLim'])
+        # ax.set_xlim(params['analysis']['GxLim'])
+        ax.set_xlim(left=params['analysis']['GxLim'][0], right=params['analysis']['GxLim'][1])
     ax.set_ylim(params['analysis']['GyLim'])
     # plt.show()
     if 'nameMod' in params.keys():
         name = f'G_{params["nameMod"]}.pdf'
     else:
         name = 'G.pdf'
-    ax.xaxis.set_major_locator(mpl.ticker.MaxNLocator(integer=True))
+    # ax.xaxis.set_major_locator(mpl.ticker.MaxNLocator(integer=True))
+    # ax.get_xaxis().set_ticks(range(*params['analysis']['GxLim'], 3))
+    # ax.set_xticklabels(range(*params['analysis']['GxLim'], 3))
+    # This sets x ticks to every 4th integer manually,
+    # i.e. 1, 4, 8, 12, ...
+    if params['analysis']['GxLim'][1] is None:
+        xPlotMax = ax.get_xlim()[1]
+    else:
+        xPlotMax = int(params['analysis']['GxLim'][1])
+    ax.get_xaxis().set_ticks([1] + list(range(4, xPlotMax + 1, 4)))
+    ax.set_xticklabels([1] + list(range(4, xPlotMax + 1, 4)))
     fig.savefig(os.path.join(anaDir, name))
     plt.close()
 
@@ -186,4 +208,5 @@ if __name__ == '__main__':
     mpl.rcParams['ytick.labelsize'] = 28
     mpl.rcParams['xtick.labelsize'] = 28
     mpl.rcParams['axes.labelsize'] = 40
+    mpl.rcParams['xtick.minor.visible'] = False
     main(sys.argv[1:])

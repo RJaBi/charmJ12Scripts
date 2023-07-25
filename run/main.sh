@@ -130,9 +130,9 @@ echo 'date is '$(date)
 # Now copy the specific plots for the xi_cc 128
 xicc=${plotDir}/fits/doublet_2fl_ccu_128x32/mAve.pdf
 pdfseparate -f 1 -l 1 ${xicc} ${paperDir}/Figure1.pdf
-pdfseparate -f 13 -l 13 ${xicc} ${paperDir}/Figure2.pdf
-pdfseparate -f 17 -l 17 ${xicc} ${paperDir}/Figure3.pdf
-pdfseparate -f 18 -l 18 ${xicc} ${paperDir}/Figure4.pdf
+pdfseparate -f 14 -l 14 ${xicc} ${paperDir}/Figure2.pdf
+pdfseparate -f 18 -l 18 ${xicc} ${paperDir}/Figure3.pdf
+pdfseparate -f 19 -l 19 ${xicc} ${paperDir}/Figure4.pdf
 echo 'date is '$(date)
 # Run the code to add the systematic error from the choice of averaging method
 echo ${pythonExe} ${scriptDir}/addSysErr.py ${myDir}/completeToml/addSysErr.toml

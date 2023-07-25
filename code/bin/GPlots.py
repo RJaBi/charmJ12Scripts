@@ -25,7 +25,7 @@ def main(args: list):
 
     params = mo.GetArgs(args)
     #  Printing the input toml back out - easier to read than printing as a dictionary
-    toml.dump(params, f=sys.stdout)
+    # toml.dump(params, f=sys.stdout)
     # Setting x, limits to None if they were 'None' in the toml
     params = mo.refineXYLims(params)
 
@@ -115,7 +115,6 @@ def main(args: list):
             if setRed:
                 if col == '#d1615d':  # know this is red
                     col = next(ax._get_lines.prop_cycler)['color']
-        print(plotXStart, plotXMin)
         ax = GVP.plot_gvEbar(x[plotXStart:plotXMin], G[plotXStart:plotXMin], ax, ma=mark, ls='', lab=myLab, col=col)  # type: ignore  # noqa: E501
         axAna = GVP.plot_gvEbar(x[plotXStart:plotXMin], G[plotXStart:plotXMin], axAna, ma=mark, ls='', lab=myLab)  # type: ignore  # noqa: E501
         axAna.set_xlabel(myXLab)

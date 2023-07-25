@@ -205,7 +205,7 @@ def main(args: list):
     seed = gv.ranseed(9)  # noqa: F841
     params = mo.GetArgs(args)
     # Printing the input toml back out
-    toml.dump(params, f=sys.stdout)
+    # toml.dump(params, f=sys.stdout)
     # Setting x, limits to None if they were 'None' in the toml
     params = mo.refineXYLims(params)
 
@@ -219,7 +219,7 @@ def main(args: list):
         
     # where we put the analysis
     anaDir = os.path.join(params['analysis']['anaDir'])
-    # print('Analysis output directory is ', anaDir)
+    print('Analysis output directory is ', anaDir)
     if not os.path.exists(anaDir):
         os.makedirs(anaDir)
 

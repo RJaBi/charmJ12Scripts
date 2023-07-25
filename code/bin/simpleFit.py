@@ -169,7 +169,7 @@ def allConstFits(GVD: np.ndarray, fMin: int, fMax: int, Nt: int) -> Tuple[List[A
     # Iterate over fit windows
     for ls, le, rs, re in fwin:
         # print()
-        print(f'Doing fit for [{ls}, {le}] and [{rs}, {re}]')
+        # print(f'Doing fit for [{ls}, {le}] and [{rs}, {re}]')
         yF, keepF = mo.removeZero(GVD[ls: le])
         yB, keepB = mo.removeZero(GVD[rs: re])
         xF = x[ls: le][keepF]
@@ -314,7 +314,7 @@ def main(args: list):
 
     params = mo.GetArgs(args)
     #  Printing the input toml back out - easier to read than printing as a dictionary
-    toml.dump(params, f=sys.stdout)
+    # toml.dump(params, f=sys.stdout)
     # Setting x, limits to None if they were 'None' in the toml
     params = mo.refineXYLims(params)
 
@@ -345,21 +345,21 @@ def main(args: list):
         pdf = PdfPages(os.path.join(thisAnaDir, 'mAve.pdf'))
         # Now do the analysis
         G = io.labelNorm(cfDict['data'][ana], params)
-        print(f'Data has shape {G.shape}')
+        # print(f'Data has shape {G.shape}')
         # Binning the data such that have around 400 bins
         ncon = G.shape[0]
         nana = 400
         if nana > ncon:
             nana = ncon
         binsize = int(np.floor(ncon/nana))
-        print(f'Binning data with binsize = {binsize}')
+        # print(f'Binning data with binsize = {binsize}')
         binned = np.asarray(gv.dataset.bin_data(G, binsize=binsize))
-        print(f'Data now has shape {binned.shape}')
+        # print(f'Data now has shape {binned.shape}')
         # Take the gv data set averaging and correct cov matrix
         GVD = gv.dataset.avg_data(binned)
         if not params['analysis']['covFit']:
             GVD = gv.gvar(gv.mean(GVD), gv.sdev(GVD))
-        print(f'The gvar dataset has shape {GVD.shape}')
+        # print(f'The gvar dataset has shape {GVD.shape}')
         Nt = np.shape(binned)[1]
         x = np.arange(0, Nt)
         # Setting x-axis and actually fMax
@@ -408,10 +408,10 @@ def main(args: list):
         doFits = params['analysis']['redoFits']
         fitPath = os.path.join(thisAnaDir, 'fit')
         # and also if the file doesn't exist
-        print(f'fitPath = {fitPath}')
+        # print(f'fitPath = {fitPath}')
         if not os.path.exists(fitPath+'.1.gvar') or doFits or not os.path.exists(fitPath+'Tuples.pickle'):  # noqa: E501
             fitRes, fitTuples = allFits(GVD, thisfMin, thisfMax, Nt, fCon)
-            print(f'Saving fits to {fitPath}.N.gvar')
+            # print(f'Saving fits to {fitPath}.N.gvar')
             cut = 50
             count = 0
             fcount = 0
@@ -427,13 +427,13 @@ def main(args: list):
                 fcount = fcount + 1
                 # incremneting counters
                 count = count + cut
-            print(f'Saving fitwindows to {fitPath}Tuples.pickle')
+            # print(f'Saving fitwindows to {fitPath}Tuples.pickle')
             pickle.dump(fitTuples, open(f'{fitPath}Tuples.pickle', 'wb'))
         if True:
             # ALWAYS RELOAD FROM THE FIT FILES TO GET RIGHT STRUCTURE
-            print(f'from fitwindows from {fitPath}Tuples.pickle')
+            # print(f'from fitwindows from {fitPath}Tuples.pickle')
             fitTuples = pickle.load(open(f'{fitPath}Tuples.pickle', 'rb'))
-            print(f'Loading fits from {fitPath}.N.gvar')
+            # print(f'Loading fits from {fitPath}.N.gvar')
             cut = 50
             count = 0
             fcount = 0
@@ -449,7 +449,7 @@ def main(args: list):
                 fitRes.extend(fitList)
                 fcount = fcount + 1
                 count = count + cut
-        print('After fits')
+        # print('After fits')
         # Calculate effective mass
         effE = EP.getEffE(params, massdt, GVD)
         # Remove nan like this cause its a gvar
@@ -458,9 +458,9 @@ def main(args: list):
                 # print('is nan', ii)
                 effE[ii] = gv.gvar(0, 0)
         # fit effective mass
-        print(f'effEFMin = {effEFMin}, thisfMax = {thisfMax}')
+        # print(f'effEFMin = {effEFMin}, thisfMax = {thisfMax}')
         eFitRes, eFitTuples = allConstFits(effE, effEFMin, thisfMax, Nt)
-        print(len(eFitRes), len(eFitTuples))
+        # print(len(eFitRes), len(eFitTuples))
         # Grab the bits we care about
         Q = []
         eEPF = []
@@ -490,12 +490,12 @@ def main(args: list):
         fParams = np.asarray(fParams)  # type: ignore
         # Take model averages
         AIC_plat, prMD_plat = AICModelAve([np.asarray(eEPF), np.asarray(eEMF)], np.asarray(fParams), np.asarray(dof), Nt, np.asarray(chi2))  # noqa: E501
-        print('AIC_plat', AIC_plat)
+        # print('AIC_plat', AIC_plat)
         # Save these
         pickle.dump(prMD_plat, open(f'{fitPath}_AIC_plat_prMD.pickle', 'wb'))
         gv.dump(AIC_plat, f'{fitPath}_AIC_plat_Aved.gvar', add_dependencies=True)
         pValAved_plat, wf = pValueModelAve(Q, [eEPF, eEMF])  # type: ignore
-        print('pValAved_plat', pValAved_plat)
+        # print('pValAved_plat', pValAved_plat)
         pickle.dump(wf, open(f'{fitPath}_pVal_plat_wf.pickle', 'wb'))
         gv.dump(pValAved_plat, f'{fitPath}_pVal_plat_Aved.gvar', add_dependencies=True)
         # Just plot the effective mass fits
@@ -678,7 +678,7 @@ def main(args: list):
                         continue
                     if gv.mean(jjA) <= 0.55 and gv.mean(jjA) >= 0.45:
                         if gv.sdev(jjA) <= 0.41 and gv.sdev(jjA) >= 0.39:
-                            print('skipping', jj, jjA)
+                            # print('skipping', jj, jjA)
                             continue
                         # if jjA == gv.gvar('0.50(40)'):
                         # This was the prior value
@@ -735,13 +735,13 @@ def main(args: list):
         # OPrinting (temp)
         # for ii in range(0, len(fDE)):
         #    print(fEP[ii], fDE[ii], fEM[ii], fDE[ii] + fEP[ii])
-        print(f'Averaging {len(fEP)} fits')
+        # print(f'Averaging {len(fEP)} fits')
         # model averaging sing p value method
         pValAved, wf = pValueModelAve(Q, [fEP, fEM])  # type: ignore
-        print(pValAved, wf.shape)
+        # print(pValAved, wf.shape)
         # and similarly for the AIC method
         AICValAved, prMD = AICModelAve([fEP, fEM], fParams, dof, Nt, chi2)  # type: ignore
-        print(AICValAved, prMD.shape)
+        # print(AICValAved, prMD.shape)
         # Now save the model averaged values
         pickle.dump(wf, open(f'{fitPath}_pVal_wf.pickle', 'wb'))
         gv.dump(pValAved, f'{fitPath}_pVal_Aved.gvar', add_dependencies=True)
@@ -823,7 +823,7 @@ def main(args: list):
         plt.close(fig)
         pdf.savefig(fig_t)
         plt.close(fig_t)
-        print(f'averaged len(wins), {len(wins)} fits')
+        # print(f'averaged len(wins), {len(wins)} fits')
         # eff mass plot
         fig, ax1 = plt.subplots(figsize=(16.6, 11.6))
         hoz = [pValAved[0], pValAved[1], AICValAved[0], AICValAved[1], eEP, eEM, AIC_plat[0], AIC_plat[1]]  # noqa: E501
@@ -886,7 +886,7 @@ def main(args: list):
         ax2.set_ylabel('weight')
         pdf.savefig(fig)
         plt.close(fig)
-        print(f'averaged len(wins), {len(wins)} fits')
+        # print(f'averaged len(wins), {len(wins)} fits')
         # Now the two p-valued
         # These may have different weights
         # E+ PVal
@@ -948,7 +948,7 @@ def main(args: list):
         nFits = int(np.ceil(fitPer * len(prMD)))
         if nFits < 10:
             nFits = 10
-        print(f'nFits is {nFits}')
+        # print(f'nFits is {nFits}')
         sortOrder = np.flip(wf[0, :].argsort())
         sortWins = np.asarray(wins)[sortOrder][5: nFits+5]
         # Grabbing data from fits
@@ -1028,13 +1028,13 @@ def main(args: list):
         Q = np.asarray(Q)  # type: ignore
         dof = np.asarray(dof)  # type: ignore
         fParams = np.asarray(fParams)  # type: ignore
-        print(f'Averaging {len(fEP)} fits')
+        # print(f'Averaging {len(fEP)} fits')
         # model averaging sing p value method
         pValAved, wf = pValueModelAve(Q, [fEP, fEM])  # type: ignore
-        print('after aic', pValAved, wf.shape)
+        # print('after aic', pValAved, wf.shape)
         # and similarly for the AIC method
         AICValAved, prMD = AICModelAve([fEP, fEM], fParams, dof, Nt, chi2)  # type: ignore
-        print('after aic', AICValAved, prMD.shape)
+        # print('after aic', AICValAved, prMD.shape)
         # Save these fits
         pickle.dump(wf, open(f'{fitPath}_AICP_pVal_wf.pickle', 'wb'))
         gv.dump(pValAved, f'{fitPath}_AICP_pVal_Aved.gvar', add_dependencies=True)
@@ -1121,7 +1121,7 @@ def main(args: list):
         plt.close(fig)
         pdf.savefig(fig_t)
         plt.close(fig_t)
-        print(f'averaged len(wins), {len(wins)} fits')
+        # print(f'averaged len(wins), {len(wins)} fits')
         # eff mass plot
         fig, ax1 = plt.subplots(figsize=(16.6, 11.6))
         hoz = [pValAved[0], pValAved[1], AICValAved[0], AICValAved[1]]  # , eEP, eEM, AIC_plat[0], AIC_plat[1]]  # noqa: E501
@@ -1191,7 +1191,7 @@ def main(args: list):
         ax2.set_ylabel('$\\tilde{w}_f$')
         pdf.savefig(fig)
         plt.close(fig)
-        print(f'averaged len(wins), {len(wins)} fits')
+        # print(f'averaged len(wins), {len(wins)} fits')
         # Now the two p-valued
         # These may have different weights
         # E+ PVal
@@ -1248,7 +1248,7 @@ def main(args: list):
         pdf.savefig(fig)
         plt.close(fig)
         # Close the pdf
-        print(f'Closing the pdf {os.path.join(thisAnaDir, "mAve.pdf")}')
+        # print(f'Closing the pdf {os.path.join(thisAnaDir, "mAve.pdf")}')
         pdf.close()
     # Outsideloop
     sys.exit('Finished')

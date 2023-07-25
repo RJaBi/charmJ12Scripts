@@ -63,7 +63,7 @@ def effE_solve(massdt: np.float64, GJ2: np.ndarray) -> np.ndarray:
     itert = np.nditer(effEJ2[:, 0, :], flags=['multi_index'])
     # Looping over all 1st order and time
     # Looping over 2nd order as well is far too slow
-    print('Setting 2nd order jackkife values to last 1st order jackknife value')
+    # print('Setting 2nd order jackkife values to last 1st order jackknife value')
     for ii in itert:
         inds = itert.multi_index
         jackIn = inds[0]
@@ -115,17 +115,17 @@ def getEffE(params: Dict[str, Any], massdt: np.float64, GJ2: np.ndarray) -> np.n
     else:
         effEMethod = params['analysis']['effEMethod']
     if effEMethod == 'centre':
-        print('Using centre finite difference for effective energy')
+        # print('Using centre finite difference for effective energy')
         # Noisier
         effEJ2 = effE_centre(massdt, GJ2)
     elif effEMethod == 'solve':
-        print('Solving for effective energy')
+        # print('Solving for effective energy')
         effEJ2 = effE_solve(massdt, GJ2)
     elif effEMethod == 'forward':
-        print('Using forward finite difference for effective energy')
+        # print('Using forward finite difference for effective energy')
         effEJ2 = effE_forward(massdt, GJ2)
     elif effEMethod == 'baryonPBC':
-        print('Using four points baryon Periodic BC for eff energy')
+        # print('Using four points baryon Periodic BC for eff energy')
         effEJ2 = effE_barAna(GJ2)
     else:
         sys.exit(f'Unsupported effective energy method {effEMethod}')

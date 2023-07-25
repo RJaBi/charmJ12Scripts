@@ -150,7 +150,8 @@ def labelNorm(G: np.ndarray, params):
     if params['cfuns']['norm'] == 'labelSrcAve':
         G[:, :] = G[:, :] / np.mean(G[:, int(params['analysis']['src_t0'])])
     else:
-        print(f'Not normallising on label level as norm == {params["cfuns"]["norm"]}')
+        myStr = f'Not normallising on label level as norm == {params["cfuns"]["norm"]}'
+        # print(myStr)
     return G
 
 
@@ -290,7 +291,7 @@ def initCorrelators(params):
             cfSkip = params['cfuns']['cfSkip']
         else:
             cfSkip = []
-        print('pre', len(cfList))
+        # print('pre', len(cfList))
         if len(cfSkip) > 0:
             for sk in cfSkip:
                 for cf in cfList:
@@ -298,14 +299,14 @@ def initCorrelators(params):
                         # string in
                         print(f'Removing correlator {cf} due to skip element {sk}')
                         cfList.remove(cf)
-        print('post', len(cfList))
+        # print('post', len(cfList))
 
         # Optionally not using all the cfuns we wanted loaded
         if 'cfCut' in params['cfuns'].keys():
             cfCut = params['cfuns']['cfCut']
         else:
             cfCut = len(cfList)
-        print(f'cfCut is {cfCut}')
+        # print(f'cfCut is {cfCut}')
         cfList = cfList[:cfCut]
         # Set the loading type
         if 'hadronType' not in params['cfuns'].keys():
@@ -371,18 +372,18 @@ def initCorrelators(params):
         if 'norm' in params['cfuns'].keys():
             # Normallise by average
             if params['cfuns']['norm'] == 'srcAve':
-                print('Normallising correlators by average accross correlators at src location')
+                # print('Normallising correlators by average accross correlators at src location')
                 G[:, :] = G[:, :]/np.mean(G[:, int(params['analysis']['src_t0'])])
         # And update the storage dict
         cfDict['data'].update({cfLL: G})
         cfDict['params'].update({cfLL: params['cfuns'][cfLL]})
-        print(f'Loaded correlators for label {cfLL} successfully')
+        # print(f'Loaded correlators for label {cfLL} successfully')
 
     # Now do the maths we want to do
     smLabels = params['analysis']['symMathLabels']
     smMaths = params['analysis']['symMathMaths']
     if len(smLabels) != len(smMaths):
-        print('smLabels', 'smMaths')
+        # print('smLabels', 'smMaths')
         if len(smLabels) < len(smMaths):
             for ii in range(0, len(smMaths)):
                 try:
@@ -403,7 +404,7 @@ def initCorrelators(params):
         resampleDict = {}
         sys.exit('symMath labels and Maths must be matched pair of lists')
     for lab, math in zip(smLabels, smMaths):
-        print('Doing math for ', lab, math)
+        # print('Doing math for ', lab, math)
         if 'var' in math:
             # I.e. the maths looks like
             # 'var:G11,G12,G21,G22:t0INTdtINT'
@@ -468,7 +469,7 @@ def initCorrelators(params):
                 sys.exit(f'Flip only works for single label. Multiple {allVar} selected')
             corrName = allVar[0]
             G = np.copy(GList[0])
-            print(f'Reversing correlator, i.e. G(t) -> G(Nt - t) for {corrName}')
+            # print(f'Reversing correlator, i.e. G(t) -> G(Nt - t) for {corrName}')
             # The below loop is equivalent to the flip
             # NT = np.shape(G)[-1]
             # GR = np.empty(G.shape)
@@ -476,7 +477,7 @@ def initCorrelators(params):
             #     GR[..., ii-1] = G[..., NT - ii]
             # Flip only along time-axis to maintain cfg index
             GR = np.flip(G, axis=-1)
-            print(GR.shape, G.shape, GList[0].shape)
+            # print(GR.shape, G.shape, GList[0].shape)
             # Renormalising for new 'src' location
             if params['cfuns']['norm'] == 'src':
                 for ii in range(0, GR.shape[0]):
@@ -526,8 +527,8 @@ def initCorrelators(params):
                     print('label '+var+' not in cfLabelsList:')
                     print(*[f'{x}  \n' for x in cfLabelsList])
                     sys.exit('Exiting')
-                if 'R' in lab:
-                    print('rat', lab, var, cfDict['data'][var].shape, np.mean(cfDict['data'][var], axis=0)[0:3])  # noqa: E501
+                # if 'R' in lab:
+                #     print('rat', lab, var, cfDict['data'][var].shape, np.mean(cfDict['data'][var], axis=0)[0:3])  # noqa: E501
                 # Here we set the variables to be appropriate values
                 myVar.append(cfDict['data'][var])
             # Now make it into a tuple so can unpack
@@ -536,7 +537,7 @@ def initCorrelators(params):
             cfDict['data'].update({lab: func(*myVarTuple)})
             # print(lab, np.mean(cfDict['data'][lab], axis=0)[0:5])
             cfDict['params'].update({lab: cfDict['params'][aV[0]]})
-            print('TODO: Check that maths is compatible. I.e. that from same ensemble, same configs. Using i.e ILAFF or manual checks')  # noqa: E501
+            # print('TODO: Check that maths is compatible. I.e. that from same ensemble, same configs. Using i.e ILAFF or manual checks')  # noqa: E501
             # And update the list of labels for 'correlators' we have
             cfLabelsList.append(lab)
     if resample:
@@ -752,7 +753,7 @@ def initCorrelatorsGvar(params):
             cfSkip = params['cfuns']['cfSkip']
         else:
             cfSkip = []
-        print('pre', len(cfList))
+        # print('pre', len(cfList))
         if len(cfSkip) > 0:
             for sk in cfSkip:
                 for cf in cfList:
@@ -760,13 +761,13 @@ def initCorrelatorsGvar(params):
                         # string in
                         print(f'Removing correlator {cf} due to skip element {sk}')
                         cfList.remove(cf)
-        print('post', len(cfList))
+        # print('post', len(cfList))
         # Optionally not using all the cfuns we wanted loaded
         if 'cfCut' in params['cfuns'].keys():
             cfCut = params['cfuns']['cfCut']
         else:
             cfCut = len(cfList)
-        print(f'cfCut is {cfCut}')
+        # print(f'cfCut is {cfCut}')
         cfList = cfList[:cfCut]
         # Set the loading type
         if 'hadronType' not in params['cfuns'].keys():
@@ -811,7 +812,7 @@ def initCorrelatorsGvar(params):
         # And update the storage dicts
         cfDataDict.update({cfLL: G})
         cfParamsDict.update({cfLL: params['cfuns'][cfLL]})
-        print(f'Loaded correlators for label {cfLL} successfully')
+        # print(f'Loaded correlators for label {cfLL} successfully')
 
     # Optionally normallise
     cfDataDict = preNorm(params, cfDataDict)
@@ -899,7 +900,7 @@ def initCorrelatorsGvar(params):
                 sys.exit(f'Flip only works for single label. Multiple {allVar} selected')
             corrName = allVar[0]
             G = np.copy(GList[0])
-            print(f'Reversing correlator, i.e. G(t) -> G(Nt - t) for {corrName}')
+            # print(f'Reversing correlator, i.e. G(t) -> G(Nt - t) for {corrName}')
             # The below loop is equivalent to the flip
             # NT = np.shape(G)[-1]
             # GR = np.empty(G.shape)
@@ -911,7 +912,7 @@ def initCorrelatorsGvar(params):
             cfParamsDict.update({lab: cfParamsDict[allVar[0]]})
             cfLabelsList.append(lab)
         elif 'toy:' in math[0:8]:
-            print('Doing toy math')
+            # print('Doing toy math')
             # A toy correlator
             # format:
             # toy:TOYTYPE:[A(AErr),B(BErr)]_[C(CErr),D(DErr)]_NT_xmin_xmax
@@ -1128,7 +1129,7 @@ def writeGVDCSV(outName: str, GVDD, keys):
     format tau, lab1 Val, lab1 Err, lab2 Val, lab2 Err...
     ASSUMES ALL HAVE SAME LENGTH
     """
-    print(keys)
+    # print(keys)
     header = ['tau']
     for k in keys:
         header = header + [k, f'{k}_Err']

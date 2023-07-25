@@ -29,7 +29,7 @@ def main(args: list):
 
     params = mo.GetArgs(args)
     # Printing the input toml back out - easier to read than printing as a dictionary
-    toml.dump(params, f=sys.stdout)
+    # toml.dump(params, f=sys.stdout)
     # Setting x, limits to None if they were 'None' in the toml
     params = mo.refineXYLims(params, subDict=None)
 
@@ -49,7 +49,7 @@ def main(args: list):
     if not os.path.exists(anaDir):
         os.makedirs(anaDir)
     pdfName = os.path.join(anaDir, 'spectrumPlot.pdf')
-    print(f'Saving pdf to {pdfName}')
+    # print(f'Saving pdf to {pdfName}')
     pdf = PdfPages(pdfName)
     # ylimit of plots
     if 'ylim' in params.keys():
@@ -61,11 +61,11 @@ def main(args: list):
     # Load the data
     # From csv if it exists
     if 'massCSV' in params['mAve'].keys():
-        print(f"Loading the lattice csv from {params['mAve']['massCSV']}")
+        # print(f"Loading the lattice csv from {params['mAve']['massCSV']}")
         massDF = pd.read_csv(params['mAve']['massCSV'])
         NT = params['mAve']['NT']
     if 'expCSV' in params.keys():
-        print(f'loading the experimental csv from {params["expCSV"]}')
+        # print(f'loading the experimental csv from {params["expCSV"]}')
         expDF = pd.read_csv(params['expCSV'])
         expDF = expDF.rename(columns=lambda x: x.strip())
         expCSV = True
@@ -75,7 +75,7 @@ def main(args: list):
         else:
             PhysMult = 1.0
     for aa, aLab in enumerate(params['mAve']['anaLab']):
-        print(aa, aLab)
+        # print(aa, aLab)
         thisDict = {}
         if expCSV:
             aDF = expDF.query('Operator == @aLab')
@@ -142,7 +142,7 @@ def main(args: list):
     # have we put an experiment label in?
     expLabel = False
     for xV, row in dataDF.iterrows():
-        print(count, xV)
+        # print(count, xV)
         # order = dataDF['order'][count]
         x0 = count - xStep
         x1 = count + xStep

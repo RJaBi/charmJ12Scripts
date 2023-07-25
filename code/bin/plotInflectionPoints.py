@@ -25,18 +25,18 @@ def main(args: list):
     """
     params = mo.GetArgs(args)
     # Printing the input toml back out - easier to read than printing as a dictionary
-    toml.dump(params, f=sys.stdout)
+    # toml.dump(params, f=sys.stdout)
     # refining ylims
     params = mo.refineXYLims(params, subDict=None)
 
     # Load the csv
     inflectDFList = []
     for csv in params['inflectCSV']:
-        print(f"Loading the csv from {csv}")
+        # print(f"Loading the csv from {csv}")
         inflectDF = pd.read_csv(csv)
         # Removing white space in column names
         inflectDF = inflectDF.rename(columns=lambda x: x.strip())
-        print(inflectDF.head())
+        # print(inflectDF.head())
         inflectDFList.append(inflectDF)
     # Set up where to save
     anaDir = os.path.join(params['anaDir'])
@@ -49,7 +49,7 @@ def main(args: list):
     xLabels = []
     for dd, df in enumerate(inflectDFList):
         # plt.gca().set_prop_cycle(None)
-        print(dd, df)
+        # print(dd, df)
         if params['TpcType'] == 'MeV':
             Tpc = gv.gvar(df['MeV'].values, df['MeVErr'].values)
             yScale = ' (MeV)'

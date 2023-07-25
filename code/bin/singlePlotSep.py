@@ -77,10 +77,10 @@ def setYlim2Dim(params, ax, axScale, ytrim = 0):
                     labelright=labelright
                 )
     if 'ylim' in params.keys():
-        print('Setting manually')
+        # print('Setting manually')
         return ax
     # Now set ylims
-    print(f'ysScale is {yScale}')
+    # print(f'ysScale is {yScale}')
     for vv in range(0, np.shape(ax)[0]):
         vertMid = np.median(middles[vv, :])
         yMinVV = vertMid - yScale / 2
@@ -253,7 +253,7 @@ def main(args: list):
 
     params = mo.GetArgs(args)
     # Printing the input toml back out - easier to read than printing as a dictionary
-    toml.dump(params, f=sys.stdout)
+    # toml.dump(params, f=sys.stdout)
     # refining ylims
     params = mo.refineXYLims(params, subDict=None)
     # For conversion to physical units
@@ -262,9 +262,9 @@ def main(args: list):
     xi = gv.gvar(params['latMass']['xi'])
     a_t = a_s/xi
     # Load the csv
-    print(f"Loading the csv from {params['latMass']['massCSV']}")
+    # print(f"Loading the csv from {params['latMass']['massCSV']}")
     massDF = pd.read_csv(params['latMass']['massCSV'])
-    print(massDF.head())
+    # print(massDF.head())
     # Set up where to save
     anaDir = os.path.join(params['latMass']['anaDir'])
     print('Analysis output directory is ', anaDir)
@@ -287,7 +287,7 @@ def main(args: list):
         pdfNameB = os.path.join(anaDir, 'singlePlotSep_BothParity.pdf')
         pdfNameDiff = os.path.join(anaDir, 'singlePlotSep_Diff.pdf')
     # now this is hwere savign to
-    print(f'Saving pdf to {pdfName} and {pdfNameM}')
+    # print(f'Saving pdf to {pdfName} and {pdfNameM}')
     temperatures = params['latMass']['temperatures']
     # horz number
     numChannels = params['latMass']['numChannels']
@@ -532,7 +532,7 @@ def main(args: list):
     if numChannels > 1:
         ax, axScale = setYlim1Dim(params, ax, ax)
         axM, axMScale = setYlim1Dim(params, axM, axM, ytrim=0.2)
-        print('axScale, axMScale', axScale, axMScale)
+        # print('axScale, axMScale', axScale, axMScale)
         skip = True
         if not skip:
             if axScale > axMScale:
@@ -548,7 +548,7 @@ def main(args: list):
     elif numChannels == 1:
         ax, axScale = setYlim1Dim(params, ax, ax, setY=False, ytrim=0.2)
         axM, axMScale = setYlim1Dim(params, axM, axM, ytrim=0.2, setY=False)
-        print('axScale, axMScale', axScale, axMScale)
+        # print('axScale, axMScale', axScale, axMScale)
         skip = False
         if not skip:
             if axScale > axMScale:

@@ -83,11 +83,11 @@ def main(args: list):
     """
     params = mo.GetArgs(args)
     #  Printing the input toml back out - easier to read than printing as a dictionary
-    toml.dump(params, f=sys.stdout)
+    # toml.dump(params, f=sys.stdout)
     if 'massCSV' in params.keys():
         # Load the initial csv in which has the fit type we want in it
         massDF = pd.read_csv(params['massCSV'])
-        print(massDF.head())
+        # print(massDF.head())
         # clean the column names cause pandas doesn't like latex
         columns = cleanColumnNames(massDF)
     # This is for the output
@@ -163,7 +163,7 @@ def main(args: list):
         csvDict['EMFits'].append(EMFits)
     # Put the csvDict into a dataframe for saving
     csvSave = pd.DataFrame(csvDict)
-    print(csvSave.head())
+    # print(csvSave.head())
     if 'massCSV' in params.keys():
         outCSV = os.path.join(params['anaDir'], params['massCSV'].split('.csv')[0] + '_sysErr.csv')  # noqa: E501
     else:

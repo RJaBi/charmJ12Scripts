@@ -13,11 +13,11 @@ def GetArgs(args: list) -> MutableMapping[str, Any]:
     Tests the args for appropriateness,
     loads the parameters in from the parameter file specified in args
     """
-    print(args)
+    # print(args)
     if len(args) > 1:
         sys.exit('invalid number of arguments presented')
     if 'toml' in args[0]:
-        print('load toml from '+args[0])
+        # print('load toml from '+args[0])
         params = toml.load(args[0])
     else:
         sys.exit('Not a toml file '+args[0])
@@ -42,7 +42,7 @@ def GertPlotSettings():
     # Make minor ticks visible
     mpl.rcParams['xtick.minor.visible'] = True
     mpl.rcParams['ytick.minor.visible'] = True
-    print('Updated Gert Plot Settings')
+    # print('Updated Gert Plot Settings')
 
 
 def initBigPlotSettings():
@@ -72,7 +72,7 @@ def initBigPlotSettings():
     # make type 42 types for easier editing in pdf editor
     mpl.rcParams['pdf.fonttype'] = 42
     GertPlotSettings()
-    print('Updated Plot Settings')
+    # print('Updated Plot Settings')
 
 
 def refineXYLims(params, subDict='analysis') -> Dict[str, Any]:
@@ -176,14 +176,14 @@ def doJack(data: np.ndarray, order=2):
     Assumes config is the leftmost index of data
     """
     if order == 1:
-        print('consider not doing this seems broken with jackCov')
+        # print('consider not doing this seems broken with jackCov')
         jack = np.empty(data.shape)
         for ii in range(0, jack.shape[0]):
             jack[ii, ...] = (np.sum(data, axis=0) - data[ii, ...]) / (data.shape[0] - 1)
     elif order == 2:
         ncon = data.shape[0]
         jack = np.empty([ncon + 1, ncon + 1] + list(data.shape[1:]))
-        print(jack.shape)
+        # print(jack.shape)
         jack[0, 0, ...] = doJack(data, 0)    # Mean
         jack[1:, 0, ...] = doJack(data, 1)    # 1st Order Jacks
         jack[0, 1:, ...] = data    # Just the data

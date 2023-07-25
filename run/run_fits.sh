@@ -19,7 +19,8 @@ for NT in 32 36 40 48 56 64 128; do
 	tomlDir=${dir}/${tomlSave}/
 	mkdir -v ${tomlDir}      
 	#for particle in uud uus uuc ssu ssc ccu ccs
-	for particle in uds udc usc; do
+	#for particle in uds udc usc; do
+	for particle in udc usc; do
 	#for particle in ccc
 	    # Copy the example to the folder
 	    thisToml=${tomlDir}/${NT}_${OP}_${particle}.toml
@@ -38,7 +39,8 @@ for NT in 32 36 40 48 56 64 128; do
 	tomlExample=${dir}/fitTemplates/${NT}_${OP}_OP.toml
 	#tomlDir=${dir}/${tomlSave}/
 	#mkdir -v ${tomlDir}      
-	for particle in uud uus uuc ssu ssc ccu ccs; do
+	#for particle in uud uus uuc ssu ssc ccu ccs; do
+	for particle in uuc ssc ccu ccs; do
 	    # Copy the example to the folder
 	    thisToml=${tomlDir}/${NT}_${OP}_${particle}.toml
 	    echo cp -av ${tomlExample} ${thisToml}

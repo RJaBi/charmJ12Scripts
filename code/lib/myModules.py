@@ -2,6 +2,7 @@
 from typing import Dict, Any, MutableMapping, Tuple, List
 import matplotlib as mpl  # type: ignore
 import numpy as np  # type: ignore
+import warnings
 import sys
 import toml
 import unicodedata
@@ -73,6 +74,10 @@ def initBigPlotSettings():
     mpl.rcParams['pdf.fonttype'] = 42
     GertPlotSettings()
     # print('Updated Plot Settings')
+    # stop showing all warnings
+    # this does not work on LOCATOR warnings :(
+    # warnings.filterwarnings( "ignore", module = "matplotlib\..*" )
+    warnings.filterwarnings("ignore")
 
 
 def refineXYLims(params, subDict='analysis') -> Dict[str, Any]:

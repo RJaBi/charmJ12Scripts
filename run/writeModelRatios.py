@@ -112,7 +112,7 @@ def main(args: list):
                 symMathLabels.append(f'F_{toyShortName}')
                 symMathMaths.append(f'flip:{toyShortName}:{toyShortName}')
             # Construct Ratio of actual to model
-            ratShort = f'M:{OPUN}_{qqq}_{NT},{toyShortName}:{toyShortName}/{OPUN}_{qqq}_{NT}'
+            ratShort = f'M:{OPUN}_{qqq}_{NT},{toyShortName}:{OPUN}_{qqq}_{NT}/{toyShortName}'
             ratShortName = f'Ratio_{OPUN}_{qqq}_{NT}_{NT}'
             symMathLabels.append(ratShortName)
             symMathMaths.append(ratShort)
@@ -138,12 +138,12 @@ def main(args: list):
                         symMathLabels.append(f'F_{T0toyShortName}')
                         symMathMaths.append(f'flip:{T0toyShortName}:{T0toyShortName}')
                     # Construct Ratio of actual to model
-                    T0ratShort = f'M:{OPUN}_{qqq}_{T0NT},{T0toyShortName}:{T0toyShortName}/{OPUN}_{qqq}_{T0NT}'  # noqa: E501
+                    T0ratShort = f'M:{OPUN}_{qqq}_{T0NT},{T0toyShortName}:{OPUN}_{qqq}_{T0NT}/{T0toyShortName}'  # noqa: E501
                     T0ratShortName = f'Ratio_{OPUN}_{qqq}_{T0NT}_{T0NT}'
                     symMathLabels.append(T0ratShortName)
                     symMathMaths.append(T0ratShort)
                     if params['maths']['negParity']:
-                        T0ratShort = f'M:F_{OPUN}_{qqq}_{T0NT},F_{T0toyShortName}:F_{T0toyShortName}/F_{OPUN}_{qqq}_{T0NT}'  # noqa: E501
+                        T0ratShort = f'M:F_{OPUN}_{qqq}_{T0NT},F_{T0toyShortName}:F_{OPUN}_{qqq}_{T0NT}/F_{T0toyShortName}'  # noqa: E501
                         T0ratShortName = f'F_Ratio_{OPUN}_{qqq}_{T0NT}_{T0NT}'
                         symMathLabels.append(T0ratShortName)
                         symMathMaths.append(T0ratShort)

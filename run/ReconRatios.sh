@@ -28,183 +28,18 @@ dataDir=${myDir}/../
 # Loop over temperatures - cool, mid, hot
 #for temp in mid;
 #for temp in cool mid;
-for temp in cool mid hot;
-#for temp in cool;
+#for temp in cool mid hot;
+for temp in cool;
 do
     # The template toml file
     template=${myDir}/template-${temp}-base.toml
-    
-#Charmless#    # Nucleon
-#Charmless#    OP=doublet.2fl
-#Charmless#    UN=doublet_2fl
-#Charmless#    qqq=uud
-#Charmless#    had='N(uud)'
-#Charmless#    for RAT in double single;
-#Charmless#    #for RAT in single;
-#Charmless#    do
-#Charmless#	PAR=Pos
-#Charmless#	thisToml=${outTomlDir}/${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml
-#Charmless#	echo cp -av ${template} ${thisToml}
-#Charmless#	cp -av ${template} ${thisToml}
-#Charmless#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~OP~${OP}~g" {} \;
-#Charmless#     find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~EXT~ReconRatio~g" {} \;
-#Charmless#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~UN~${UN}~g" {} \;
-#Charmless#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~QQQ~${qqq}~" {} \;
-#Charmless#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~NAME~${had}~g" {} \;
-#Charmless#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~RAT~${RAT}~g" {} \;
-#Charmless#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~${RAT} = false~${RAT} = true~g" {} \;
-#Charmless#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~PAR~${PAR}~g" {} \;
-#Charmless#	# Run the code to generate the full file
-#Charmless#	echo ${pythonExe} ${writeScript} ${thisToml}
-#Charmless#	${pythonExe} ${writeScript} ${thisToml}
-#Charmless#	# This puts the toml file in AutoToml-base/OP_QQQ_cool_RAT_PAR-base.toml
-#Charmless#	finalToml=${outTomlDir}/${UN}_${qqq}_${temp}_${RAT}_${PAR}_Ratios.toml
-#Charmless#	cd ${dataDir}
-#Charmless#	# and run the code to generate the plots
-#Charmless#	echo ${pythonExe} ${scriptDir}/${exe} ${finalToml}
-#Charmless#	${pythonExe} ${scriptDir}/${exe} ${finalToml}
-#Charmless#	cd -
-#Charmless#	# Negative parity
-#Charmless#	PAR=Neg
-#Charmless#	thisToml=${outTomlDir}/${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml
-#Charmless#	echo cp -av ${template} ${thisToml}
-#Charmless#	cp -av ${template} ${thisToml}
-#Charmless#     find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~EXT~ReconRatio~g" {} \;
-#Charmless#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~OP~${OP}~g" {} \;
-#Charmless#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~UN~${UN}~g" {} \;
-#Charmless#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~QQQ~${qqq}~" {} \;
-#Charmless#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~NAME~${had}~g" {} \;
-#Charmless#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~RAT~${RAT}~g" {} \;
-#Charmless#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~${RAT} = false~${RAT} = true~g" {} \;
-#Charmless#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~PAR~${PAR}~g" {} \;
-#Charmless#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~negParity = false~negParity = true~g" {} \;
-#Charmless#	# Run the code to generate the full file
-#Charmless#	echo ${pythonExe} ${writeScript} ${thisToml}
-#Charmless#	${pythonExe} ${writeScript} ${thisToml}
-#Charmless#	# This puts the toml file in AutoToml-base/OP_QQQ_cool_RAT_PAR-base.toml
-#Charmless#	finalToml=${outTomlDir}/${UN}_${qqq}_${temp}_${RAT}_${PAR}_Ratios.toml
-#Charmless#	cd ${dataDir}
-#Charmless#	# and run the code to generate the plots
-#Charmless#	echo ${pythonExe} ${scriptDir}/${exe} ${finalToml}
-#Charmless#	${pythonExe} ${scriptDir}/${exe} ${finalToml}
-#Charmless#	cd -
-#Charmless#    done
-#Charmless#    
-#Charmless#    # Sigma(uus)
-#Charmless#    OP=sigma12.3fl
-#Charmless#    UN=sigma12_3fl
-#Charmless#    qqq=uds
-#Charmless#    had='\Sigma(uus)'
-#Charmless#    for RAT in single double;
-#Charmless#    do
-#Charmless#	PAR=Pos
-#Charmless#	thisToml=${outTomlDir}/${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml
-#Charmless#	echo cp -av ${template} ${thisToml}
-#Charmless#	cp -av ${template} ${thisToml}
-#Charmless#     find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~EXT~ReconRatio~g" {} \;
-#Charmless#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~OP~${OP}~g" {} \;
-#Charmless#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~UN~${UN}~g" {} \;
-#Charmless#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~QQQ~${qqq}~" {} \;
-#Charmless#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~NAME~${had}~g" {} \;
-#Charmless#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~RAT~${RAT}~g" {} \;
-#Charmless#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~${RAT} = false~${RAT} = true~g" {} \;
-#Charmless#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~PAR~${PAR}~g" {} \;
-#Charmless#	# Run the code to generate the full file
-#Charmless#	echo ${pythonExe} ${writeScript} ${thisToml}
-#Charmless#	${pythonExe} ${writeScript} ${thisToml}
-#Charmless#	# This puts the toml file in AutoToml-base/OP_QQQ_cool_RAT_PAR-base.toml
-#Charmless#	finalToml=${outTomlDir}/${UN}_${qqq}_${temp}_${RAT}_${PAR}_Ratios.toml
-#Charmless#	cd ${dataDir}
-#Charmless#	# and run the code to generate the plots
-#Charmless#	echo ${pythonExe} ${scriptDir}/${exe} ${finalToml}
-#Charmless#	${pythonExe} ${scriptDir}/${exe} ${finalToml}
-#Charmless#	cd -
-#Charmless#	# Negative parity
-#Charmless#	PAR=Neg
-#Charmless#	thisToml=${outTomlDir}/${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml
-#Charmless#	echo cp -av ${template} ${thisToml}
-#Charmless#	cp -av ${template} ${thisToml}
-#Charmless#     find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~EXT~ReconRatio~g" {} \;    
-#Charmless#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~OP~${OP}~g" {} \;
-#Charmless#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~UN~${UN}~g" {} \;
-#Charmless#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~QQQ~${qqq}~" {} \;
-#Charmless#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~NAME~${had}~g" {} \;
-#Charmless#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~RAT~${RAT}~g" {} \;
-#Charmless#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~${RAT} = false~${RAT} = true~g" {} \;
-#Charmless#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~PAR~${PAR}~g" {} \;
-#Charmless#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~negParity = false~negParity = true~g" {} \;
-#Charmless#	# Run the code to generate the full file
-#Charmless#	echo ${pythonExe} ${writeScript} ${thisToml}
-#Charmless#	${pythonExe} ${writeScript} ${thisToml}
-#Charmless#	# This puts the toml file in AutoToml-base/OP_QQQ_cool_RAT_PAR-base.toml
-#Charmless#	finalToml=${outTomlDir}/${UN}_${qqq}_${temp}_${RAT}_${PAR}_Ratios.toml
-#Charmless#	cd ${dataDir}
-#Charmless#	# and run the code to generate the plots
-#Charmless#	echo ${pythonExe} ${scriptDir}/${exe} ${finalToml}
-#Charmless#	${pythonExe} ${scriptDir}/${exe} ${finalToml}
-#Charmless#	cd -
-#Charmless#    done
-#Charmless#    # Xi(dss)
-#Charmless#    OP=doublet.2fl
-#Charmless#    UN=doublet_2fl
-#Charmless#    qqq=ssu
-#Charmless#    had='\Xi(dss)'
-#Charmless#    for RAT in single double;
-#Charmless#    do
-#Charmless#	PAR=Pos
-#Charmless#	thisToml=${outTomlDir}/${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml
-#Charmless#	echo cp -av ${template} ${thisToml}
-#Charmless#	cp -av ${template} ${thisToml}
-#Charmless#     find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~EXT~ReconRatio~g" {} \;
-#Charmless#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~OP~${OP}~g" {} \;
-#Charmless#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~UN~${UN}~g" {} \;
-#Charmless#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~QQQ~${qqq}~" {} \;
-#Charmless#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~NAME~${had}~g" {} \;
-#Charmless#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~RAT~${RAT}~g" {} \;
-#Charmless#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~${RAT} = false~${RAT} = true~g" {} \;
-#Charmless#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~PAR~${PAR}~g" {} \;
-#Charmless#	# Run the code to generate the full file
-#Charmless#	echo ${pythonExe} ${writeScript} ${thisToml}
-#Charmless#	${pythonExe} ${writeScript} ${thisToml}
-#Charmless#	# This puts the toml file in AutoToml-base/OP_QQQ_cool_RAT_PAR-base.toml
-#Charmless#	finalToml=${outTomlDir}/${UN}_${qqq}_${temp}_${RAT}_${PAR}_Ratios.toml
-#Charmless#	cd ${dataDir}
-#Charmless#	# and run the code to generate the plots
-#Charmless#	echo ${pythonExe} ${scriptDir}/${exe} ${finalToml}
-#Charmless#	${pythonExe} ${scriptDir}/${exe} ${finalToml}
-#Charmless#	cd -
-#Charmless#	# Negative parity
-#Charmless#	PAR=Neg
-#Charmless#	thisToml=${outTomlDir}/${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml
-#Charmless#	echo cp -av ${template} ${thisToml}
-#Charmless#	cp -av ${template} ${thisToml}
-#Charmless#     find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~EXT~ReconRatio~g" {} \;    
-#Charmless#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~OP~${OP}~g" {} \;
-#Charmless#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~UN~${UN}~g" {} \;
-#Charmless#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~QQQ~${qqq}~" {} \;
-#Charmless#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~NAME~${had}~g" {} \;
-#Charmless#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~RAT~${RAT}~g" {} \;
-#Charmless#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~${RAT} = false~${RAT} = true~g" {} \;
-#Charmless#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~PAR~${PAR}~g" {} \;
-#Charmless#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~negParity = false~negParity = true~g" {} \;
-#Charmless#	# Run the code to generate the full file
-#Charmless#	echo ${pythonExe} ${writeScript} ${thisToml}
-#Charmless#	${pythonExe} ${writeScript} ${thisToml}
-#Charmless#	# This puts the toml file in AutoToml-base/OP_QQQ_cool_RAT_PAR-base.toml
-#Charmless#	finalToml=${outTomlDir}/${UN}_${qqq}_${temp}_${RAT}_${PAR}_Ratios.toml
-#Charmless#	cd ${dataDir}
-#Charmless#	# and run the code to generate the plots
-#Charmless#	echo ${pythonExe} ${scriptDir}/${exe} ${finalToml}
-#Charmless#	${pythonExe} ${scriptDir}/${exe} ${finalToml}
-#Charmless#	cd -
-#Charmless#    done
     # Sigma_c(udc)
     OP=sigma12.3fl
     UN=sigma12_3fl
     qqq=udc
     had='\Sigma_{c}(udc)'
-    # for RAT in double;
-    for RAT in single double;
+    # for RAT in;
+    for RAT in single;
     do
 	PAR=Pos
 	thisToml=${outTomlDir}/${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml
@@ -218,6 +53,7 @@ do
 	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~RAT~${RAT}~g" {} \;
 	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~${RAT} = false~${RAT} = true~g" {} \;
 	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~PAR~${PAR}~g" {} \;
+	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak 's~"None", "None"~0.95, 1.25~g' {} \;  # set ylimits
 	# Run the code to generate the full file
 	echo ${pythonExe} ${writeScript} ${thisToml}
 	${pythonExe} ${writeScript} ${thisToml}
@@ -242,6 +78,7 @@ do
 	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~${RAT} = false~${RAT} = true~g" {} \;
 	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~PAR~${PAR}~g" {} \;
 	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~negParity = false~negParity = true~g" {} \;
+	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak 's~"None", "None"~0.85, 1.5~g' {} \;  # set ylimits
 	# Run the code to generate the full file
 	echo ${pythonExe} ${writeScript} ${thisToml}
 	${pythonExe} ${writeScript} ${thisToml}
@@ -258,7 +95,7 @@ do
     UN=sigma12_3fl
     qqq=usc
     had='\Xi_{c}^{\prime}(usc)'
-    for RAT in single double;
+    for RAT in single;
     do
 	PAR=Pos
 	thisToml=${outTomlDir}/${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml
@@ -312,7 +149,7 @@ do
     UN=doublet_2fl
     qqq=ssc
     had='\Omega_{c}(ssc)'
-    for RAT in single double;
+    for RAT in single;
     do
 	PAR=Pos
 	thisToml=${outTomlDir}/${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml
@@ -366,7 +203,7 @@ do
     UN=lambda_3fl
     qqq=udc
     had='\Lambda_{c}(udc)'
-    for RAT in single double;
+    for RAT in single;
     do
 	PAR=Pos
 	thisToml=${outTomlDir}/${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml
@@ -420,7 +257,7 @@ do
     UN=lambda_3fl
     qqq=usc
     had='\Xi_{c}(usc)'
-    for RAT in single double;
+    for RAT in single;
     do
 	PAR=Pos
 	thisToml=${outTomlDir}/${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml
@@ -474,7 +311,7 @@ do
     UN=doublet_2fl
     qqq=ccu
     had='\Xi_{cc}(ccu)'
-    for RAT in single double;
+    for RAT in single;
     do
 	PAR=Pos
 	thisToml=${outTomlDir}/${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml
@@ -488,6 +325,7 @@ do
 	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~RAT~${RAT}~g" {} \;
 	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~${RAT} = false~${RAT} = true~g" {} \;
 	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~PAR~${PAR}~g" {} \;
+	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak 's~"None", "None"~0.775, 1.05~g' {} \;  # set ylimits
 	# Run the code to generate the full file
 	echo ${pythonExe} ${writeScript} ${thisToml}
 	${pythonExe} ${writeScript} ${thisToml}
@@ -512,6 +350,7 @@ do
 	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~${RAT} = false~${RAT} = true~g" {} \;
 	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~PAR~${PAR}~g" {} \;
 	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~negParity = false~negParity = true~g" {} \;
+	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak 's~"None", "None"~0.85, 2.025~g' {} \;  # set ylimits
 	# Run the code to generate the full file
 	echo ${pythonExe} ${writeScript} ${thisToml}
 	${pythonExe} ${writeScript} ${thisToml}
@@ -528,7 +367,7 @@ do
     UN=doublet_2fl
     qqq=ccs
     had='\Omega_{cc}(ccs)'
-    for RAT in single double;
+    for RAT in single;
     do
 	PAR=Pos
 	thisToml=${outTomlDir}/${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml
@@ -542,6 +381,7 @@ do
 	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~RAT~${RAT}~g" {} \;
 	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~${RAT} = false~${RAT} = true~g" {} \;
 	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~PAR~${PAR}~g" {} \;
+	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak 's~"None", "None"~0.94, 1.1~g' {} \;  # set ylimits 
 	# Run the code to generate the full file
 	echo ${pythonExe} ${writeScript} ${thisToml}
 	${pythonExe} ${writeScript} ${thisToml}
@@ -566,6 +406,7 @@ do
 	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~${RAT} = false~${RAT} = true~g" {} \;
 	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~PAR~${PAR}~g" {} \;
 	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~negParity = false~negParity = true~g" {} \;
+	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak 's~"None", "None"~0.95, 1.32~g' {} \;  # set ylimits
 	# Run the code to generate the full file
 	echo ${pythonExe} ${writeScript} ${thisToml}
 	${pythonExe} ${writeScript} ${thisToml}
@@ -577,333 +418,4 @@ do
 	${pythonExe} ${scriptDir}/${exe} ${finalToml}
 	cd -
     done
-#J32#    #########################3
-#J32#    # 3/2
-#J32#    ##########################
-#J32#    # 3/2
-#J32#    # Sigma_{c} udc
-#J32#    OP=sigma32.3fl
-#J32#    UN=sigma32_3fl
-#J32#    qqq=udc
-#J32#    had='\Sigma_{c}(udc)'
-#J32#    for RAT in single double;
-#J32#    do
-#J32#	PAR=Pos
-#J32#	thisToml=${outTomlDir}/${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml
-#J32#	echo cp -av ${template} ${thisToml}
-#J32#	cp -av ${template} ${thisToml}
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~EXT~ReconRatio~g" {} \;
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~OP~${OP}~g" {} \;
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~UN~${UN}~g" {} \;
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~QQQ~${qqq}~" {} \;
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~NAME~${had}~g" {} \;
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~RAT~${RAT}~g" {} \;
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~${RAT} = false~${RAT} = true~g" {} \;
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~PAR~${PAR}~g" {} \;
-#J32#	# Run the code to generate the full file
-#J32#	echo ${pythonExe} ${writeScript} ${thisToml}
-#J32#	${pythonExe} ${writeScript} ${thisToml}
-#J32#	# This puts the toml file in AutoToml-base/OP_QQQ_cool_RAT_PAR-base.toml
-#J32#	finalToml=${outTomlDir}/${UN}_${qqq}_${temp}_${RAT}_${PAR}_Ratios.toml
-#J32#	cd ${dataDir}
-#J32#	# and run the code to generate the plots
-#J32#	echo ${pythonExe} ${scriptDir}/${exe} ${finalToml}
-#J32#	${pythonExe} ${scriptDir}/${exe} ${finalToml}
-#J32#	cd -
-#J32#	# Negative parity
-#J32#	PAR=Neg
-#J32#	thisToml=${outTomlDir}/${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml
-#J32#	echo cp -av ${template} ${thisToml}
-#J32#	cp -av ${template} ${thisToml}
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~EXT~ReconRatio~g" {} \;
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~OP~${OP}~g" {} \;
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~UN~${UN}~g" {} \;
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~QQQ~${qqq}~" {} \;
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~NAME~${had}~g" {} \;
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~RAT~${RAT}~g" {} \;
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~${RAT} = false~${RAT} = true~g" {} \;
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~PAR~${PAR}~g" {} \;
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~negParity = false~negParity = true~g" {} \;
-#J32#	# Run the code to generate the full file
-#J32#	echo ${pythonExe} ${writeScript} ${thisToml}
-#J32#	${pythonExe} ${writeScript} ${thisToml}
-#J32#	# This puts the toml file in AutoToml-base/OP_QQQ_cool_RAT_PAR-base.toml
-#J32#	finalToml=${outTomlDir}/${UN}_${qqq}_${temp}_${RAT}_${PAR}_Ratios.toml
-#J32#	cd ${dataDir}
-#J32#	# and run the code to generate the plots
-#J32#	echo ${pythonExe} ${scriptDir}/${exe} ${finalToml}
-#J32#	${pythonExe} ${scriptDir}/${exe} ${finalToml}
-#J32#	cd -
-#J32#    done
-#J32#    # xi_{c}(usc)
-#J32#    OP=sigma32.3fl
-#J32#    UN=sigma32_3fl
-#J32#    qqq=usc
-#J32#    had='\Xi_{c}(usc))'
-#J32#    for RAT in single double;
-#J32#    do
-#J32#	PAR=Pos
-#J32#	thisToml=${outTomlDir}/${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml
-#J32#	echo cp -av ${template} ${thisToml}
-#J32#	cp -av ${template} ${thisToml}
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~EXT~ReconRatio~g" {} \;
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~OP~${OP}~g" {} \;
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~UN~${UN}~g" {} \;
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~QQQ~${qqq}~" {} \;
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~NAME~${had}~g" {} \;
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~RAT~${RAT}~g" {} \;
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~${RAT} = false~${RAT} = true~g" {} \;
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~PAR~${PAR}~g" {} \;
-#J32#	# Run the code to generate the full file
-#J32#	echo ${pythonExe} ${writeScript} ${thisToml}
-#J32#	${pythonExe} ${writeScript} ${thisToml}
-#J32#	# This puts the toml file in AutoToml-base/OP_QQQ_cool_RAT_PAR-base.toml
-#J32#	finalToml=${outTomlDir}/${UN}_${qqq}_${temp}_${RAT}_${PAR}_Ratios.toml
-#J32#	cd ${dataDir}
-#J32#	# and run the code to generate the plots
-#J32#	echo ${pythonExe} ${scriptDir}/${exe} ${finalToml}
-#J32#	${pythonExe} ${scriptDir}/${exe} ${finalToml}
-#J32#	cd -
-#J32#	# Negative parity
-#J32#	PAR=Neg
-#J32#	thisToml=${outTomlDir}/${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml
-#J32#	echo cp -av ${template} ${thisToml}
-#J32#	cp -av ${template} ${thisToml}
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~EXT~ReconRatio~g" {} \;
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~OP~${OP}~g" {} \;
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~UN~${UN}~g" {} \;
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~QQQ~${qqq}~" {} \;
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~NAME~${had}~g" {} \;
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~RAT~${RAT}~g" {} \;
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~${RAT} = false~${RAT} = true~g" {} \;
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~PAR~${PAR}~g" {} \;
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~negParity = false~negParity = true~g" {} \;
-#J32#	# Run the code to generate the full file
-#J32#	echo ${pythonExe} ${writeScript} ${thisToml}
-#J32#	${pythonExe} ${writeScript} ${thisToml}
-#J32#	# This puts the toml file in AutoToml-base/OP_QQQ_cool_RAT_PAR-base.toml
-#J32#	finalToml=${outTomlDir}/${UN}_${qqq}_${temp}_${RAT}_${PAR}_Ratios.toml
-#J32#	cd ${dataDir}
-#J32#	# and run the code to generate the plots
-#J32#	echo ${pythonExe} ${scriptDir}/${exe} ${finalToml}
-#J32#	${pythonExe} ${scriptDir}/${exe} ${finalToml}
-#J32#	cd -
-#J32#    done
-#J32#    # quadruplet omega_c ssc
-#J32#    OP=quadruplet.2fl
-#J32#    UN=quadruplet_2fl
-#J32#    qqq=ssc
-#J32#    had='\Omega_{c}(ssc)'
-#J32#    for RAT in single double;
-#J32#    do
-#J32#	PAR=Pos
-#J32#	thisToml=${outTomlDir}/${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml
-#J32#	echo cp -av ${template} ${thisToml}
-#J32#	cp -av ${template} ${thisToml}
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~EXT~ReconRatio~g" {} \;
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~OP~${OP}~g" {} \;
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~UN~${UN}~g" {} \;
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~QQQ~${qqq}~" {} \;
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~NAME~${had}~g" {} \;
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~RAT~${RAT}~g" {} \;
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~${RAT} = false~${RAT} = true~g" {} \;
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~PAR~${PAR}~g" {} \;
-#J32#	# Run the code to generate the full file
-#J32#	echo ${pythonExe} ${writeScript} ${thisToml}
-#J32#	${pythonExe} ${writeScript} ${thisToml}
-#J32#	# This puts the toml file in AutoToml-base/OP_QQQ_cool_RAT_PAR-base.toml
-#J32#	finalToml=${outTomlDir}/${UN}_${qqq}_${temp}_${RAT}_${PAR}_Ratios.toml
-#J32#	cd ${dataDir}
-#J32#	# and run the code to generate the plots
-#J32#	echo ${pythonExe} ${scriptDir}/${exe} ${finalToml}
-#J32#	${pythonExe} ${scriptDir}/${exe} ${finalToml}
-#J32#	cd -
-#J32#	# Negative parity
-#J32#	PAR=Neg
-#J32#	thisToml=${outTomlDir}/${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml
-#J32#	echo cp -av ${template} ${thisToml}
-#J32#	cp -av ${template} ${thisToml}
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~EXT~ReconRatio~g" {} \;
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~OP~${OP}~g" {} \;
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~UN~${UN}~g" {} \;
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~QQQ~${qqq}~" {} \;
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~NAME~${had}~g" {} \;
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~RAT~${RAT}~g" {} \;
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~${RAT} = false~${RAT} = true~g" {} \;
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~PAR~${PAR}~g" {} \;
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~negParity = false~negParity = true~g" {} \;
-#J32#	# Run the code to generate the full file
-#J32#	echo ${pythonExe} ${writeScript} ${thisToml}
-#J32#	${pythonExe} ${writeScript} ${thisToml}
-#J32#	# This puts the toml file in AutoToml-base/OP_QQQ_cool_RAT_PAR-base.toml
-#J32#	finalToml=${outTomlDir}/${UN}_${qqq}_${temp}_${RAT}_${PAR}_Ratios.toml
-#J32#	cd ${dataDir}
-#J32#	# and run the code to generate the plots
-#J32#	echo ${pythonExe} ${scriptDir}/${exe} ${finalToml}
-#J32#	${pythonExe} ${scriptDir}/${exe} ${finalToml}
-#J32#	cd -
-#J32#    done
-#J32#    # xi_{cc} (ccu)
-#J32#    OP=quadruplet.2fl
-#J32#    UN=quadruplet_2fl
-#J32#    qqq=ccu
-#J32#    had='\Xi_{cc}(ccu)'
-#J32#    for RAT in single double;
-#J32#    do
-#J32#	PAR=Pos
-#J32#	thisToml=${outTomlDir}/${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml
-#J32#	echo cp -av ${template} ${thisToml}
-#J32#	cp -av ${template} ${thisToml}
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~EXT~ReconRatio~g" {} \;
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~OP~${OP}~g" {} \;
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~UN~${UN}~g" {} \;
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~QQQ~${qqq}~" {} \;
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~NAME~${had}~g" {} \;
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~RAT~${RAT}~g" {} \;
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~${RAT} = false~${RAT} = true~g" {} \;
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~PAR~${PAR}~g" {} \;
-#J32#	# Run the code to generate the full file
-#J32#	echo ${pythonExe} ${writeScript} ${thisToml}
-#J32#	${pythonExe} ${writeScript} ${thisToml}
-#J32#	# This puts the toml file in AutoToml-base/OP_QQQ_cool_RAT_PAR-base.toml
-#J32#	finalToml=${outTomlDir}/${UN}_${qqq}_${temp}_${RAT}_${PAR}_Ratios.toml
-#J32#	cd ${dataDir}
-#J32#	# and run the code to generate the plots
-#J32#	echo ${pythonExe} ${scriptDir}/${exe} ${finalToml}
-#J32#	${pythonExe} ${scriptDir}/${exe} ${finalToml}
-#J32#	cd -
-#J32#	# Negative parity
-#J32#	PAR=Neg
-#J32#	thisToml=${outTomlDir}/${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml
-#J32#	echo cp -av ${template} ${thisToml}
-#J32#	cp -av ${template} ${thisToml}
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~EXT~ReconRatio~g" {} \;
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~OP~${OP}~g" {} \;
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~UN~${UN}~g" {} \;
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~QQQ~${qqq}~" {} \;
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~NAME~${had}~g" {} \;
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~RAT~${RAT}~g" {} \;
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~${RAT} = false~${RAT} = true~g" {} \;
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~PAR~${PAR}~g" {} \;
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~negParity = false~negParity = true~g" {} \;
-#J32#	# Run the code to generate the full file
-#J32#	echo ${pythonExe} ${writeScript} ${thisToml}
-#J32#	${pythonExe} ${writeScript} ${thisToml}
-#J32#	# This puts the toml file in AutoToml-base/OP_QQQ_cool_RAT_PAR-base.toml
-#J32#	finalToml=${outTomlDir}/${UN}_${qqq}_${temp}_${RAT}_${PAR}_Ratios.toml
-#J32#	cd ${dataDir}
-#J32#	# and run the code to generate the plots
-#J32#	echo ${pythonExe} ${scriptDir}/${exe} ${finalToml}
-#J32#	${pythonExe} ${scriptDir}/${exe} ${finalToml}
-#J32#	cd -
-#J32#    done
-#J32#    # omega_{cc} (ccs)
-#J32#    OP=quadruplet.2fl
-#J32#    UN=quadruplet_2fl
-#J32#    qqq=ccs
-#J32#    had='\Omega_{cc}(ccs)'
-#J32#    for RAT in single double;
-#J32#    do
-#J32#	PAR=Pos
-#J32#	thisToml=${outTomlDir}/${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml
-#J32#	echo cp -av ${template} ${thisToml}
-#J32#	cp -av ${template} ${thisToml}
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~EXT~ReconRatio~g" {} \;
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~OP~${OP}~g" {} \;
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~UN~${UN}~g" {} \;
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~QQQ~${qqq}~" {} \;
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~NAME~${had}~g" {} \;
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~RAT~${RAT}~g" {} \;
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~${RAT} = false~${RAT} = true~g" {} \;
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~PAR~${PAR}~g" {} \;
-#J32#	# Run the code to generate the full file
-#J32#	echo ${pythonExe} ${writeScript} ${thisToml}
-#J32#	${pythonExe} ${writeScript} ${thisToml}
-#J32#	# This puts the toml file in AutoToml-base/OP_QQQ_cool_RAT_PAR-base.toml
-#J32#	finalToml=${outTomlDir}/${UN}_${qqq}_${temp}_${RAT}_${PAR}_Ratios.toml
-#J32#	cd ${dataDir}
-#J32#	# and run the code to generate the plots
-#J32#	echo ${pythonExe} ${scriptDir}/${exe} ${finalToml}
-#J32#	${pythonExe} ${scriptDir}/${exe} ${finalToml}
-#J32#	cd -
-#J32#	# Negative parity
-#J32#	PAR=Neg
-#J32#	thisToml=${outTomlDir}/${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml
-#J32#	echo cp -av ${template} ${thisToml}
-#J32#	cp -av ${template} ${thisToml}
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~EXT~ReconRatio~g" {} \;
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~OP~${OP}~g" {} \;
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~UN~${UN}~g" {} \;
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~QQQ~${qqq}~" {} \;
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~NAME~${had}~g" {} \;
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~RAT~${RAT}~g" {} \;
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~${RAT} = false~${RAT} = true~g" {} \;
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~PAR~${PAR}~g" {} \;
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~negParity = false~negParity = true~g" {} \;
-#J32#	# Run the code to generate the full file
-#J32#	echo ${pythonExe} ${writeScript} ${thisToml}
-#J32#	${pythonExe} ${writeScript} ${thisToml}
-#J32#	# This puts the toml file in AutoToml-base/OP_QQQ_cool_RAT_PAR-base.toml
-#J32#	finalToml=${outTomlDir}/${UN}_${qqq}_${temp}_${RAT}_${PAR}_Ratios.toml
-#J32#	cd ${dataDir}
-#J32#	# and run the code to generate the plots
-#J32#	echo ${pythonExe} ${scriptDir}/${exe} ${finalToml}
-#J32#	${pythonExe} ${scriptDir}/${exe} ${finalToml}
-#J32#	cd -
-#J32#    done
-#J32#    #omega_ccc
-#J32#    OP=quadruplet.1fl
-#J32#    UN=quadruplet_1fl
-#J32#    qqq=ccc
-#J32#    had='\Omega_{ccc}(ccc)'
-#J32#    for RAT in single double;
-#J32#    do
-#J32#	PAR=Pos
-#J32#	thisToml=${outTomlDir}/${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml
-#J32#	echo cp -av ${template} ${thisToml}
-#J32#	cp -av ${template} ${thisToml}
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~EXT~ReconRatio~g" {} \;
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~OP~${OP}~g" {} \;
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~UN~${UN}~g" {} \;
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~QQQ~${qqq}~" {} \;
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~NAME~${had}~g" {} \;
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~RAT~${RAT}~g" {} \;
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~${RAT} = false~${RAT} = true~g" {} \;
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~PAR~${PAR}~g" {} \;
-#J32#	# Run the code to generate the full file
-#J32#	echo ${pythonExe} ${writeScript} ${thisToml}
-#J32#	${pythonExe} ${writeScript} ${thisToml}
-#J32#	# This puts the toml file in AutoToml-base/OP_QQQ_cool_RAT_PAR-base.toml
-#J32#	finalToml=${outTomlDir}/${UN}_${qqq}_${temp}_${RAT}_${PAR}_Ratios.toml
-#J32#	cd ${dataDir}
-#J32#	# and run the code to generate the plots
-#J32#	echo ${pythonExe} ${scriptDir}/${exe} ${finalToml}
-#J32#	${pythonExe} ${scriptDir}/${exe} ${finalToml}
-#J32#	cd -
-#J32#	# Negative parity
-#J32#	PAR=Neg
-#J32#	thisToml=${outTomlDir}/${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml
-#J32#	echo cp -av ${template} ${thisToml}
-#J32#	cp -av ${template} ${thisToml}
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~EXT~ReconRatio~g" {} \;
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~OP~${OP}~g" {} \;
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~UN~${UN}~g" {} \;
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~QQQ~${qqq}~" {} \;
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~NAME~${had}~g" {} \;
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~RAT~${RAT}~g" {} \;
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~${RAT} = false~${RAT} = true~g" {} \;
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~PAR~${PAR}~g" {} \;
-#J32#	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~negParity = false~negParity = true~g" {} \;
-#J32#	# Run the code to generate the full file
-#J32#	echo ${pythonExe} ${writeScript} ${thisToml}
-#J32#	${pythonExe} ${writeScript} ${thisToml}
-#J32#	# This puts the toml file in AutoToml-base/OP_QQQ_cool_RAT_PAR-base.toml
-#J32#	finalToml=${outTomlDir}/${UN}_${qqq}_${temp}_${RAT}_${PAR}_Ratios.toml
-#J32#	cd ${dataDir}
-#J32#	# and run the code to generate the plots
-#J32#	echo ${pythonExe} ${scriptDir}/${exe} ${finalToml}
-#J32#	${pythonExe} ${scriptDir}/${exe} ${finalToml}
-#J32#	cd -
-#J32#    done
-#J32#    
 done

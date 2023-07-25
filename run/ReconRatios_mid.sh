@@ -1,5 +1,4 @@
-
-
+#!/bin/bash -xe
 #Where we are running this from
 # myDir='/home/ryan/Documents/GitHub/PullRequests_SwanLat/cfuns/tomlWriters/charmBaryon/'
 myDir=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
@@ -8,10 +7,10 @@ myDir=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 pythonExe=python #/home/ryan/installs/conda/miniconda3/envs/gen/bin/python
 
 # The script used to turn the template into the full files
-writeScript=${myDir}/writeModelRatios.py
+writeScript=${myDir}/writeReconRatios.py
 
 # Where we are putting all the modified toml files
-outTomlDir=${myDir}/AutoToml_Ratios/12_06_2023/ModelRatio/
+outTomlDir=${myDir}/AutoToml_Ratios/12_06_2023/ReconRatio/
 # Make a folder to put the modified toml in
 mkdir -p ${outTomlDir}
 
@@ -29,25 +28,24 @@ dataDir=${myDir}/../
 # Loop over temperatures - cool, mid, hot
 #for temp in mid;
 #for temp in cool mid;
-for temp in cool;
-#for temp in hot;
+#for temp in cool mid hot;
+for temp in mid;
 do
     # The template toml file
     template=${myDir}/template-${temp}-base.toml
-    
-
     # Sigma_c(udc)
     OP=sigma12.3fl
     UN=sigma12_3fl
     qqq=udc
     had='\Sigma_{c}(udc)'
+    # for RAT in;
     for RAT in single;
     do
 	PAR=Pos
 	thisToml=${outTomlDir}/${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml
 	echo cp -av ${template} ${thisToml}
 	cp -av ${template} ${thisToml}
-	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~EXT~ModelRatio~g" {} \;
+	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~EXT~ReconRatio~g" {} \;
 	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~OP~${OP}~g" {} \;
 	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~UN~${UN}~g" {} \;
 	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~QQQ~${qqq}~" {} \;
@@ -55,8 +53,7 @@ do
 	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~RAT~${RAT}~g" {} \;
 	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~${RAT} = false~${RAT} = true~g" {} \;
 	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~PAR~${PAR}~g" {} \;
-	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak 's~"None", "None"~0.12, 0.18~g' {} \;  # set ylimits
-
+	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak 's~"None", "None"~0.82, 1.45~g' {} \;  # set ylimits
 	# Run the code to generate the full file
 	echo ${pythonExe} ${writeScript} ${thisToml}
 	${pythonExe} ${writeScript} ${thisToml}
@@ -72,7 +69,7 @@ do
 	thisToml=${outTomlDir}/${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml
 	echo cp -av ${template} ${thisToml}
 	cp -av ${template} ${thisToml}
-	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~EXT~ModelRatio~g" {} \;
+	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~EXT~ReconRatio~g" {} \;
 	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~OP~${OP}~g" {} \;
 	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~UN~${UN}~g" {} \;
 	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~QQQ~${qqq}~" {} \;
@@ -81,7 +78,7 @@ do
 	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~${RAT} = false~${RAT} = true~g" {} \;
 	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~PAR~${PAR}~g" {} \;
 	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~negParity = false~negParity = true~g" {} \;
-	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak 's~"None", "None"~0.34, 1.2~g' {} \;  # set ylimits
+	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak 's~"None", "None"~0.95, 1.75~g' {} \;  # set ylimits
 	# Run the code to generate the full file
 	echo ${pythonExe} ${writeScript} ${thisToml}
 	${pythonExe} ${writeScript} ${thisToml}
@@ -104,7 +101,7 @@ do
 	thisToml=${outTomlDir}/${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml
 	echo cp -av ${template} ${thisToml}
 	cp -av ${template} ${thisToml}
-	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~EXT~ModelRatio~g" {} \;
+	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~EXT~ReconRatio~g" {} \;
 	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~OP~${OP}~g" {} \;
 	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~UN~${UN}~g" {} \;
 	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~QQQ~${qqq}~" {} \;
@@ -127,7 +124,7 @@ do
 	thisToml=${outTomlDir}/${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml
 	echo cp -av ${template} ${thisToml}
 	cp -av ${template} ${thisToml}
-	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~EXT~ModelRatio~g" {} \;
+	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~EXT~ReconRatio~g" {} \;
 	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~OP~${OP}~g" {} \;
 	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~UN~${UN}~g" {} \;
 	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~QQQ~${qqq}~" {} \;
@@ -158,7 +155,7 @@ do
 	thisToml=${outTomlDir}/${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml
 	echo cp -av ${template} ${thisToml}
 	cp -av ${template} ${thisToml}
-	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~EXT~ModelRatio~g" {} \;
+	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~EXT~ReconRatio~g" {} \;
 	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~OP~${OP}~g" {} \;
 	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~UN~${UN}~g" {} \;
 	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~QQQ~${qqq}~" {} \;
@@ -181,7 +178,7 @@ do
 	thisToml=${outTomlDir}/${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml
 	echo cp -av ${template} ${thisToml}
 	cp -av ${template} ${thisToml}
-	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~EXT~ModelRatio~g" {} \;
+	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~EXT~ReconRatio~g" {} \;
 	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~OP~${OP}~g" {} \;
 	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~UN~${UN}~g" {} \;
 	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~QQQ~${qqq}~" {} \;
@@ -212,7 +209,7 @@ do
 	thisToml=${outTomlDir}/${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml
 	echo cp -av ${template} ${thisToml}
 	cp -av ${template} ${thisToml}
-	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~EXT~ModelRatio~g" {} \;
+	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~EXT~ReconRatio~g" {} \;
 	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~OP~${OP}~g" {} \;
 	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~UN~${UN}~g" {} \;
 	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~QQQ~${qqq}~" {} \;
@@ -235,7 +232,7 @@ do
 	thisToml=${outTomlDir}/${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml
 	echo cp -av ${template} ${thisToml}
 	cp -av ${template} ${thisToml}
-	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~EXT~ModelRatio~g" {} \;
+	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~EXT~ReconRatio~g" {} \;
 	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~OP~${OP}~g" {} \;
 	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~UN~${UN}~g" {} \;
 	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~QQQ~${qqq}~" {} \;
@@ -266,7 +263,7 @@ do
 	thisToml=${outTomlDir}/${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml
 	echo cp -av ${template} ${thisToml}
 	cp -av ${template} ${thisToml}
-	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~EXT~ModelRatio~g" {} \;
+	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~EXT~ReconRatio~g" {} \;
 	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~OP~${OP}~g" {} \;
 	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~UN~${UN}~g" {} \;
 	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~QQQ~${qqq}~" {} \;
@@ -289,7 +286,7 @@ do
 	thisToml=${outTomlDir}/${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml
 	echo cp -av ${template} ${thisToml}
 	cp -av ${template} ${thisToml}
-	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~EXT~ModelRatio~g" {} \;
+	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~EXT~ReconRatio~g" {} \;
 	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~OP~${OP}~g" {} \;
 	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~UN~${UN}~g" {} \;
 	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~QQQ~${qqq}~" {} \;
@@ -320,7 +317,7 @@ do
 	thisToml=${outTomlDir}/${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml
 	echo cp -av ${template} ${thisToml}
 	cp -av ${template} ${thisToml}
-	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~EXT~ModelRatio~g" {} \;
+	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~EXT~ReconRatio~g" {} \;
 	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~OP~${OP}~g" {} \;
 	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~UN~${UN}~g" {} \;
 	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~QQQ~${qqq}~" {} \;
@@ -328,7 +325,7 @@ do
 	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~RAT~${RAT}~g" {} \;
 	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~${RAT} = false~${RAT} = true~g" {} \;
 	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~PAR~${PAR}~g" {} \;
-	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak 's~"None", "None"~0.15, 0.26~g' {} \;  # set ylimits
+	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak 's~"None", "None"~0.875, 1.33~g' {} \;  # set ylimits
 	# Run the code to generate the full file
 	echo ${pythonExe} ${writeScript} ${thisToml}
 	${pythonExe} ${writeScript} ${thisToml}
@@ -344,7 +341,7 @@ do
 	thisToml=${outTomlDir}/${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml
 	echo cp -av ${template} ${thisToml}
 	cp -av ${template} ${thisToml}
-	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~EXT~ModelRatio~g" {} \;
+	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~EXT~ReconRatio~g" {} \;
 	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~OP~${OP}~g" {} \;
 	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~UN~${UN}~g" {} \;
 	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~QQQ~${qqq}~" {} \;
@@ -353,7 +350,7 @@ do
 	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~${RAT} = false~${RAT} = true~g" {} \;
 	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~PAR~${PAR}~g" {} \;
 	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~negParity = false~negParity = true~g" {} \;
-	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak 's~"None", "None"~0.15, 0.50~g' {} \;  # set ylimits
+	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak 's~"None", "None"~0.9, 2.025~g' {} \;  # set ylimits
 	# Run the code to generate the full file
 	echo ${pythonExe} ${writeScript} ${thisToml}
 	${pythonExe} ${writeScript} ${thisToml}
@@ -376,7 +373,7 @@ do
 	thisToml=${outTomlDir}/${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml
 	echo cp -av ${template} ${thisToml}
 	cp -av ${template} ${thisToml}
-	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~EXT~ModelRatio~g" {} \;
+	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~EXT~ReconRatio~g" {} \;
 	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~OP~${OP}~g" {} \;
 	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~UN~${UN}~g" {} \;
 	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~QQQ~${qqq}~" {} \;
@@ -384,7 +381,7 @@ do
 	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~RAT~${RAT}~g" {} \;
 	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~${RAT} = false~${RAT} = true~g" {} \;
 	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~PAR~${PAR}~g" {} \;
-	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak 's~"None", "None"~0.17, 0.24~g' {} \;  # set ylimits 
+	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak 's~"None", "None"~0.91, 1.275~g' {} \;  # set ylimits 
 	# Run the code to generate the full file
 	echo ${pythonExe} ${writeScript} ${thisToml}
 	${pythonExe} ${writeScript} ${thisToml}
@@ -400,7 +397,7 @@ do
 	thisToml=${outTomlDir}/${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml
 	echo cp -av ${template} ${thisToml}
 	cp -av ${template} ${thisToml}
-	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~EXT~ModelRatio~g" {} \;
+	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~EXT~ReconRatio~g" {} \;
 	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~OP~${OP}~g" {} \;
 	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~UN~${UN}~g" {} \;
 	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~QQQ~${qqq}~" {} \;
@@ -409,6 +406,7 @@ do
 	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~${RAT} = false~${RAT} = true~g" {} \;
 	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~PAR~${PAR}~g" {} \;
 	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~negParity = false~negParity = true~g" {} \;
+	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak 's~"None", "None"~0.9, 2.025~g' {} \;  # set ylimits
 	# Run the code to generate the full file
 	echo ${pythonExe} ${writeScript} ${thisToml}
 	${pythonExe} ${writeScript} ${thisToml}

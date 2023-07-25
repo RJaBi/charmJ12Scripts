@@ -29,7 +29,7 @@ dataDir=${myDir}/../
 # Loop over temperatures - cool, mid, hot
 #for temp in mid;
 #for temp in cool mid;
-for temp in cool;
+for temp in mid;
 #for temp in hot;
 do
     # The template toml file
@@ -41,7 +41,7 @@ do
     UN=sigma12_3fl
     qqq=udc
     had='\Sigma_{c}(udc)'
-    for RAT in single;
+    for RAT in double;
     do
 	PAR=Pos
 	thisToml=${outTomlDir}/${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml
@@ -55,7 +55,7 @@ do
 	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~RAT~${RAT}~g" {} \;
 	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~${RAT} = false~${RAT} = true~g" {} \;
 	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~PAR~${PAR}~g" {} \;
-	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak 's~"None", "None"~0.12, 0.18~g' {} \;  # set ylimits
+	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak 's~"None", "None"~0.82, 1.45~g' {} \;  # set ylimits
 
 	# Run the code to generate the full file
 	echo ${pythonExe} ${writeScript} ${thisToml}
@@ -81,7 +81,7 @@ do
 	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~${RAT} = false~${RAT} = true~g" {} \;
 	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~PAR~${PAR}~g" {} \;
 	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~negParity = false~negParity = true~g" {} \;
-	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak 's~"None", "None"~0.34, 1.2~g' {} \;  # set ylimits
+	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak 's~"None", "None"~0.95, 1.75~g' {} \;  # set ylimits
 	# Run the code to generate the full file
 	echo ${pythonExe} ${writeScript} ${thisToml}
 	${pythonExe} ${writeScript} ${thisToml}
@@ -98,7 +98,7 @@ do
     UN=sigma12_3fl
     qqq=usc
     had='\Xi_{c}^{\prime}(usc)'
-    for RAT in single;
+    for RAT in double;
     do
 	PAR=Pos
 	thisToml=${outTomlDir}/${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml
@@ -152,7 +152,7 @@ do
     UN=doublet_2fl
     qqq=ssc
     had='\Omega_{c}(ssc)'
-    for RAT in single;
+    for RAT in double;
     do
 	PAR=Pos
 	thisToml=${outTomlDir}/${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml
@@ -206,7 +206,7 @@ do
     UN=lambda_3fl
     qqq=udc
     had='\Lambda_{c}(udc)'
-    for RAT in single;
+    for RAT in double;
     do
 	PAR=Pos
 	thisToml=${outTomlDir}/${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml
@@ -260,7 +260,7 @@ do
     UN=lambda_3fl
     qqq=usc
     had='\Xi_{c}(usc)'
-    for RAT in single;
+    for RAT in double;
     do
 	PAR=Pos
 	thisToml=${outTomlDir}/${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml
@@ -314,7 +314,7 @@ do
     UN=doublet_2fl
     qqq=ccu
     had='\Xi_{cc}(ccu)'
-    for RAT in single;
+    for RAT in double;
     do
 	PAR=Pos
 	thisToml=${outTomlDir}/${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml
@@ -328,7 +328,7 @@ do
 	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~RAT~${RAT}~g" {} \;
 	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~${RAT} = false~${RAT} = true~g" {} \;
 	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~PAR~${PAR}~g" {} \;
-	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak 's~"None", "None"~0.15, 0.26~g' {} \;  # set ylimits
+	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak 's~"None", "None"~0.875, 1.33~g' {} \;  # set ylimits
 	# Run the code to generate the full file
 	echo ${pythonExe} ${writeScript} ${thisToml}
 	${pythonExe} ${writeScript} ${thisToml}
@@ -353,7 +353,7 @@ do
 	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~${RAT} = false~${RAT} = true~g" {} \;
 	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~PAR~${PAR}~g" {} \;
 	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~negParity = false~negParity = true~g" {} \;
-	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak 's~"None", "None"~0.15, 0.50~g' {} \;  # set ylimits
+	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak 's~"None", "None"~0.9, 2.025~g' {} \;  # set ylimits
 	# Run the code to generate the full file
 	echo ${pythonExe} ${writeScript} ${thisToml}
 	${pythonExe} ${writeScript} ${thisToml}
@@ -370,7 +370,7 @@ do
     UN=doublet_2fl
     qqq=ccs
     had='\Omega_{cc}(ccs)'
-    for RAT in single;
+    for RAT in double;
     do
 	PAR=Pos
 	thisToml=${outTomlDir}/${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml
@@ -384,7 +384,7 @@ do
 	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~RAT~${RAT}~g" {} \;
 	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~${RAT} = false~${RAT} = true~g" {} \;
 	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~PAR~${PAR}~g" {} \;
-	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak 's~"None", "None"~0.17, 0.24~g' {} \;  # set ylimits 
+	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak 's~"None", "None"~0.91, 1.275~g' {} \;  # set ylimits
 	# Run the code to generate the full file
 	echo ${pythonExe} ${writeScript} ${thisToml}
 	${pythonExe} ${writeScript} ${thisToml}
@@ -409,6 +409,7 @@ do
 	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~${RAT} = false~${RAT} = true~g" {} \;
 	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~PAR~${PAR}~g" {} \;
 	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak "s~negParity = false~negParity = true~g" {} \;
+	find ${outTomlDir} -type f -name ${UN}_${qqq}_${temp}_${RAT}_${PAR}-base.toml -exec sed -i.bak 's~"None", "None"~0.9, 2.025~g' {} \;  # set ylimits
 	# Run the code to generate the full file
 	echo ${pythonExe} ${writeScript} ${thisToml}
 	${pythonExe} ${writeScript} ${thisToml}

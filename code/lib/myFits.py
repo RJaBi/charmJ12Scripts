@@ -98,7 +98,10 @@ def getWinTicks(ax, wins: List[str], endcut=None, startcut=0) -> List[str]:
     if endcut == None:
         return [''] * startcut + startTicks[startcut:]
     else:
-        return [''] * startcut + startTicks[startcut:-endcut] + [''] * endcut
+        if endcut + startcut > len(startTicks):
+            return startTicks[:len(xticks)]
+        else:
+            return [''] * startcut + startTicks[startcut:-endcut] + [''] * endcut
 
 
 # As suggested in 2007.04188

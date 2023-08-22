@@ -8,7 +8,7 @@ import lsqfit as lsq  # type: ignore
 import matplotlib.pyplot as plt  # type: ignore
 import matplotlib as mpl  # type: ignore
 from matplotlib.backends.backend_pdf import PdfPages  # type: ignore
-from scipy.interpolate import InterpolatedUnivariateSpline
+from scipy.interpolate import InterpolatedUnivariateSpline  # type: ignore
 from typing import List, Any, Tuple, Dict
 from pathlib import Path
 modDir = os.path.join(Path(__file__).resolve().parent, '..', 'lib')
@@ -16,7 +16,7 @@ sys.path.insert(0, modDir)
 import myModules as mo  # type: ignore  # noqa: E402
 import myIO as io  # type: ignore  # noqa: E402
 import myGVPlotter as GVP  # type: ignore  # noqa: E402
-from myFits import arctan
+from myFits import arctan  # type: ignore  # noqa: E402
 
 
 def calcSummedRatio(GVD: np.ndarray, n0Arr: np.ndarray) -> np.ndarray:
@@ -315,11 +315,14 @@ def main(args: list):
         axRn0Ana.legend(uniHand, uniLegLab, loc='best', ncol=2)
         # Saving the figures
         # axTau.set_title('axTau')
-        thisPdf.savefig(figTau)
+        # thisPdf.savefig(figTau)
+        thisPdf = mo.pdfSaveXY(thisPdf, figTau, axTau)
         # axR.set_title('axR')
-        thisPdf.savefig(figR)
+        # thisPdf.savefig(figR)
+        thisPdf = mo.pdfSaveXY(thisPdf, figR, axR)
         # axRn0Ana.set_title('axRn0Ana')
-        thisPdf.savefig(figRn0Ana)
+        # thisPdf.savefig(figRn0Ana)
+        thisPdf = mo.pdfSaveXY(thisPdf, figRn0Ana, axRn0Ana)
         thisPdf.close()
 
     # Now outside the loop over different operators
@@ -384,7 +387,8 @@ def main(args: list):
     # axRn0.legend(uniHand, uniLegLab, loc='best', ncol=2)
     # Saving
     # axRn0.set_title('axRn0')
-    pdf.savefig(figRn0)
+    # pdf.savefig(figRn0)
+    pdf = mo.pdfSaveXY(pdf, figRn0, axRn0)
     plt.close()
     pdf.close()
     # Save the data points we fit the spline to

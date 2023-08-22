@@ -520,7 +520,8 @@ def main(args: list):
         Sax1.set_ylabel('$a_\\tau\,M_{\mathrm{eff}}^{+}$') #, fontsize=36)  # noqa: W605
         # Sax1.legend(fontsize=40, loc='best', ncol=2)
         Sax1.set_xlabel('$\\tau_{\mathrm{min}}$') #, fontsize=36)
-        pdf.savefig(Sfig)
+        pdf = mo.pdfSaveXY(pdf, Sfig, Sax1)
+        # pdf.savefig(Sfig)
         plt.close(Sfig)
         Sfig, Sax1 = plt.subplots(figsize=(33.2, 11.6))
         Sax1.errorbar(wins, y=gv.mean(eEMF), yerr=gv.sdev(eEMF), marker='d', linestyle='')
@@ -532,7 +533,8 @@ def main(args: list):
         # Sax1.legend(fontsize=40, loc='best', ncol=2)
         Sax1.set_ylim(params['analysis']['EFitLim'])
         Sax1.set_xlabel('$\\tau_{\mathrm{min}}$')
-        pdf.savefig(Sfig)
+        # pdf.savefig(Sfig)
+        pdf = mo.pdfSaveXY(pdf, Sfig, Sax1)        
         plt.close(Sfig)
         # Neg parity E-
         # Plot the effective mass model averaging
@@ -603,7 +605,8 @@ def main(args: list):
         ax2.set_xlabel('fit window')
         ax2.set_ylabel('$\\tilde{w}_f$')
         ax1.legend(fontsize=40, loc='best', ncol=2)
-        pdf.savefig(fig)
+        # pdf.savefig(fig)
+        pdf = mo.pdfSaveXY(pdf, fig, (ax1, ax2))
         plt.close(fig)
         # Plot the effective mass model averaging
         # # P-Val E-
@@ -628,7 +631,8 @@ def main(args: list):
         ax2.set_xlabel('fit window')
         ax2.set_ylabel('$\\tilde{w}_f$')
         ax1.legend(fontsize=40, loc='best', ncol=2)
-        pdf.savefig(fig)
+        pdf = mo.pdfSaveXY(pdf, fig, (ax1, ax2))
+        # pdf.savefig(fig)
         plt.close(fig)
         # # Now do the correlator fits
         # Grabbing data from fits
@@ -770,7 +774,8 @@ def main(args: list):
         Sax1.set_ylabel('$a_\\tau\,M_{\mathrm{exp}}^{+}$')  # noqa: W605
         Sax1.set_xlabel('$\\tau_{\mathrm{min}}$')
         # Sax1.legend(fontsize=40, loc='best', ncol=2)
-        pdf.savefig(Sfig)
+        pdf = mo.pdfSaveXY(pdf, Sfig, Sax1)
+        # pdf.savefig(Sfig)
         plt.close(Sfig)
         # E-
         Sfig, Sax1 = plt.subplots(figsize=(33.2, 11.6))
@@ -781,7 +786,8 @@ def main(args: list):
         Sax1.set_ylabel('$a_\\tau\,M_{\mathrm{exp}}^{-}$')  # noqa: W605
         Sax1.set_xlabel('$\\tau_{\mathrm{min}}$')
         # Sax1.legend(fontsize=40, loc='best', ncol=2)
-        pdf.savefig(Sfig)
+        # pdf.savefig(Sfig)
+        pdf = mo.pdfSaveXY(pdf, Sfig, Sax1)
         plt.close(Sfig)
         # First do the model averaged plots with all fit windows
         fig, (ax1, ax2) = plt.subplots(2, figsize=(33.2, 11.6), sharex=True, gridspec_kw={'height_ratios': [3, 1]})  # noqa: E501
@@ -830,9 +836,11 @@ def main(args: list):
         ax2_t.set_ylabel('$\\tilde{w}_f$')
         ax1.legend(fontsize=40, loc='best', ncol=2)
         ax1_t.legend(fontsize=40, loc='best', ncol=2)
-        pdf.savefig(fig)
+        #pdf.savefig(fig)
+        pdf = mo.pdfSaveXY(pdf, fig, (ax1, ax2))
         plt.close(fig)
-        pdf.savefig(fig_t)
+        pdf = mo.pdfSaveXY(pdf, fig_t, (ax1_t, ax2_t))
+        # pdf.savefig(fig_t)
         plt.close(fig_t)
         # print(f'averaged len(wins), {len(wins)} fits')
         # eff mass plot
@@ -858,7 +866,8 @@ def main(args: list):
         ax1.set_xlabel('$\\tau / a_\\tau$')  # noqa: W605
         ax1.set_ylim(params['analysis']['effEyLim'])
         # effEYLim = ax1.get_ylim()
-        pdf.savefig(fig)
+        # pdf.savefig(fig)
+        pdf = mo.pdfSaveXY(pdf, fig, ax1)
         plt.close(fig)
 
         # First do the model averaged plots with top 50 fit windows
@@ -895,7 +904,8 @@ def main(args: list):
         ax3.set_ylabel('$a_\\tau\,M_{\mathrm{exp}}^{-}$')  # noqa: W605
         ax2.set_xlabel('fit window')
         ax2.set_ylabel('$\\tilde{w}_f$')
-        pdf.savefig(fig)
+        # pdf.savefig(fig)
+        pdf = mo.pdfSaveXY(pdf, fig, (ax1, ax2, ax3))
         plt.close(fig)
         # print(f'averaged len(wins), {len(wins)} fits')
         # Now the two p-valued
@@ -924,7 +934,8 @@ def main(args: list):
         ax1.set_ylabel('$a_\\tau\,M_{\mathrm{exp}}^{+}$')  # noqa: W605
         ax2.set_xlabel('fit window')
         ax2.set_ylabel('$\\tilde{w}_f$')
-        pdf.savefig(fig)
+        # pdf.savefig(fig)
+        pdf = mo.pdfSaveXY(pdf, fig, (ax1, ax2))
         plt.close(fig)
         # E+ PVal
         sortOrder = np.flip(wf[1, :].argsort())
@@ -949,7 +960,8 @@ def main(args: list):
         ax1.set_ylabel('$a_\\tau\,M_{\mathrm{exp}}^{-}$')  # noqa: W605
         ax2.set_xlabel('fit window')
         ax2.set_ylabel('$\\tilde{w}_f$')
-        pdf.savefig(fig)
+        # pdf.savefig(fig)
+        pdf = mo.pdfSaveXY(pdf, fig, (ax1, ax2))
         plt.close(fig)
         blankfig, blankax1 = plt.subplots(figsize=(33.2, 11.6))
         blankax1.set_title('From here consider top 30% fits')
@@ -1072,7 +1084,8 @@ def main(args: list):
         Sax1.set_ylim(params['analysis']['EFitLim'])
         Sax1.set_xlabel('$\\tau_{\mathrm{min}}$')
         Sax1.legend(fontsize=40, loc='best', ncol=2)
-        pdf.savefig(Sfig)
+        pdf = mo.pdfSaveXY(pdf, Sfig, Sax1)
+        # pdf.savefig(Sfig)
         plt.close(Sfig)
         # E-
         Sfig, Sax1 = plt.subplots(figsize=(33.2, 11.6))
@@ -1087,7 +1100,8 @@ def main(args: list):
         Sax1.set_xlabel('$\\tau_{\mathrm{min}}$')
         Sax1.legend(fontsize=40, loc='best', ncol=2)
         # Sax1.set_title('test')
-        pdf.savefig(Sfig)
+        pdf = mo.pdfSaveXY(pdf, Sfig, Sax1)
+        # pdf.savefig(Sfig)
         plt.close(Sfig)
         # First do the model averaged plots with all fit windows
         fig, (ax1, ax2) = plt.subplots(2, figsize=(33.2, 11.6), sharex=True, gridspec_kw={'height_ratios': [3, 1]})  # noqa: E501
@@ -1133,9 +1147,11 @@ def main(args: list):
         ax2_t.set_ylabel('$\\tilde{w}_f$')
         ax1.legend(fontsize=40, loc='best', ncol=2)
         ax1_t.legend(fontsize=40, loc='best', ncol=2)
-        pdf.savefig(fig)
+        # pdf.savefig(fig)
+        pdf = mo.pdfSaveXY(pdf, fig, (ax1, ax2))
         plt.close(fig)
-        pdf.savefig(fig_t)
+        # pdf.savefig(fig_t)
+        pdf = mo.pdfSaveXY(pdf, fig_t, (ax1_t, ax2_t))
         plt.close(fig_t)
         # print(f'averaged len(wins), {len(wins)} fits')
         # eff mass plot
@@ -1164,7 +1180,8 @@ def main(args: list):
         ax1.set_xlabel('$\\tau / a_\\tau$')  # noqa: W605
         ax1.set_ylim(params['analysis']['effEyLim'])
         # effEYLim = ax1.get_ylim()
-        pdf.savefig(fig)
+        # pdf.savefig(fig)
+        pdf = mo.pdfSaveXY(pdf, fig, ax1)
         plt.close(fig)
 
         # First do the model averaged plots with top 50 fit windows
@@ -1205,7 +1222,8 @@ def main(args: list):
         ax3.set_ylabel('$a_\\tau\,M_{\mathrm{exp}}^{-}$')  # noqa: W605
         ax2.set_xlabel('fit window')
         ax2.set_ylabel('$\\tilde{w}_f$')
-        pdf.savefig(fig)
+        # pdf.savefig(fig)
+        pdf = mo.pdfSaveXY(pdf, fig, (ax1, ax2, ax3))
         plt.close(fig)
         # print(f'averaged len(wins), {len(wins)} fits')
         # Now the two p-valued
@@ -1234,7 +1252,8 @@ def main(args: list):
         ax1.set_ylabel('$a_\\tau\,M_{\mathrm{exp}}^{+}$')  # noqa: W605
         ax2.set_xlabel('fit window')
         ax2.set_ylabel('$\\tilde{w}_f$')
-        pdf.savefig(fig)
+        # pdf.savefig(fig)
+        pdf = mo.pdfSaveXY(pdf, fig, (ax1, ax2))
         plt.close(fig)
         # E+ PVal
         sortOrder = np.flip(wf[1, :].argsort())
@@ -1261,7 +1280,8 @@ def main(args: list):
         ax1.set_ylabel('$a_\\tau\,M_{\mathrm{exp}}^{-}$')  # noqa: W605
         ax2.set_xlabel('fit window')
         ax2.set_ylabel('$\\tilde{w}_f$')
-        pdf.savefig(fig)
+        # pdf.savefig(fig)
+        pdf = mo.pdfSaveXY(pdf, fig, (ax1, ax2))
         plt.close(fig)
         # Close the pdf
         # print(f'Closing the pdf {os.path.join(thisAnaDir, "mAve.pdf")}')

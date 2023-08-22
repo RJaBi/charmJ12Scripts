@@ -5,6 +5,7 @@ import sys
 import toml
 import matplotlib.pyplot as plt  # type: ignore
 import matplotlib as mpl  # type: ignore
+from matplotlib.backends.backend_pdf import PdfPages  # type: ignore
 import gvar as gv  # type: ignore
 # from typing import Dict, Any
 from pathlib import Path
@@ -146,7 +147,10 @@ def main(args: list):
         # axAna.set_xlim(params['analysis']['GxLim'])
         axAna.set_xlim(left=params['analysis']['GxLim'][0], right=params['analysis']['GxLim'][1])
         axAna.set_ylim(params['analysis']['GyLim'])
-        figAna.savefig(os.path.join(thisAnaDir, 'G.pdf'))
+        pdf = PdfPages(os.path.join(thisAnaDir, 'G.pdf'))
+        pdf = mo.pdfSaveXY(pdf, figAna, axAna)
+        pdf.close()
+        # figAna.savefig(os.path.join(thisAnaDir, 'G.pdf'))
         plt.close(figAna)
     # Outside that loop
     # ax.axhline(y=0.0, color='black', linestyle='--')
@@ -197,7 +201,10 @@ def main(args: list):
         xPlotMax = int(params['analysis']['GxLim'][1])
     ax.get_xaxis().set_ticks([1] + list(range(4, xPlotMax + 1, 4)))
     ax.set_xticklabels([1] + list(range(4, xPlotMax + 1, 4)))
-    fig.savefig(os.path.join(anaDir, name))
+    pdf = PdfPages(os.path.join(anaDir, name))
+    pdf = mo.pdfSaveXY(pdf, fig, ax)
+    pdf.close()
+    # fig.savefig(os.path.join(anaDir, name))
     plt.close()
 
 

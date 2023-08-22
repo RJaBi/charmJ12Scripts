@@ -13,6 +13,7 @@ import pandas as pd  # type: ignore
 from typing import Dict, List, Any
 import matplotlib.pyplot as plt  # type: ignore
 import matplotlib as mpl  # type: ignore
+from matplotlib.backends.backend_pdf import PdfPages  # type: ignore
 # from matplotlib.container import ErrorbarContainer  # type: ignore
 from matplotlib.lines import Line2D  # type: ignore
 from matplotlib import rcParams  # type: ignore
@@ -631,16 +632,29 @@ def main(args: list):
     # else:
     #     ax[0].set_xlim(xRan)
     fig.tight_layout()
-    fig.savefig(pdfName, bbox_inches='tight')
+    pdf = PdfPages(pdfName)
+    pdf = mo.pdfSaveXY(pdf, fig, ax, tight=True)
+    pdf.close()
+    #fig.savefig(pdfName, bbox_inches='tight')
     plt.close(fig)
     figM.tight_layout()
-    figM.savefig(pdfNameM, bbox_inches='tight')
+    # figM.savefig(pdfNameM, bbox_inches='tight')
+    pdf = PdfPages(pdfNameM)
+    pdf = mo.pdfSaveXY(pdf, figM, axM, tight=True)
+    pdf.close()
     plt.close(figM)
     figB.tight_layout()
-    figB.savefig(pdfNameB, bbox_inches='tight')
+    # figB.savefig(pdfNameB, bbox_inches='tight')
+    pdf = PdfPages(pdfNameB)
+    pdf = mo.pdfSaveXY(pdf, figB, axB, tight=True)
+    pdf.close()
     plt.close(figB)
     figDiff.tight_layout()
     figDiff.savefig(pdfNameDiff, bbox_inches='tight')
+    # pdf = PdfPages(pdfNameDiff)
+    # print('figDiff')
+    # pdf = mo.pdfSaveXY(pdf, figDiff, axDiff, tight=True)
+    # pdf.close()
     plt.close(figDiff)
     sys.exit('Finished')
 

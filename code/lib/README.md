@@ -32,6 +32,12 @@
    * * agrees with diag**0.5 of above
  * find_nearest(array, value):
    * * finds the index of the point in the array which is closest to value
+ * pdfSaveXY(pdf, fig, allAX, tight=False):
+   * * Saves the x,y, yerr data from the figure/axis and then
+   * * saves the figure to the pdf
+   * * returns the pdf
+ * getLine_XYYERR(ax, ll: int):
+   * * gets the x,y, yerr data from the axis
 
 ### myIO
 *More specialised code for loading correlation functions*

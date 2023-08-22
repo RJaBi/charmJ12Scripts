@@ -2,6 +2,7 @@
 from typing import Dict, Any, MutableMapping, Tuple, List
 import matplotlib as mpl  # type: ignore
 import numpy as np  # type: ignore
+import pandas as pd  # type: ignore
 import warnings
 import sys
 import toml
@@ -239,3 +240,154 @@ def find_nearest(array, value):
     array = np.asarray(array)
     idx = (np.fabs(array - value)).argmin()
     return idx
+
+
+def getLine_XYYERR(ax, ll: int):
+    """
+    Gets the x, y, yerr points from the axis for
+    the specified line ll
+    returns 3 ndarrays and the label
+    """
+    thisX = ax.lines[ll].get_xdata()
+    thisY = ax.lines[ll].get_ydata()
+    yErrGot = False
+    # Iterate over x,y points
+    for nn in range(0, len(ax.lines[ll].get_xdata())):
+        thisYErr = np.empty(np.shape(thisX))
+        # This is a big messy process of checks
+        # to handle the case where we have mixed errorbars and pints
+        # and to handle when have same x, y but different errors
+        ccDone = []
+        for cc in range(0, len(ax.collections)):
+            if cc in ccDone:
+                # Skipping if have already done it
+                continue
+            coll = ax.collections[cc]
+            if not isinstance(coll, mpl.collections.LineCollection):
+                ccDone.append(cc)
+                continue
+            segs = np.asarray(coll.get_segments())
+            if len(segs.shape) != 3:
+                continue
+            # segs is a list of 2x2 matrices for each x, y point
+            # i.e. [npoints, 2, 2]
+            # seg[:, 1] is the y points at end of errorbars
+            # seg[:, 0] is the x points at centre of error bars
+            # hence only need 1 of them
+            xSegs = segs[:, 0, 0]
+            # check these correspond to correct x points
+            # the str comparison is to fix cases where
+            # the thisX is a string not a number
+            if len(xSegs) != len(thisX):
+                ccDone.append(cc)
+                continue
+            if (xSegs == thisX).all() or type(thisX[0] == str):
+                # Now check that the y data is correct
+                ySegs = segs[:, :, 1]
+                # Iterate over each point to check
+                # assumes that error is symmetric
+                # which it should be
+                for point in range(0, np.shape(segs)[0]):
+                    yPoint = thisY[point]
+                    # take difference (error), add to lower point
+                    yErr = abs(ySegs[point][1] - ySegs[point][0]) / 2
+                    ySegPoint = ySegs[point][0] + yErr
+                    if yPoint == ySegPoint:
+                        # then we have correct ydata too
+                        thisYErr[point] = yErr
+                        ccDone.append(cc)
+                        yErrGot = True
+        # So now have the x, y, yerr data
+        # now need to try for the label
+        # It is not always possible
+        # i.e. if some lines do not have legends
+        # can not match definitevely
+        lenLines = len(ax.lines)
+        try:
+            lenLeg = len(ax.get_legend().texts)
+        except AttributeError:
+            # i.e. there is no legend probably
+            lenLeg = -5
+        if lenLines == lenLeg:
+            # can match
+            legLabel = ax.get_legend().texts[ll].get_text()
+        else:
+            legLabel = f'Series_Axis{ll}_Line{nn}'
+    if yErrGot:
+        return thisX, thisY, thisYErr, legLabel
+    else:
+        return None, None, None, None
+
+
+def pdfSaveXY(pdf, fig, allAX, tight=False):
+    """
+    Saves the x,y, yerr data from the figure/axis and then
+    saves the figure to the pdf.
+    returns the pdf
+    """
+    xData = []
+    yData = []
+    yErrData = []
+    labels = []
+    if isinstance(allAX, np.ndarray) or isinstance(allAX, tuple):
+        axArray = np.asarray(allAX).reshape((-1))
+        # print('multi', len(axArray))
+        for ax in axArray:
+            # Loop over number of lines
+            for ll in range(0, len(ax.lines)):
+                thisX, thisY, thisYErr, legLabel = getLine_XYYERR(ax, ll)
+                if thisX is None:
+                    continue
+                xData.append(thisX)
+                yData.append(thisY)
+                yErrData.append(thisYErr)
+                labels.append(legLabel)
+    else:
+        # Loop over number of line
+        # print('single', len(allAX.lines))
+        for ll in range(0, len(allAX.lines)):
+            thisX, thisY, thisYErr, legLabel = getLine_XYYERR(allAX, ll)
+            # print(thisX, thisY, thisYErr, legLabel)
+            # print(ll, legLabel, thisX)
+            if thisX is None:
+                continue
+            xData.append(thisX)
+            yData.append(thisY)
+            yErrData.append(thisYErr)
+            labels.append(legLabel)
+    # Get the page number of the pdf, i.e. the pagecount
+    page = pdf.get_pagecount()
+    # Get the filename of the pdf
+    fh = pdf._file.fh.name
+    csvName = fh.replace('.pdf', f'_Page{page}.csv')
+    # Cast to numpy arrays
+    """
+    try:
+        xArData = np.asarray(xData)
+        yArData = np.asarray(yData)
+        yErrArData = np.asarray(yErrData)
+        labels = np.asarray(labels)
+        # Trim off 1 dimension ranks
+        if len(np.shape(xArData)) != 1:
+            xData = np.asarray(xArData)[..., 0]
+        if len(np.shape(yArData)) != 1:
+            yData = np.asarray(yArData)[..., 0]
+        if len(np.shape(yErrArData)) != 1:
+            yErrData = np.asarray(yErrArData)[..., 0]
+        # construct the pandas dataframe
+        DF = pd.DataFrame.from_records(np.asarray([xData, yData, yErrData, labels]).T, columns=['xData', 'yData', 'yErrData', 'label'])  # noqa: E501
+    except ValueError:
+    """
+    # print('Not converting to numpy and trimming off 1 dim ranks')
+    # This is as the xData is inhomogenous
+    # construct the pandas dataframe
+    DF = pd.DataFrame.from_records([xData, yData, yErrData, labels]).T
+    DF.columns = ['xData', 'yData', 'yErrData', 'label']
+
+    # Save to a csv
+    DF.to_csv(csvName, index=False)
+    # save the figure
+    if tight:
+        fig.tight_layout()
+    pdf.savefig(fig)
+    return pdf

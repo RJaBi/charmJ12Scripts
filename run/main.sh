@@ -35,7 +35,7 @@ cd ${cfDir}
 for T in 16 20 24 28 32 36 40 48 56 64 128
 do
     echo unzip ${T}x32.zip
-#    unzip ${T}x32.zip
+    unzip ${T}x32.zip
 done
 cd -
 echo ''
@@ -45,19 +45,12 @@ echo ''
 # The parity ratio plots are quick - ~3 min
 echo ${pythonExe} ${scriptDir}/parityRatios.py ${myDir}/completeToml/parityJ1_2.toml
 echo 'date is '$(date)
-# ${pythonExe} ${scriptDir}/parityRatios.py ${myDir}/completeToml/parityJ1_2.toml
+${pythonExe} ${scriptDir}/parityRatios.py ${myDir}/completeToml/parityJ1_2.toml
 echo 'date is '$(date)
 # COPY
 echo cp -av ${plotDir}/parityRatio/SummedParityRatio.pdf ${paperDir}/SummedParityRatio.pdf
 cp -av ${plotDir}/parityRatio/SummedParityRatio.pdf ${paperDir}/SummedParityRatio.pdf
 cp -av ${plotDir}/parityRatio/SummedParityRatio_Page0.csv ${XYDir}/SummedParityRatio.csv
-# and the inflection points plot
-echo ${pythonExe} ${scriptDir}/plotInflectionPoints.py ${myDir}/completeToml/inflectionPoints.toml
-# ${pythonExe} ${scriptDir}/plotInflectionPoints.py ${myDir}/completeToml/inflectionPoints.toml
-# COPY
-echo cp -av ${plotDir}/inflectionPoints.pdf ${paperDir}/inflectionPoints.pdf
-cp -av ${plotDir}/inflectionPoints.pdf ${paperDir}/inflectionPoints.pdf
-
 # Generate the ratio plots - ~<30 min
 # Plots of the correlator to the model correlator
 # A script for the single
@@ -66,7 +59,7 @@ cp -av ${plotDir}/inflectionPoints.pdf ${paperDir}/inflectionPoints.pdf
 # for y-limit purposes
 echo bash ${myDir}/ModelRatios.sh
 echo 'date is '$(date)
-# bash ${myDir}/ModelRatios.sh
+bash ${myDir}/ModelRatios.sh
 echo bash ${myDir}/ModelRatios_mid.sh
 echo 'date is '$(date)
 bash ${myDir}/ModelRatios_mid.sh
@@ -132,7 +125,7 @@ done
 # Still less than 1 hour.
 echo bash ${myDir}/run_fits.sh
 echo 'date is '$(date)
-# bash ${myDir}/run_fits.sh
+bash ${myDir}/run_fits.sh
 echo 'date is '$(date)
 
 # Now copy the specific plots for the xi_cc 128
@@ -152,19 +145,19 @@ cp -av ${xicc_csv}_Page18.csv ${XYDir}/Figure4.csv
 echo 'date is '$(date)
 # Run the code to add the systematic error from the choice of averaging method
 echo ${pythonExe} ${scriptDir}/addSysErr.py ${myDir}/completeToml/addSysErr.toml
-# ${pythonExe} ${scriptDir}/addSysErr.py ${myDir}/completeToml/addSysErr.toml
+${pythonExe} ${scriptDir}/addSysErr.py ${myDir}/completeToml/addSysErr.toml
 
 
 # Now the spectrum plot
 echo ${pythonExe} ${scriptDir}/plotSpectrum.py ${myDir}/completeToml/plotSpectrumJ1_2.toml
-# ${pythonExe} ${scriptDir}/plotSpectrum.py ${myDir}/completeToml/plotSpectrumJ1_2.toml
+${pythonExe} ${scriptDir}/plotSpectrum.py ${myDir}/completeToml/plotSpectrumJ1_2.toml
 cp -av ${plotDir}/spectrumPlot.pdf ${paperDir}/spectrumPlot.pdf
 cp -av ${plotDir}/spectrumPlot_Page0.csv ${XYDir}/spectrumPlot.csv
 
 # now the mass as a function of temperature plot
 # C = 1
 echo ${pythonExe} ${scriptDir}/singlePlotSepNorm.py ${myDir}/completeToml/singleJ1_2_C1.toml
-# ${pythonExe} ${scriptDir}/singlePlotSepNorm.py ${myDir}/completeToml/singleJ1_2_C1.toml
+${pythonExe} ${scriptDir}/singlePlotSepNorm.py ${myDir}/completeToml/singleJ1_2_C1.toml
 cp -av ${plotDir}/C1/singlePlotSepNorm_BothParity.pdf ${paperDir}/C1_BothParity.pdf
 cp -av ${plotDir}/C1/singlePlotSepNorm_BothParity_Page0.csv ${XYDir}/C1_BothParity.csv
 # C = 2
@@ -172,8 +165,4 @@ echo ${pythonExe} ${scriptDir}/singlePlotSepNorm.py ${myDir}/completeToml/single
 ${pythonExe} ${scriptDir}/singlePlotSepNorm.py ${myDir}/completeToml/singleJ1_2_C2.toml
 cp -av ${plotDir}/C2/singlePlotSepNorm_BothParity.pdf ${paperDir}/C2_BothParity.pdf
 cp -av ${plotDir}/C2/singlePlotSepNorm_BothParity_Page0.csv ${XYDir}/C2_BothParity.csv
-# C =1, 2
-echo ${pythonExe} ${scriptDir}/singlePlotSep.py ${myDir}/completeToml/singleJ1_2_CBoth.toml
-#${pythonExe} ${scriptDir}/singlePlotSep.py ${myDir}/completeToml/singleJ1_2_CBoth.toml
-# cp -av ${plotDir}/CB/singlePlotSep_Diff.pdf ${paperDir}/CB_DiffParity.pdf
 echo 'date is '$(date)

@@ -112,7 +112,7 @@ for temp in cool mid; do
 		# echo ${plotDir}/ratios/12_06_2023/${OP}/${temp}/${RAT}/${PAR}/G_ReconRatio.pdf
 		# echo ${paperDir}/RR_${OP}_${temp}_${RAT}_${PAR}.pdf
 		cp -av ${plotDir}/ratios/12_06_2023/${OP}/${temp}/${RAT}/${PAR}/G_ReconRatio.pdf ${paperDir}/RR_${OP}_${temp}_${RAT}_${PAR}.pdf
-		cp -av ${plotDir}/ratios/12_06_2023/${OP}/${temp}/${RAT}/${PAR}/G_ReconRatio_Page0.pdf ${paperDir}/RR_${OP}_${temp}_${RAT}_${PAR}.csv
+		cp -av ${plotDir}/ratios/12_06_2023/${OP}/${temp}/${RAT}/${PAR}/G_ReconRatio_Page0.csv ${paperDir}/RR_${OP}_${temp}_${RAT}_${PAR}.csv
 	    done
 	done
     done

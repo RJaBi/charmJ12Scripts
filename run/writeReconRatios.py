@@ -224,12 +224,12 @@ def main(args: list):
     maxNT = np.max(np.asarray(params['cfuns']['NT'][1:], dtype=int))
     xDiv = 2
     if params['maths']['double']:
-        yLab = '$R(\\tau;T;T_0)$'
+        yLab = '$R{\mathrm{rec}}(\\tau;T;T_0)$'
         yLabSet = True
         if maxNT == int(T0NT):
             xDiv = 4
     elif params['maths']['single']:
-        yLab = '$r(\\tau;T;T_0)$'
+        yLab = '$r_{\mathrm{rec}}(\\tau;T;T_0)$'
         if yLabSet:
             yLab = ''
         yLabSet = True
